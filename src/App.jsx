@@ -7,10 +7,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./page/Home";
 import Contact from "./page/Contact";
-import About from "./page/About";
 import Products from "./page/Products";
 import ProductDetail from "./page/ProductDetail";
- 
 const queryClient = new QueryClient();
 export default function App() {
   return (
@@ -21,7 +19,6 @@ export default function App() {
           <main className="flex-grow ">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<ProductDetail/>} />
               <Route path="/contact" element={<Contact />} />

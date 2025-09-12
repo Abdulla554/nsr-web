@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import img from "/5.png";
+import img from "/logo.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
@@ -106,14 +106,14 @@ function Products() {
             variants={itemVariants}
             whileHover={{ y: -15, scale: 1.05 }}
             key={product.id}
-            className="relative bg-gradient-to-br from-white via-[#C53C44]/5 to-[#C53C44]/8 mt-6 rounded-3xl p-1 w-full backdrop-blur-xl border-2 border-[#C53C44]/30 shadow-[0_15px_45px_rgba(197,60,68,0.12)] hover:shadow-[0_25px_65px_rgba(197,60,68,0.25)] transition-all duration-600 group md:h-[500px] flex flex-col overflow-hidden"
+            className="relative bg-gradient-to-br from-white via-primary-600/5 to-primary-600/10 mt-6 rounded-3xl p-1 w-full backdrop-blur-xl border-2 border-primary-600/30 shadow-[0_15px_45px_rgba(26,115,232,0.12)] hover:shadow-[0_25px_65px_rgba(26,115,232,0.25)] transition-all duration-600 group md:h-[500px] flex flex-col overflow-hidden"
           >
       
 
             {/* Content Container */}
             <div className="relative   rounded-3xl h-full flex flex-col ">
               {/* Product Image with Dynamic Effects */}
-              <div className="relative overflow-hidden rounded-t-3xl mb-4 flex-shrink-0 h-52 bg-gradient-to-br from-[#C53C44]/10 to-[#C53C44]/5">
+              <div className="relative overflow-hidden rounded-t-3xl mb-4 flex-shrink-0 h-52 bg-gradient-to-br from-primary-600/10 to-primary-600/5">
                 <img
                   src={product.img}
                   alt={product.name || "منتج"}
@@ -121,12 +121,12 @@ function Products() {
                 />
 
                 {/* Colorful Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#C53C44]/20 via-transparent to-[#C53C44]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-600/20 via-transparent to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 {/* Floating Particles */}
-                <div className="absolute top-6 left-6 w-3 h-3 bg-[#C53C44] rounded-full opacity-70 animate-bounce"></div>
-                <div className="absolute top-8 right-8 w-2 h-2 bg-[#C53C44]/80 rounded-full opacity-60 animate-pulse delay-150"></div>
-                <div className="absolute bottom-6 left-8 w-2 h-2 bg-[#C53C44]/60 rounded-full opacity-50 animate-bounce delay-300"></div>
+                <div className="absolute top-6 left-6 w-3 h-3 bg-primary-600 rounded-full opacity-70 animate-bounce"></div>
+                <div className="absolute top-8 right-8 w-2 h-2 bg-primary-600/80 rounded-full opacity-60 animate-pulse delay-150"></div>
+                <div className="absolute bottom-6 left-8 w-2 h-2 bg-primary-600/60 rounded-full opacity-50 animate-bounce delay-300"></div>
 
 
               </div>
@@ -135,15 +135,15 @@ function Products() {
               <div className="flex-1 flex flex-col justify-between px-6 pb-6">
                 <div className="mb-4">
                   {/* Title with Gradient */}
-                  <h2 className="text-xl font-extrabold bg-gradient-to-r from-[#C53C44] via-gray-800 to-[#C53C44] bg-clip-text text-transparent group-hover:from-gray-800 group-hover:to-[#C53C44] transition-all duration-500 mb-3 line-clamp-2 min-h-[3.5rem] leading-tight">
+                  <h2 className="text-xl font-extrabold bg-gradient-to-r from-primary-600 via-gray-800 to-primary-600 bg-clip-text text-transparent group-hover:from-gray-800 group-hover:to-primary-600 transition-all duration-500 mb-3 line-clamp-2 min-h-[3.5rem] leading-tight">
                     {product.name || "منتج رائع ومميز"}
                   </h2>
 
                   {/* Animated Separator */}
                   <div className="flex items-center mb-3">
-                    <div className="h-1 bg-gradient-to-r from-[#C53C44] to-[#C53C44]/60 rounded-full w-8 group-hover:w-12 transition-all duration-500"></div>
-                    <div className="w-2 h-2 bg-[#C53C44] rounded-full mx-2 animate-pulse"></div>
-                    <div className="h-0.5 bg-gradient-to-r from-[#C53C44]/60 to-transparent rounded-full w-6"></div>
+                    <div className="h-1 bg-gradient-to-r from-primary-600 to-primary-600/60 rounded-full w-8 group-hover:w-12 transition-all duration-500"></div>
+                    <div className="w-2 h-2 bg-primary-600 rounded-full mx-2 animate-pulse"></div>
+                    <div className="h-0.5 bg-gradient-to-r from-primary-600/60 to-transparent rounded-full w-6"></div>
                   </div>
 
                   {/* Description with Better Contrast */}
@@ -161,7 +161,7 @@ function Products() {
                 >
                   <div className="relative ">
                     {/* Main Button */}
-                    <div className="relative border-2 border-red-dark bg-white hover:!bg-red-dark text-red-dark hover:!text-white transition-all duration-500 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 overflow-hidden isolate z-10">
+                    <div className="relative border-2 border-primary-600 bg-white hover:!bg-primary-600 text-primary-600 hover:!text-white transition-all duration-500 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 overflow-hidden isolate z-10">
                       {/* Button Content */}
                       <div className="flex items-center justify-center gap-3 px-6 py-4 font-bold relative z-10">
                         <span className="text-sm "> اكتشف الآن</span>
@@ -198,7 +198,7 @@ function Products() {
             variants={bgVariants}
             initial="hidden"
             animate="show"
-            className="relative py-40 flex items-center justify-center bg-gradient-to-br from-[#C53C44]/90 via-[#C53C44]/80 to-[#C53C44]/90"
+            className="relative py-40 flex items-center justify-center bg-gradient-to-br from-primary-600/90 via-primary-600/80 to-primary-600/90"
           >
             {/* Overlay for better text readability */}
             <div className="absolute inset-0 bg-black/30"></div>
@@ -211,14 +211,14 @@ function Products() {
             >
               <motion.h1
                 variants={itemVariants}
-                className="text-5xl  font-bold text-center text-[#FBE7E8] leading-tight drop-shadow-lg "
+                className="text-5xl  font-bold text-center text-neutral-50 leading-tight drop-shadow-lg "
               >
                 {t("productsPage.hero.title")}
               </motion.h1>
 
               <motion.p
                 variants={itemVariants}
-                className="text-xl sm:text-2xl text-center my-6 text-[#FBE7E8]/90 leading-relaxed max-w-5xl drop-shadow"
+                className="text-xl sm:text-2xl text-center my-6 text-neutral-50/90 leading-relaxed max-w-5xl drop-shadow"
               >
                 {t("productsPage.hero.description")}
               </motion.p>
@@ -228,9 +228,9 @@ function Products() {
                 variants={itemVariants}
                 className="flex items-center gap-4 mt-8"
               >
-                <div className="w-16 h-1 bg-[#FBE7E8] rounded-full"></div>
-                <div className="w-4 h-4 bg-[#FBE7E8] rounded-full"></div>
-                <div className="w-16 h-1 bg-[#FBE7E8] rounded-full"></div>
+                <div className="w-16 h-1 bg-neutral-50 rounded-full"></div>
+                <div className="w-4 h-4 bg-neutral-50 rounded-full"></div>
+                <div className="w-16 h-1 bg-neutral-50 rounded-full"></div>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -240,7 +240,7 @@ function Products() {
       <div className="py-16 px-2 md:px-24">
         {/* محتوى تعريفي عن المنتجات */}
         <div className="mb-8 text-center">
-          <h3 className="text-2xl font-bold text-red-dark mb-2">
+          <h3 className="text-2xl font-bold text-primary-600 mb-2">
             {t("productsPage.collections.title")}
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -254,9 +254,9 @@ function Products() {
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-5 py-2 rounded-full border-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-dark focus:ring-offset-2 ${selectedCategory === cat.id
-                ? "bg-red-dark text-white border-red-dark shadow"
-                : "bg-white text-red-dark border-red-dark hover:bg-red-dark hover:text-white"
+              className={`px-5 py-2 rounded-full border-2 font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 ${selectedCategory === cat.id
+                ? "bg-primary-600 text-white border-primary-600 shadow"
+                : "bg-white text-primary-600 border-primary-600 hover:bg-primary-600 hover:text-white"
                 }`}
             >
               {cat.name || cat.title}

@@ -46,7 +46,7 @@ export default function ProductDetail() {
     if (isLoadingProducts) {
       return (
         <div className="flex h-screen flex-col items-center justify-center min-h-[120px]">
-                  <ClipLoader color={"#B85C6E"} size={48} speedMultiplier={1.2} />
+                  <ClipLoader color={"#1A73E8"} size={48} speedMultiplier={1.2} />
         <span className="text-red-medium font-bold text-lg mt-3">
             جاري التحميل...
           </span>
@@ -57,15 +57,15 @@ export default function ProductDetail() {
  
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-rose-50 flex flex-col items-center justify-center pb-20 pt-44 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-primary-50 flex flex-col items-center justify-center pb-20 pt-44 px-4">
       {/* Main Product Card */}
       <div className="max-w-7xl w-full rounded-3xl bg-white/80 backdrop-blur-xl shadow-2xl border border-white/20 flex flex-col md:flex-row overflow-hidden mb-20 transform hover:scale-[1.02] transition-all duration-700">
         {/* Product Image Section */}
-        <div className="md:w-1/2 flex items-center justify-center bg-gradient-to-br from-rose-100/40 via-pink-50/60 to-amber-50/40 p-12 relative overflow-hidden">
+        <div className="md:w-1/2 flex items-center justify-center bg-gradient-to-br from-primary-100/40 via-blue-50/60 to-cyan-50/40 p-12 relative overflow-hidden">
           {/* Decorative Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-200/20 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-amber-200/30 to-rose-200/30 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-4 left-4 w-24 h-24 bg-gradient-to-br from-pink-200/30 to-purple-200/30 rounded-full blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-200/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-cyan-200/30 to-primary-200/30 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-4 left-4 w-24 h-24 bg-gradient-to-br from-sky-200/30 to-blue-200/30 rounded-full blur-xl"></div>
           
           <div className="relative z-10">
             <img
@@ -77,13 +77,13 @@ export default function ProductDetail() {
         </div>
         
         {/* Product Details Section */}
-        <div className="md:w-1/2 p-10 flex flex-col justify-between bg-gradient-to-br from-white via-slate-50/50 to-rose-50/30">
+        <div className="md:w-1/2 p-10 flex flex-col justify-between bg-gradient-to-br from-white via-slate-50/50 to-primary-50/30">
           <div>
             <div className="mb-8">
-              <h1 className="text-4xl font-black bg-gradient-to-r from-slate-800 via-rose-700 to-slate-900 bg-clip-text text-transparent mb-6 text-center md:text-right leading-tight">
+              <h1 className="text-4xl font-black bg-gradient-to-r from-slate-800 via-primary-700 to-slate-900 bg-clip-text text-transparent mb-6 text-center md:text-right leading-tight">
                 {productt?.name}
               </h1>
-              <div className="w-24 h-1 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full mx-auto md:mr-0"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-primary-400 rounded-full mx-auto md:mr-0"></div>
             </div>
             
             <div className="mb-8">
@@ -97,7 +97,7 @@ export default function ProductDetail() {
           
           <div className="space-y-4">
           <Link to="/contact">
-            <button className="mt-6 w-full bg-red-dark hover:bg-white hover:border-red-light border-2 hover:text-red-dark text-white py-3 rounded-xl text-lg font-bold shadow-lg hover:scale-105 transition-transform duration-200">
+            <button className="mt-6 w-full bg-primary-600 hover:bg-white hover:border-primary-400 border-2 hover:text-primary-600 text-white py-3 rounded-xl text-lg font-bold shadow-lg hover:scale-105 transition-transform duration-200">
           تواصل معنا
             </button>
           </Link>
@@ -110,10 +110,10 @@ export default function ProductDetail() {
       {/* Similar Products Section */}
       <div className="w-full max-w-7xl">
         <div className="text-center mb-16">
-          <h3 className="text-4xl font-black bg-gradient-to-r from-slate-800 via-rose-700 to-slate-900 bg-clip-text text-transparent mb-4">
+          <h3 className="text-4xl font-black bg-gradient-to-r from-slate-800 via-primary-700 to-slate-900 bg-clip-text text-transparent mb-4">
             منتجات مشابهة
           </h3>
-          <div className="w-32 h-1 bg-gradient-to-r from-rose-500 to-pink-500 rounded-full mx-auto"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-primary-600 to-primary-400 rounded-full mx-auto"></div>
           <p className="text-slate-600 mt-4 text-lg">اكتشف المزيد من منتجاتنا المميزة</p>
         </div>
         
@@ -126,10 +126,10 @@ export default function ProductDetail() {
             >
               <div className="flex flex-col items-center p-8 h-full relative">
                 {/* Background Decoration */}
-                <div className="absolute inset-0 bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-blue-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="relative z-10 w-full">
-                  <div className="bg-gradient-to-br from-slate-100/50 to-rose-100/30 rounded-2xl p-4 mb-6 group-hover:from-rose-200/50 group-hover:to-pink-200/30 transition-all duration-500">
+                  <div className="bg-gradient-to-br from-slate-100/50 to-primary-100/30 rounded-2xl p-4 mb-6 group-hover:from-primary-200/50 group-hover:to-primary-100/30 transition-all duration-500">
                     <img
                       src={similar.img}
                       alt={similar.name}
@@ -137,7 +137,7 @@ export default function ProductDetail() {
                     />
                   </div>
                   
-                  <h4 className="text-xl font-bold text-slate-800 mb-3 text-center group-hover:text-rose-700 transition-colors duration-300">
+                  <h4 className="text-xl font-bold text-slate-800 mb-3 text-center group-hover:text-primary-700 transition-colors duration-300">
                     {similar.name}
                   </h4>
                   
@@ -147,7 +147,7 @@ export default function ProductDetail() {
                 </div>
                 
                 {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
             </Link>
           ))}

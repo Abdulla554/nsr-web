@@ -2,60 +2,172 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Color Variables */
+/* NSR-PC Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #b0bec5;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme */
 :root {
-  --red-dark: #C53C44;      /* أحمر داكن للعناوين والخطوط الرئيسية */
-  --red-medium: #B85C6E;    /* أحمر متوسط للتفاعلات والتأثيرات */
-  --red-light: #C67A8A;     /* أحمر فاتح للمحاور والحدود */
-  --red-pink: #F5E6EA;      /* وردي فاتح كخلفية للرسم البياني */
-  --red-white: #FFFFFF;     /* أبيض للشبكة والخلفيات */
+  --bg-primary: #121212;
+  --bg-secondary: #1b3c73;
+  --text-primary: #b0bec5;
+  --text-secondary: #90a4ae;
+  --accent: #00cfff;
+  --primary: #1a73e8;
 }
 
-/* Custom Animations */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
+/* Dark theme (default) */
+.dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1b3c73;
+  --text-primary: #b0bec5;
+  --text-secondary: #90a4ae;
+  --accent: #00cfff;
+  --primary: #1a73e8;
+}
+
+/* Light theme */
+:root:not(.dark) {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --accent: #3b82f6;
+  --primary: #1e40af;
+}
+
+body:not(.dark) {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Neon glow effects */
+.neon-glow {
+  box-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent),
+    0 0 15px var(--accent);
+}
+
+.neon-glow-primary {
+  box-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary),
+    0 0 15px var(--primary);
+}
+
+/* Button hover effects */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--bg-secondary));
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 207, 255, 0.3);
+}
+
+/* Card styles */
+.card-nsr {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+  border: 1px solid var(--primary);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(26, 115, 232, 0.1);
+}
+
+.card-nsr:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(0, 207, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Input styles */
+.input-nsr {
+  background: var(--bg-secondary);
+  border: 1px solid var(--primary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+.input-nsr:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 207, 255, 0.1);
+  outline: none;
+}
+
+.input-nsr::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
   }
   50% {
-    background-position: 100% 50%;
+    opacity: 0.5;
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
 }
 
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(165, 62, 82, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(165, 62, 82, 0.6);
-  }
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
 }
 
-/* Custom Utility Classess */
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Enhanced Shadow Utilities */
-.shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
-}
-
-/* Glassmorphism Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.animate-pulse {
+  animation: pulse 2s infinite;
 }
