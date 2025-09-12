@@ -1,0 +1,609 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About Us",
+    "contact": "Contact",
+    "more": "More",
+    "Newcategories": "New Categories",
+    "bestseller": "Best Seller",
+    "login": "Dashboard",
+    "language": "EN",
+    "explore": "Explore"
+  },
+  
+  "workingProcess": {
+    "section": "Our Services",
+    "title": "Our Hearing Care Process",
+    "steps": [
+      {
+        "number": "01",
+        "image": "/s1.png",
+        "title": "Hearing Assessment",
+        "description": "Comprehensive hearing evaluation and consultation to determine your specific hearing needs and requirements"
+      },
+      {
+        "number": "02",
+        "image": "/s2.png",
+        "title": "Solution Selection",
+        "description": "Professional selection of the most suitable hearing aid solution from our MED-EL product range"
+      },
+      {
+        "number": "03",
+        "image": "/s3.png",
+        "title": "Professional Fitting",
+        "description": "Expert fitting and programming of your hearing device for optimal performance and comfort"
+      },
+      {
+        "number": "04",
+        "image": "/s4.png",
+        "title": "Follow-up Support",
+        "description": "Continuous support, maintenance, and after-sales service to ensure your hearing solution works perfectly"
+      } 
+    ]
+  },
+  "services3": {
+    "hvac_installation": {
+      "title": "Hearing Aid Fitting",
+      "description": "Professional fitting and programming of hearing aids for maximum effectiveness and comfort."
+    },
+    "dust_repairing": {
+      "title": "Device Maintenance",
+      "description": "Maintenance and repair services to ensure optimal performance of hearing devices."
+    },
+    "indoor_air_quality": {
+      "title": "Hearing Product Quality",
+      "description": "High quality assurance for all hearing aids and accessories."
+    },
+    "thermal_systems": {
+      "title": "Safety Systems",
+      "description": "Advanced safety systems to ensure safe use of hearing devices."
+    },
+    "dust_repairing_2": {
+      "title": "Periodic Maintenance",
+      "description": "Reliable periodic maintenance to ensure continued optimal performance of hearing devices."
+    },
+    "indoor_air_quality_2": {
+      "title": "Service Quality",
+      "description": "High-quality service to maintain customer satisfaction and trust."
+    }
+  },
+  "gallerynav": "Hearing Solutions",
+  "aboutnav": "Hearing Devices",
+  "ref": "Al-Sandan Hearing Care Solutions",
+  "ref2": "Advanced hearing solutions with high efficiency and innovative technologies that ensure safety and reliability. Choose Al-Sandan for comprehensive hearing care",
+  "contactnav": "Contact Us",
+  "sol": "Al-Sandan Hearing Aid Solutions",
+  "sol2": "Advanced hearing aid systems for all hearing care needs",
+  "sol3": "Explore our collection of high-performance hearing solutions designed for reliability, safety, and effectiveness",
+  "hero": {
+    "badge": "Hearing Care Experts",
+    "title": "Advanced Hearing Solutions",
+    "subtitle": "for Better Hearing",
+    "description": "We provide the latest hearing aids and certified devices with professional technical support for quality hearing care services.",
+    "cta": "Contact Us"
+  },
+  "about": {
+    "title": "About Al-Sandan",
+    "description": "Al-Sandan is a leading company in hearing aids and hearing loss solutions, dedicated to empowering people with hearing difficulties with the best products and services"
+  },
+
+  "features": {
+    "title": "Why Choose Al-Sandan Company",
+    "expertise": {
+      "title": "European Heritage & Expertise",
+      "description": "Al-Sandan is a branch of a leading Austrian company in hearing aids, with over 30 years of experience in providing the latest hearing technologies"
+    },
+    "quality": {
+      "title": "Globally Certified Products",
+      "description": "We work according to the highest European quality standards and international requirements, ensuring safety and effectiveness of all hearing products certified by MED-EL"
+    },
+    "support": {
+      "title": "Specialized & Continuous Technical Support",
+      "description": "Specialized team of hearing experts in Erbil, providing continuous technical support, usage training, and periodic maintenance for optimal performance"
+    },
+    "technology": {
+      "title": "Latest Hearing Technologies",
+      "description": "We provide the latest hearing aid technologies from MED-EL, with advanced hearing solutions suitable for all types of hearing loss"
+    },
+    "local": {
+      "title": "Local Service in Erbil",
+      "description": "Local service center in Erbil with specialized Iraqi team, providing comprehensive hearing care while maintaining high European standards"
+    },
+    "partnership": {
+      "title": "Strategic Partnership with MED-EL",
+      "description": "Exclusive partnership with Austrian MED-EL, globally leading in cochlear implant technologies and advanced hearing solutions"
+    }
+  },
+  "services": [
+    {
+      "title": "Hearing Aid Supply",
+      "description": "We provide a wide range of modern and certified hearing aids, from basic devices to advanced solutions, with quality and reliability guarantees."
+    },
+    {
+      "title": "Essential Hearing Accessories",
+      "description": "We provide essential hearing accessories that are missing or rare in the local market, with guaranteed continuous availability."
+    },
+    {
+      "title": "Fast Hearing Care Services",
+      "description": "Fast and flexible hearing care service that meets urgent needs, with multiple payment options and reliable guarantees."
+    }
+  ],
+  "servicesSection": {
+    "badge": "OUR SERVICES",
+    "title": "What We Provide",
+    "description": "We provide comprehensive solutions in the field of hearing care and hearing devices to ensure your satisfaction and meet all your hearing needs."
+  },
+  "medicalServices": {
+    "timpanoplasty": {
+      "title": "Hearing Aid Fitting",
+      "description": "Professional fitting and programming of hearing aids for optimal performance and maximum comfort."
+    },
+    "adenoidectomy": {
+      "title": "Hearing Assessment", 
+      "description": "Comprehensive hearing evaluation and consultation to determine your specific hearing needs."
+    },
+    "rhinoplasty": {
+      "title": "Device Maintenance",
+      "description": "Regular maintenance and repair services to ensure optimal performance of hearing devices."
+    },
+    "sleepApnea": {
+      "title": "After-Sales Support",
+      "description": "Continuous technical support and assistance for all hearing solutions."
+    },
+    "laryngoscopy": {
+      "title": "Hearing Consultation",
+      "description": "Professional consultation to help you choose the best hearing solution for your needs."
+    },
+    "vertigo": {
+      "title": "Accessories Supply",
+      "description": "Wide range of hearing aid accessories and replacement parts for all models."
+    }
+  },
+  "contact": {
+    "form": {
+      "title": "Let's Build a Better Hearing Future Together",
+      "subtitle": "At Al-Sandan, we believe that every person with hearing difficulties deserves reliable hearing solutions. Whether you're looking for modern hearing aids, essential accessories, or professional technical support, our team is here to serve you. Contact us today and discover how we combine quality, reliability, and excellent service to improve hearing care.",
+      "name": "Name*",
+      "telephone": "Telephone*",
+      "email": "Email*",
+      "subject": "Subject",
+      "message": "Message*",
+      "submit": "Send"
+    },
+    "info": {
+      "title": "Contact Now and Let Us Improve Your Hearing",
+      "description": "With Al-Sandan, get the best hearing aids and modern devices for your hearing needs. Contact us today and benefit from our comprehensive solutions",
+      "address": "Basra, Iraq"
+    },
+    "dontHesitate": "Contact us at Al-Sandan",
+    "toContactUs": "Contact Us",
+    "description": "You will find a quick and effective response from our specialized team. We are committed to meeting your expectations and providing comprehensive support, so do not hesitate to contact us for any questions or assistance. We are here to ensure your complete satisfaction and positive experience with our company.",
+    "address": {
+      "title": "Address",
+      "text": "Basra, Iraq"
+    },
+    "phone": {
+      "title": "Phone"
+    },
+    "email": {
+      "title": "Email"
+    },
+    "location": "Our Location"
+  },
+  "home": {
+    "hero": {
+      "title": "Advanced Hearing Solutions",
+      "subtitle": "Better Hearing for a Better Future",
+      "badge": "Hearing Care Experts",
+      "cta": "Contact Us"
+    },
+    "about": {
+      "title": "About Al-Sandan",
+      "description": "Al-Sandan is a leading company in hearing aids and hearing loss solutions, dedicated to empowering people with hearing difficulties with the best products and services"
+    },
+    "stats": {
+      "clients": {
+        "number": "500+",
+        "label": "Happy Customers"
+      },
+      "patents": {
+        "number": "50+",
+        "label": "Hearing Solutions"
+      },
+      "growth": {
+        "number": "200%",
+        "label": "Customer Growth"
+      },
+      "experience": {
+        "number": "5+ Years",
+        "label": "Hearing Care Experience"
+      }
+    },
+    "products": {
+      "title": "Our Services",
+      "solarPanels": {
+        "title": "Hearing Aids",
+        "description": "Modern hearing aids certified by international standards",
+        "specs": [
+          "High hearing clarity",
+          "Advanced technologies",
+          "Comprehensive warranty",
+          "Continuous technical support"
+        ]
+      },
+      "inverters": {
+        "title": "Hearing Accessories",
+        "description": "Advanced accessories to improve hearing experience",
+        "specs": [
+          "High compatibility",
+          "Advanced safety features",
+          "Easy maintenance",
+          "Comfortable design"
+        ]
+      },
+      "batteries": {
+        "title": "Hearing Care",
+        "description": "Safe and reliable hearing care services",
+        "specs": [
+          "High quality",
+          "Reliable performance",
+          "Easy maintenance",
+          "Safe usage"
+        ]
+      }
+    },
+    "features": {
+      "experience": {
+        "title": "High Experience",
+        "description": "Specialized team of hearing care experts and technicians"
+      },
+      "quality": {
+        "title": "Excellent Quality",
+        "description": "We use the best certified MED-EL products"
+      },
+      "service": {
+        "title": "Distinguished Service",
+        "description": "24/7 technical support"
+      },
+      "price": {
+        "title": "Competitive Prices",
+        "description": "Best prices with quality guarantee"
+      }
+    },
+    "installation": {
+      "title": "Hearing Care Process",
+      "subtitle": "Enjoy our simplified hearing care experience from consultation to fitting",
+      "step1": {
+        "title": "Initial Consultation",
+        "items": [
+          "Hearing needs assessment ✓",
+          "Requirements study ✓",
+          "Cost estimation ✓"
+        ]
+      },
+      "step2": {
+        "title": "Solution Selection",
+        "items": ["Device selection ✓", "Fitting planning ✓", "Service scheduling ✓"]
+      },
+      "step3": {
+        "title": "Fitting and Testing",
+        "items": ["Device fitting ✓", "Professional programming ✓", "Quality checks ✓"]
+      },
+      "step4": {
+        "title": "Training and Support",
+        "items": ["User training ✓", "Technical support ✓", "Continuous follow-up ✓"]
+      }
+    },
+    "cta": {
+      "title": "Looking for the best hearing solutions and modern devices with high quality and competitive prices",
+      "description": "Don't hesitate, Al-Sandan is your ideal destination to meet your hearing needs with the best products and highest quality standards.",
+      "button": "Contact Us"
+    },
+    "projects": {
+      "title": "Our Success Stories",
+      "subtitle": "We are proud to provide integrated hearing solutions to our clients",
+      "items": [
+        {
+          "title": "Basra Hearing Center",
+          "description": "Supply of modern hearing devices",
+          "capacity": "100 devices",
+          "location": "Basra",
+          "completion": "2024"
+        },
+        {
+          "title": "Specialized Hearing Clinic",
+          "description": "Installation of advanced hearing solutions",
+          "capacity": "50 devices",
+          "location": "Baghdad",
+          "completion": "2024"
+        },
+        {
+          "title": "Private Hearing Practice",
+          "description": "Complete hearing care equipment",
+          "capacity": "200+ products",
+          "location": "Basra",
+          "completion": "2025"
+        }
+      ],
+      "viewDetails": "View Details",
+      "stats": {
+        "capacity": "Quantity",
+        "location": "Location",
+        "completion": "Completion"
+      }
+    }
+  },
+  "footer": {
+    "about": {
+      "title": "About Al-Sandan",
+      "description": "Al-Sandan is your trusted destination for hearing aids and modern hearing devices. We offer a wide range of certified original MED-EL products, with reliable guarantees and excellent customer service. We aim to provide modern hearing solutions that meet the needs of every person with hearing difficulties with confidence and transparency"
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "home": "Home",
+      "products": "Products",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us"
+    },
+    "contact": {
+      "address": "Iraq - Basra",
+      "email": "info@alsandan.iq"
+    },
+    "copyright": {
+      "rights": "All rights reserved to",
+      "company": "Al-Sandan Hearing Solutions"
+    }
+  },
+  "download": "Download File",
+  "featerscard": "Features",
+  "specs": "Technical Specifications",
+  "aboutPage": {
+    "hero": {
+      "title": "We Build Trust and Elevate Hearing Quality",
+      "description": "Whether you're looking for your first hearing aid or upgrading your current device, we're here to always provide you with the best in a modern style and complete comfort"
+    },
+    "about": {
+      "title": "About Al-Sandan",
+      "subtitle": "Al-Sandan for Hearing Care",
+      "description": "At Al-Sandan, we strive to be the first choice for every person seeking quality, safety, and reliability in hearing care. We are a leading company in trading, importing, and selling hearing aids and hearing devices, with years of experience in the Iraqi market, specifically in meeting the needs of people with hearing difficulties for reliable and practical hearing solutions"
+    },
+    "features": {
+      "delivery": {
+        "title": "Fast Service",
+        "description": "We understand the importance of time in hearing care, and therefore we provide fast and reliable service to ensure our hearing products reach our clients as quickly as possible and in the best condition"
+      },
+      "quality": {
+        "title": "Hearing Product Quality",
+        "description": "We carefully select the finest types of hearing aids and devices from reliable sources, and we adhere to strict standards to maintain product quality from the moment of import until they reach the user"
+      },
+      "support": {
+        "title": "Hearing Technical Support",
+        "description": "Our customer service team is always available to answer your inquiries and provide the necessary support to ensure a comfortable and smooth purchasing experience, whether you need consultation about products or follow-up on your orders"
+      }
+    },
+    "features1": {
+      "exclusive": {
+        "title": "Exclusive Hearing Products",
+        "description": "We ensure to provide hearing products made specifically for us with unique specifications that you won't find in traditional markets"
+      },
+      "guaranteed": {
+        "title": "Guaranteed Hearing Quality",
+        "description": "We carefully select components to ensure high hearing effectiveness and complete safety. All our products undergo strict monitoring to ensure compliance with global hearing specifications"
+      },
+      "diversity": {
+        "title": "Diversity in Hearing Products",
+        "description": "From basic hearing aids to advanced devices, we offer options that meet all hearing needs"
+      }
+    },
+    "features2": {
+      "prices": {
+        "title": "Competitive Prices",
+        "description": "We believe that hearing quality shouldn't be expensive, so we offer the best prices making our products accessible to all people with hearing difficulties"
+      },
+      "service": {
+        "title": "Distinguished Customer Service",
+        "description": "We put customer satisfaction at the forefront of our priorities, providing professional and fast service to ensure a smooth and satisfying shopping experience"
+      },
+      "partnerships": {
+        "title": "Global Hearing Partnerships",
+        "description": "We collaborate with the best suppliers and manufacturers worldwide, especially MED-EL Austria, to ensure importing the finest hearing products and presenting them with global standards, giving our clients an exceptional hearing experience"
+      }
+    },
+    "stats": {
+      "clients": {
+        "number": "500+",
+        "label": "Happy Customers"
+      },
+      "growth": {
+        "number": "200%",
+        "label": "Customer Growth"
+      },
+      "experience": {
+        "number": "5+ Years",
+        "label": "Hearing Care Experience"
+      }
+    },
+    "whyUs": {
+      "title": "Why Choose Us"
+    }
+  },
+  "productsPage": {
+    "noProducts": "No Products",
+    "hero": {
+      "title": "Choose Al-Sandan because your hearing deserves the best",
+      "description": "In a rapidly changing world, we at Al-Sandan strive to remain the first choice for anyone seeking hearing solutions that combine quality, safety, and distinguished service. We don't just sell products, we provide an integrated experience that makes your hearing care more effective and reliable"
+    },
+    "collections": {
+      "title": "Our Distinguished Hearing Products",
+      "description": "We offer you a diverse collection of high-quality hearing aids and devices that meet all your needs, from basic hearing aids to advanced solutions"
+    },
+    "help": {
+      "title": "Your Trusted Source for Hearing Solutions",
+      "description": "Discover quality, safety, and reliability with Al-Sandan. We offer you the latest hearing device technologies - from basic hearing aids to advanced solutions - backed by service you can rely on.",
+      "button": "Contact Us"
+    }
+  },
+  "homePage": {
+    "hero": {
+      "title": "Al-Sandan Company",
+      "subtitle": "We choose the best for your hearing care",
+      "description": "We work passionately to provide you with a hearing care experience built on trust, even after your purchase. Explore with us a carefully curated range of integrated hearing solutions from the world's leading companies.",
+      "learnMore": "Learn More"
+    },
+    "about": {
+      "title": "About Al-Sandan",
+      "subtitle": "We provide hearing aids and modern devices for your hearing care",
+      "description": "Your trusted destination for hearing care. Welcome to Al-Sandan, where we are proud to be among the leading names in the field of hearing aids and hearing devices, and we offer original products from MED-EL Austria with high quality, reliable guarantees, and distinguished service, to meet the needs of every person with hearing difficulties and add effectiveness and reliability to your hearing care."
+    },
+    "features": {
+      "originalProducts": {
+        "title": "Guaranteed Original Hearing Products",
+        "description": "We offer only original hearing aids and devices from trusted MED-EL Austria, with real and reliable guarantees."
+      },
+      "afterSales": {
+        "title": "After-Sales Service and Technical Support",
+        "description": "Our team is always ready to serve you, from consultation to fitting and maintenance, to ensure your peace of mind after purchase."
+      },
+      "fastDelivery": {
+        "title": "Fast and Secure Service",
+        "description": "We are committed to providing hearing care services to you quickly and securely, with flexible and easy payment options."
+      }
+    },
+    "contact": {
+      "guarantee": {
+        "title": "Modern Hearing Solutions for Every Person",
+        "subtitle": "With Al-Sandan",
+        "description": "Ready for the next step. Contact our expert team for customized support and solutions. We're here to transform your hearing challenges into improvement opportunities",
+        "callUs": "Call us for free:",
+        "phone": "+964 XXX XXX XXXX"
+      },
+      "order": {
+        "title": "Choose what you want",
+        "subtitle": "and set service time",
+        "button": "Contact Now"
+      }
+    },
+    "services": [
+      {
+        "key": "hearingAids",
+        "title": "Hearing Aids",
+        "description": "We offer a wide range of modern and certified hearing aids, from basic devices to advanced solutions, to ensure hearing clarity.",
+        "image": "s1.png",
+        "alt": "Hearing Aids"
+      },
+      {
+        "key": "hearingAccessories",
+        "title": "Hearing Accessories",
+        "description": "Advanced and safe hearing accessories to improve hearing experience, with guaranteed quality and reliability in all products.",
+        "image": "s2.png",
+        "alt": "Hearing Accessories"
+      },
+      {
+        "key": "hearingCare",
+        "title": "Hearing Care",
+        "description": "Basic and advanced hearing care services that meet all hearing needs, with guaranteed quality and safety.",
+        "image": "s3.png",
+        "alt": "Hearing Care"
+      },
+      {
+        "key": "afterSalesService",
+        "title": "After-Sales Service",
+        "description": "Comprehensive after-sales service including maintenance, technical support, and training, to ensure optimal use of hearing devices.",
+        "image": "s4.png",
+        "alt": "After-Sales Service"
+      }
+    ],
+    "productsSection": {
+      "title": "Most Requested",
+      "subtitle": "Discover our best hearing products this month",
+      "emptyTitle": "No Products",
+      "emptyDescription": "Add first product to start",
+      "moreButton": "More"
+    },
+    "newsletterSection": {
+      "badge": "Hearing Care Experts",
+      "title": "Join the",
+      "subtitle": "Hearing Community",
+      "description": "Together our voice is stronger! Help us build a world that supports and empowers everyone with hearing difficulties. Be part of our community today.",
+      "button": "Join Now"
+    }
+  },
+  "hvac": {
+    "badge": "Hearing Solutions",
+    "title": "Exceptional Hearing Services",
+    "description": "Comprehensive services in the field of hearing care and hearing devices with the highest quality standards. Our specialized team ensures effectiveness and safety in every product.",
+    "cta": "Get to Know Us",
+    "phone": "Call Us"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About Us",
+      "description": "We are a leading company in the field of hearing care and modern hearing devices, dedicated to empowering people with hearing difficulties with the best products and services."
+    },
+    "mainSection": {
+      "badge": "Al-Sandan Company - Erbil Branch",
+      "title": {
+        "part1": "Your Trusted",
+        "part2": "Hearing Partner"
+      },
+      "description": "We are committed to delivering excellence in hearing care through innovative hearing solutions, cutting-edge technology, and unwavering dedication to hearing advancement in Erbil and Iraq, while maintaining high European standards.",
+      "features": {
+        "pricing": {
+          "title": "Competitive Pricing",
+          "subtitle": "Best Value Guarantee",
+          "description": "Access to the latest hearing aid technologies at competitive prices, ensuring people can access the best hearing care without compromising on European quality."
+        },
+        "brands": {
+          "title": "Exclusive MED-EL Partnership",
+          "subtitle": "Austrian Certified Quality",
+          "description": "Exclusive partnership with Austrian MED-EL, globally leading in cochlear implant technologies and advanced hearing solutions, to provide reliable, certified, and cutting-edge hearing equipment that meets international standards."
+        }
+      },
+      "stats": {
+        "products": {
+          "number": "200+",
+          "label": "Hearing Products"
+        },
+        "brands": {
+          "number": "1",
+          "label": "Exclusive MED-EL Partner"
+        },
+        "support": {
+          "number": "24/7",
+          "label": "Technical Support"
+        }
+      },
+      "floatingCard": {
+        "title": "Austrian Quality",
+        "subtitle": "Exclusive MED-EL Partner"
+      }
+    },
+    "whyChooseUs": {
+      "badge": "Why Choose Al-Sandan Company",
+      "title": {
+        "part1": "Why",
+        "part2": "Choose Us?"
+      },
+      "description": "We provide you with the best hearing solutions in Erbil with guaranteed quality and reliability in every product, with distinguished customer service and continuous technical support from specialized hearing experts",
+      "features": {
+        "diagnostic": {
+          "title": "Specialized Hearing Assessment",
+          "description": "We provide the best hearing assessment using the latest devices and technologies from Austrian MED-EL."
+        },
+        "laboratory": {
+          "title": "Advanced Hearing Solutions",
+          "description": "Advanced and accurate hearing solutions from MED-EL to ensure reliable and consistent hearing improvement."
+        },
+        "surgical": {
+          "title": "Latest Hearing Technologies",
+          "description": "Latest hearing aid and cochlear implant technologies from MED-EL to ensure successful hearing improvement."
+        },
+        "support": {
+          "title": "Specialized Technical Support",
+          "description": "Specialized technical support around the clock from the team of hearing experts in Erbil to ensure devices operate with high efficiency."
+        }
+      }
+    }
+  }
+}
