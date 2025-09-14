@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
  
@@ -9,7 +9,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 export default function Categories() {
-  
+  const swiperRef = useRef(null);
 
   const categories = [
     {
@@ -50,6 +50,12 @@ export default function Categories() {
       }
   ]
 
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.update();
+    }
+  }, []);
+
   return (
     <section className="py-20 bg-black">
       <div className="container mx-auto px-4">
@@ -67,6 +73,8 @@ export default function Categories() {
             spaceBetween={20}
             slidesPerView={1}
             loop={true}
+            loopAdditionalSlides={2}
+            loopFillGroupWithBlank={false}
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
@@ -88,6 +96,13 @@ export default function Categories() {
                 slidesPerView: 3,
                 spaceBetween: 30,
               },
+            }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              // إعادة تهيئة الـ loop عند تحميل المكون
+              setTimeout(() => {
+                swiper.update();
+              }, 100);
             }}
             className="categories-swiper"
           >
