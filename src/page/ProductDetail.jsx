@@ -6,6 +6,7 @@ import {
   Twitter,
   ShoppingCart,
 } from "lucide-react";
+import { Monitor, Cpu, HardDrive, Camera, Palette, Keyboard, Settings, Database, Usb } from 'lucide-react';
 
 const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -41,6 +42,63 @@ const ProductDetail = () => {
       (prev) => (prev - 1 + product.images.length) % product.images.length
     );
   };
+
+
+
+  const specifications = [
+    {
+      icon: <Cpu className="w-5 h-5" />,
+      label: "CPU",
+      value: "Snapdragon X Plus (10-core)"
+    },
+    {
+      icon: <Database className="w-5 h-5" />,
+      label: "RAM",
+      value: "16 GB LPDDR5x RAM"
+    },
+    {
+      icon: <HardDrive className="w-5 h-5" />,
+      label: "STORAGE",
+      value: "512GB Removable SSD"
+    },
+    {
+      icon: <Monitor className="w-5 h-5" />,
+      label: "GPU",
+      value: "Integrated Qualcomm Adreno GPU"
+    },
+    {
+      icon: <Monitor className="w-5 h-5" />,
+      label: "Display",
+      value: "13.8\" PixelSense Flow touchscreen (2304×1536, 201 PPI), 120 Hz refresh, Gorilla Glass 5, Dolby Vision IQ"
+    },
+    {
+      icon: <Usb className="w-5 h-5" />,
+      label: "I/O Ports",
+      value: ["1 x USB-A / USB 3.2", "2 x USB-C® / USB 4®"],
+      multiLine: true
+    },
+    {
+      icon: <Camera className="w-5 h-5" />,
+      label: "Camera",
+      value: "1080p Full HD camera with wide field of view"
+    },
+    {
+      icon: <Palette className="w-5 h-5" />,
+      label: "Color",
+      value: "Black"
+    },
+    {
+      icon: <Keyboard className="w-5 h-5" />,
+      label: "Keyboard",
+      value: "Arabic & English"
+    },
+     
+    {
+      icon: <Settings className="w-5 h-5" />,
+      label: "OS",
+      value: "Windows 11 Pro"
+    }
+  ];
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
@@ -103,9 +161,8 @@ const ProductDetail = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentImage(index)}
-                  className={`rounded-2xl p-2 transition-all duration-300 transform hover:scale-105 ${
-                    currentImage === index ? "ring-4 scale-105" : ""
-                  }`}
+                  className={`rounded-2xl p-2 transition-all duration-300 transform hover:scale-105 ${currentImage === index ? "ring-4 scale-105" : ""
+                    }`}
                   style={{
                     backgroundColor: "#F9F3EF",
                     ringColor:
@@ -186,36 +243,36 @@ const ProductDetail = () => {
                 </label>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-4">
                   <div
-                  className="flex items-center w-fit rounded-xl shadow-lg overflow-hidden"
-                  style={{ backgroundColor: "#F9F3EF" }}
-                >
-                  <button
-                    onClick={decrementQuantity}
-                    className="px-6 py-4 font-bold text-xl transition-colors duration-300 hover:opacity-80"
-                    style={{ color: "#1a1a2e" }}
+                    className="flex items-center w-fit rounded-xl shadow-lg overflow-hidden"
+                    style={{ backgroundColor: "#F9F3EF" }}
                   >
-                    −
-                  </button>
-                  <input
-                    type="number"
-                    value={quantity}
-                    onChange={(e) =>
-                      setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                    }
-                    className="w-20 text-center border-0 focus:ring-0 font-bold text-xl py-4"
-                    style={{
-                      backgroundColor: "#F9F3EF",
-                      color: "#1a1a2e",
-                    }}
-                  />
-                  <button
-                    onClick={incrementQuantity}
-                    className="px-6 py-4 font-bold text-xl transition-colors duration-300 hover:opacity-80"
-                    style={{ color: "#1a1a2e" }}
-                  >
-                    +
-                  </button>
-                </div>
+                    <button
+                      onClick={decrementQuantity}
+                      className="px-6 py-4 font-bold text-xl transition-colors duration-300 hover:opacity-80"
+                      style={{ color: "#1a1a2e" }}
+                    >
+                      −
+                    </button>
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={(e) =>
+                        setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                      }
+                      className="w-20 text-center border-0 focus:ring-0 font-bold text-xl py-4"
+                      style={{
+                        backgroundColor: "#F9F3EF",
+                        color: "#1a1a2e",
+                      }}
+                    />
+                    <button
+                      onClick={incrementQuantity}
+                      className="px-6 py-4 font-bold text-xl transition-colors duration-300 hover:opacity-80"
+                      style={{ color: "#1a1a2e" }}
+                    >
+                      +
+                    </button>
+                  </div>
                   <button
                     className="flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform transition-all duration-300 hover:scale-105"
                     style={{
@@ -227,10 +284,122 @@ const ProductDetail = () => {
                     Add to cart
                   </button>
                 </div>
-                
+
               </div>
- 
+
             </div>
+          </div>
+        </div>
+
+        {/* Product Specifications Section */}
+        <div className="mt-20 px-4">
+          <div
+            className="rounded-3xl shadow-2xl p-8 backdrop-blur-sm border border-opacity-20"
+            style={{
+              
+              borderColor: '#749BC2'
+            }}
+          >
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h2
+                className="text-3xl text-[#F9F3EF] font-bold mb-6"
+                
+              >
+                المواصفات التقنية
+              </h2>
+              <div className="flex items-center justify-center">
+                <div
+                  className="w-20 h-0.5 opacity-60"
+                  style={{ backgroundColor: '#749BC2' }}
+                ></div>
+                <div
+                  className="w-4 h-4 rounded-full mx-3 shadow-lg"
+                  style={{ backgroundColor: '#2C6D90' }}
+                ></div>
+                <div
+                  className="w-20 h-0.5 opacity-60"
+                  style={{ backgroundColor: '#749BC2' }}
+                ></div>
+              </div>
+            </div>
+
+            {/* Specifications Grid */}
+            <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
+              {specifications.map((spec, index) => (
+                <div
+                  key={index}
+                  className="group relative p-6 rounded-2xl transition-all duration-300 hover:transform hover:scale-[1.02] hover:shadow-xl border border-opacity-30"
+                  style={{
+                    backgroundColor: '#F9F3EF',
+                    borderColor: '#749BC2',
+                    boxShadow: '0 4px 15px rgba(44, 109, 144, 0.1)'
+                  }}
+                >
+                  {/* Gradient overlay on hover */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(135deg, #2C6D90, #749BC2)`
+                    }}
+                  ></div>
+
+                  <div className="relative flex items-start space-x-reverse space-x-6">
+                    {/* Icon */}
+                    <div
+                      className="flex-shrink-0 p-3 rounded-xl shadow-md group-hover:shadow-lg transition-all duration-300"
+                      style={{ backgroundColor: '#2C6D90' }}
+                    >
+                      <div style={{ color: '#F9F3EF' }}>
+                        {spec.icon}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-grow min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-start">
+                        <div
+                          className="font-bold text-lg mb-2 sm:mb-0 sm:w-32 sm:flex-shrink-0"
+                          style={{ color: '#1a1a2e' }}
+                        >
+                          {spec.label}:
+                        </div>
+                        <div className="sm:flex-grow">
+                          {spec.multiLine ? (
+                            <div className="space-y-2">
+                              {spec.value.map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  className="text-base leading-relaxed"
+                                  style={{ color: '#2C6D90' }}
+                                >
+                                  • {item}
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div
+                              className="text-base leading-relaxed"
+                              style={{ color: '#2C6D90' }}
+                            >
+                              {spec.value}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decorative corner */}
+                  <div
+                    className="absolute top-4 right-4 w-2 h-2 rounded-full opacity-30"
+                    style={{ backgroundColor: '#749BC2' }}
+                  ></div>
+                </div>
+              ))}
+            </div>
+
+         
           </div>
         </div>
       </div>
