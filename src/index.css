@@ -217,3 +217,34 @@ body:not(.dark) {
 .rgb-cycle {
   animation: rgbCycle 10s linear infinite;
 }
+
+/* Categories Component Styles */
+.swiper-button-prev-custom:after,
+.swiper-button-next-custom:after {
+  display: none;
+}
+
+.categories-swiper .swiper-slide {
+  height: auto;
+}
+
+/* Custom shadow for cards */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.4);
+}
+
+/* Hover effect for navigation buttons */
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: white;
+}
+
+/* Brands Component Styles */
+.brands-button-prev-custom:after,
+.brands-button-next-custom:after {
+  display: none;
+}
+
+.brands-swiper .swiper-slide {
+  height: auto;
+}

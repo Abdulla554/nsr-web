@@ -489,6 +489,26 @@
     "cta": "تعرف علينا",
     "phone": "اتصل بنا"
   },
+  "categories": {
+    "title": "تسوق حسب الفئات",
+    "items": [
+      {
+        "id": "controllers",
+        "title": "أجهزة التحكم",
+        "image": "/s1.png"
+      },
+      {
+        "id": "keyboard", 
+        "title": "لوحة المفاتيح",
+        "image": "/s2.png"
+      },
+      {
+        "id": "gaming-mouse",
+        "title": "فأرة الألعاب", 
+        "image": "/s3.png"
+      }
+    ]
+  },
   "aboutPage": {
     "hero": {
       "title": "من نحن",

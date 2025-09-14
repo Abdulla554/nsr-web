@@ -535,6 +535,26 @@
     "cta": "Get to Know Us",
     "phone": "Call Us"
   },
+  "categories": {
+    "title": "SHOP BY CATEGORIES",
+    "items": [
+      {
+        "id": "controllers",
+        "title": "Controllers",
+        "image": "/s1.png"
+      },
+      {
+        "id": "keyboard", 
+        "title": "Keyboard",
+        "image": "/s2.png"
+      },
+      {
+        "id": "gaming-mouse",
+        "title": "Gaming Mouse", 
+        "image": "/s3.png"
+      }
+    ]
+  },
   "aboutPage": {
     "hero": {
       "title": "About Us",
