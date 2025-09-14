@@ -57,14 +57,14 @@ const ProductShowcase = () => {
         </motion.div>
 
          {/* التخطيط الرئيسي - 3 أقسام */}
-         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-[600px]">
+         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8  ">
            
           {/* القسم الأيسر - عمود من صورتين */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-4 space-y-4"
+            className="lg:col-span-4 space-y-6"
           >
             {/* الصورة العلوية */}
             <div 
@@ -74,7 +74,7 @@ const ProductShowcase = () => {
                 <img
                   src={products[0].image}
                   alt={products[0].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -93,7 +93,7 @@ const ProductShowcase = () => {
                 <img
                   src={products[1].image}
                   alt={products[1].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -114,9 +114,9 @@ const ProductShowcase = () => {
           >
             <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-green-900/20 to-teal-900/20 border border-white/10 hover:border-green-400/50 transition-all duration-300">
               <img
-                src={products[2].image}
+                src={"/s5.png"}
                 alt={products[2].title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full md:h-[600px] object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
@@ -133,7 +133,7 @@ const ProductShowcase = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="lg:col-span-4 space-y-4"
+            className="lg:col-span-4 space-y-6"
           >
             {/* الصورة العلوية */}
             <div 
@@ -143,7 +143,7 @@ const ProductShowcase = () => {
                 <img
                   src={products[3].image}
                   alt={products[3].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
@@ -162,7 +162,7 @@ const ProductShowcase = () => {
                 <img
                   src={products[4].image}
                   alt={products[4].title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
