@@ -31,7 +31,7 @@ const HeroCarousel = () => {
   }, [slides.length]);
 
   return (
-    <div className="w-full h-[700px] pt-2 relative">
+    <div className="w-full p-4 md:p-0 h-[700px] relative">
       <Swiper
         modules={[Autoplay]}
         autoplay={{ delay: slideDuration }}
