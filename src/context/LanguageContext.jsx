@@ -5,7 +5,7 @@ const LanguageContext = createContext(undefined);
 
 export const LanguageProvider = ({ children }) => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("ar");
 
   const getLanguageLabel = (currentLang) => {
     if (currentLang === "en") {
