@@ -325,7 +325,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Specifications Grid */}
-            <div className="grid grid-cols-2 gap-4 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
               {specifications.map((spec, index) => (
                 <div
                   key={index}
