@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ChevronLeft,
   ChevronRight,
@@ -11,7 +11,9 @@ import { Monitor, Cpu, HardDrive, Camera, Palette, Keyboard, Settings, Database,
 const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const product = {
     brand: "Microsoft",
     name: "Microsoft Surface Laptop 7 - ZGX-00051, Snapdragon X Plus, RAM 16GB, SSD 512GB, Qualcomm Adreno GPU, 13.8 Inch (2304×1536) 120Hz Touch, Black",
@@ -92,7 +94,7 @@ const ProductDetail = () => {
       label: "Keyboard",
       value: "Arabic & English"
     },
-     
+
     {
       icon: <Settings className="w-5 h-5" />,
       label: "OS",
@@ -296,7 +298,7 @@ const ProductDetail = () => {
           <div
             className="rounded-3xl shadow-2xl p-8 backdrop-blur-sm border border-opacity-20"
             style={{
-              
+
               borderColor: '#749BC2'
             }}
           >
@@ -304,7 +306,7 @@ const ProductDetail = () => {
             <div className="text-center mb-12">
               <h2
                 className="text-3xl text-[#F9F3EF] font-bold mb-6"
-                
+
               >
                 المواصفات التقنية
               </h2>
@@ -325,7 +327,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Specifications Grid */}
-            <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {specifications.map((spec, index) => (
                 <div
                   key={index}
@@ -362,7 +364,7 @@ const ProductDetail = () => {
                           className="font-bold text-lg mb-2 sm:mb-0 sm:w-32 sm:flex-shrink-0"
                           style={{ color: '#1a1a2e' }}
                         >
-                          {spec.label}:
+                          {spec.label} :
                         </div>
                         <div className="sm:flex-grow">
                           {spec.multiLine ? (
@@ -398,8 +400,6 @@ const ProductDetail = () => {
                 </div>
               ))}
             </div>
-
-         
           </div>
         </div>
       </div>

@@ -19,8 +19,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "الرئيسية", path: "/", icon: Monitor },
-    { name: "الأكثر مبيعاً", path: "/bestsellers", icon: Cpu },
-    { name: "منتجات جديدة", path: "/products", icon: HardDrive },
+    { name: "الفئات", path: "/categories", icon: Cpu },
+    { name: "المنتجات", path: "/products", icon: HardDrive },
   ];
 
   return (
