@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import img2 from "/h3.png";
+import img2 from "/h1.png";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 

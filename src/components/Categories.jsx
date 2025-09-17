@@ -57,7 +57,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <section className="py-20 bg-black">
+    <section className="pb-20 bg-black">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
