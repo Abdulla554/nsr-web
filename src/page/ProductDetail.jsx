@@ -7,19 +7,28 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { Monitor, Cpu, HardDrive, Camera, Palette, Keyboard, Settings, Database, Usb } from 'lucide-react';
+import { useCartStore } from '../store/index';
 
 const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  
+  // استخدام Zustand store للسلة
+  const { addToCart, isInCart, getQuantity } = useCartStore();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   const product = {
+    id: 1,
     brand: "Microsoft",
     name: "Microsoft Surface Laptop 7 - ZGX-00051, Snapdragon X Plus, RAM 16GB, SSD 512GB, Qualcomm Adreno GPU, 13.8 Inch (2304×1536) 120Hz Touch, Black",
-    price: "1,950.000 IQD",
+    price: 1950000, // تحويل السعر إلى رقم
+    priceDisplay: "1,950.000 IQD",
     sku: "109708",
     availability: "In Stock",
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop", // صورة أساسية للسلة
     images: [
       "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop",
       "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&h=400&fit=crop",
@@ -105,6 +114,16 @@ const ProductDetail = () => {
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () =>
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  // دالة إضافة المنتج للسلة
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    
+  };
+
+  // فحص ما إذا كان المنتج موجود في السلة
+  const productInCart = isInCart(product.id);
+  const cartQuantity = getQuantity(product.id);
 
   return (
     <div
@@ -229,9 +248,25 @@ const ProductDetail = () => {
                 className="text-5xl font-black"
                 style={{ color: "#F9F3EF" }}
               >
-                {product.price}
+                {product.priceDisplay}
               </span>
             </div>
+
+            {/* Cart Status */}
+            {productInCart && (
+              <div className="flex items-center gap-4">
+                <span style={{ color: "#749BC2" }}>في السلة:</span>
+                <span
+                  className="px-4 py-2 rounded-full font-bold text-sm"
+                  style={{
+                    backgroundColor: "#2C6D90",
+                    color: "#F9F3EF",
+                  }}
+                >
+                  {cartQuantity} قطعة
+                </span>
+              </div>
+            )}
 
             {/* Quantity and Buttons */}
             <div className="space-y-6">
@@ -276,14 +311,15 @@ const ProductDetail = () => {
                     </button>
                   </div>
                   <button
+                    onClick={handleAddToCart}
                     className="flex-1 flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform transition-all duration-300 hover:scale-105"
                     style={{
-                      backgroundColor: "#2C6D90",
+                      backgroundColor: productInCart ? "#16a34a" : "#2C6D90",
                       color: "#F9F3EF",
                     }}
                   >
                     <ShoppingCart className="w-6 h-6" />
-                اضافة الى السلة
+                    {productInCart ? "إضافة المزيد" : "اضافة الى السلة"}
                   </button>
                 </div>
 

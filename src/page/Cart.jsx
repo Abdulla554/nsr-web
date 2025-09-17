@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -11,40 +11,28 @@ import {
   Percent,
   ShoppingBag
 } from 'lucide-react'
+import { useCartStore } from '../store/index'
 
 export default function Cart() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Nanoleaf Shapes Flexible Linkers (3pcs)',
-      brand: 'Nanoleaf',
-      price: 15000,
-      quantity: 1,
-      image: '/p1.png'
-    }
-  ])
+  
+  // استخدام Zustand store للسلة
+  const { 
+    cart: cartItems, 
+    removeFromCart, 
+    increaseQuantity, 
+    decreaseQuantity, 
+    clearCart,
+    getTotalPrice
+  } = useCartStore()
+
   const [discountCode, setDiscountCode] = useState('')
   const [appliedDiscount, setAppliedDiscount] = useState(0)
 
   const deliveryPrice = 5000
-  const productsPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
+  const productsPrice = getTotalPrice()
   const total = productsPrice + deliveryPrice - appliedDiscount
-
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity <= 0) {
-      setCartItems(cartItems.filter(item => item.id !== id))
-    } else {
-      setCartItems(cartItems.map(item => 
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      ))
-    }
-  }
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id))
-  }
 
   const applyDiscount = () => {
     if (discountCode === 'DISCOUNT10') {
@@ -54,15 +42,12 @@ export default function Cart() {
     }
   }
 
-  const emptyCart = () => {
-    setCartItems([])
-  }
-
   const handleCheckout = () => {
-    // Here you can add checkout logic
-    alert('سيتم توجيهك إلى صفحة الدفع قريباً')
+   
   }
-
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
   return (
     <div className="min-h-screen bg-dark-900 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -152,7 +137,7 @@ export default function Cart() {
                       <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
                         {item.quantity === 1 ? (
                           <motion.button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeFromCart(item.id)}
                             className="w-10 h-10 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-400 flex items-center justify-center transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -161,7 +146,7 @@ export default function Cart() {
                           </motion.button>
                         ) : (
                           <motion.button
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            onClick={() => decreaseQuantity(item.id)}
                             className="w-10 h-10 rounded-full bg-red-500/20 hover:bg-red-500/30 text-red-400 flex items-center justify-center transition-all duration-300"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -175,7 +160,7 @@ export default function Cart() {
                         </div>
                         
                         <motion.button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => increaseQuantity(item.id)}
                           className="w-10 h-10 rounded-full bg-[#2C6D90] hover:bg-[#2C6D90]/80 text-[#F9F3EF] flex items-center justify-center transition-all duration-300"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -191,7 +176,7 @@ export default function Cart() {
               {/* Empty Cart Button */}
               {cartItems.length > 0 && (
                 <motion.button
-                  onClick={emptyCart}
+                  onClick={clearCart}
                   className="w-full bg-red-500/40 hover:bg-red-600/80 text-white py-4 px-6 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

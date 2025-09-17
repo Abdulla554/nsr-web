@@ -3,11 +3,16 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCartStore } from '../store/index';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
+
+  // استخدام Zustand store للحصول على عدد العناصر في السلة
+  const { getTotalItems } = useCartStore();
+  const totalItems = getTotalItems();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,15 +162,19 @@ const Navbar = () => {
               </motion.div>
 
               {/* Cart Badge */}
-              <motion.span
-                className="absolute -top-2 -right-2 bg-[#2C6D90] text-[#F9F3EF] text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md"
-                animate={{
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                2
-              </motion.span>
+              {totalItems > 0 && (
+                <motion.span
+                  className="absolute -top-2 -right-2 bg-[#2C6D90] text-[#F9F3EF] text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                >
+                  {totalItems}
+                </motion.span>
+              )}
               </Link>
             </motion.button>
 

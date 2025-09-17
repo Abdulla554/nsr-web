@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Star, ChevronDown, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useCartStore } from '../store/index';
 
 const Products = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -10,6 +11,9 @@ const Products = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showBrandDropdown, setShowBrandDropdown] = useState(false);
+
+  // استخدام Zustand store للسلة
+  const { addToCart, isInCart } = useCartStore();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,6 +44,7 @@ const Products = () => {
       reviews: 0,
       originalPrice: null,
       currentPrice: 40.00,
+      price: 40000, // السعر بالدينار العراقي
       category: "Keyboards",
       brand: "Forge",
       details: "لوحة مفاتيح ميكانيكية عالية احترافية مع ميكروفون احترافية مع ميكروفون احترافية مع ميكروفون  الأداء مع مفاتيح RGB"
@@ -54,6 +59,7 @@ const Products = () => {
       reviews: 0,
       originalPrice: 80.00,
       currentPrice: 48.00,
+      price: 48000, // السعر بالدينار العراقي
       category: "Accessories",
       brand: "HyperX",
       details: "محطة شحن مزدوجة لأجهزة التحكم مع احترافية مع ميكروفون احترافية مع ميكروفون احترافية مع ميكروفون احترافية مع ميكروفون  إضاءة LED"
@@ -68,6 +74,7 @@ const Products = () => {
       reviews: 0,
       originalPrice: 60.00,
       currentPrice: 40.00,
+      price: 40000, // السعر بالدينار العراقي
       category: "Mice",
       brand: "HyperX",
       details: "فأرة ألعاب دقيقة احترافية مع ميكروفون احترافية مع ميكروفون احترافية مع ميكروفون  مع إضاءة RGB و 16000 DPI"
@@ -82,6 +89,7 @@ const Products = () => {
       reviews: 0,
       originalPrice: 120.00,
       currentPrice: 90.00,
+      price: 90000, // السعر بالدينار العراقي
       category: "Audio",
       brand: "Gaming Pro",
       details: "سماعات ألعاب احترافية مع ميكروفون عالي احترافية مع ميكروفون احترافية مع ميكروفون  الجودة"
@@ -119,6 +127,24 @@ const Products = () => {
   const clearAllFilters = () => {
     setSelectedCategories([]);
     setSelectedBrands([]);
+  };
+
+  // دالة إضافة المنتج للسلة
+  const handleAddToCart = (product, event) => {
+    event.preventDefault(); // منع الانتقال للصفحة
+    event.stopPropagation();
+    
+    const cartProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      brand: product.brand,
+      category: product.category
+    };
+    
+    addToCart(cartProduct, 1);
+ 
   };
 
   return (
@@ -400,11 +426,15 @@ const Products = () => {
 
                             {/* Cart Button */}
                             <button
-                              className="p-3 rounded-full transition-all duration-300 transform shadow-lg hover:shadow-xl group-hover:scale-110"
+                              onClick={(e) => handleAddToCart(product, e)}
+                              className={`p-3 rounded-full transition-all duration-300 transform shadow-lg hover:shadow-xl group-hover:scale-110 ${
+                                isInCart(product.id) ? 'bg-green-600' : ''
+                              }`}
                               style={{
-                                backgroundColor: "#2C6D90",
+                                backgroundColor: isInCart(product.id) ? "#16a34a" : "#2C6D90",
                                 color: "#F9F3EF",
                               }}
+                              title={isInCart(product.id) ? "موجود في السلة" : "إضافة للسلة"}
                             >
                               <ShoppingCart className="w-5 h-5" />
                             </button>

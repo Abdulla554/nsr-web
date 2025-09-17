@@ -9,7 +9,7 @@ export const MetaTags = ({ customTitle, customDescription }) => {
 
   return (
     <Helmet>
-      {/* Primary Meta Tags */}
+      {/* Primary Meta Tags  */}
       <html lang="ar" dir="rtl" />
       <meta charSet="UTF-8" />
       <link rel="icon" type="image/png" href="/ico.ico" />
