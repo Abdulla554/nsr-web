@@ -1,12 +1,10 @@
- 
-
 import { Helmet } from 'react-helmet-async'
 
 export const MetaTags = ({ customTitle, customDescription }) => {
-  const title = customTitle || "السندان - وجهتكم الموثوقة للمستلزمات الطبية"
-  const description = customDescription || "السندان، من الأسماء الرائدة في مجال المستلزمات الطبية والأجهزة الطبية. نقدم مجموعة واسعة من المستلزمات الطبية والأجهزة من علامات تجارية عالمية ومحلية موثوقة، مع ضمانات موثوقة وخدمة عملاء متميزة."
-  const keywords = "مستلزمات طبية, أجهزة طبية, أجهزة تشخيص, أجهزة علاج, مستلزمات طبية أساسية, السندان, تجهيزات طبية"
-  const siteUrl = "https://alsandan.com"
+  const title = customTitle || "نصر للحاسبات - وجهتكم الموثوقة للحواسيب والمعدات الإلكترونية"
+  const description = customDescription || "نصر للحاسبات، من الأسماء الرائدة في مجال بيع وصيانة الحواسيب والأجهزة الإلكترونية. نقدم مجموعة واسعة من الحواسيب المكتبية والمحمولة والأجهزة الملحقة من علامات تجارية عالمية ومحلية موثوقة، مع ضمانات وخدمة عملاء متميزة."
+  const keywords = "حواسيب, كمبيوترات, أجهزة كمبيوتر مكتبية, لابتوبات, أجهزة إلكترونية, ملحقات كمبيوتر, نصر للحاسبات, معدات تكنولوجيا"
+  const siteUrl = "https://nsr-pc.com"
   const imageUrl = `${siteUrl}/logo.png`  
 
   return (
@@ -20,21 +18,21 @@ export const MetaTags = ({ customTitle, customDescription }) => {
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <meta name="author" content="السندان" />
+      <meta name="author" content="نصر للحاسبات" />
       <meta name="robots" content="index, follow" />
       <link rel="canonical" href={siteUrl} />
 
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content="business.medical" />
+      <meta property="og:type" content="website" />
       <meta property="og:url" content={siteUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="business:contact_data:street_address" content="البصرة، العراق" />
-      <meta property="business:contact_data:phone_number" content="" />
-      <meta property="business:contact_data:email" content="info@alsandan.com" />
+      <meta property="business:contact_data:street_address" content="العراق" />
+      <meta property="business:contact_data:phone_number" content="+964" />
+      <meta property="business:contact_data:email" content="info@nsr-pc.com" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
