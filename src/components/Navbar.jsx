@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -46,21 +47,21 @@ const Navbar = () => {
               <motion.div
                 className="absolute inset-0 bg-[#2C6D90]/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
-              <img src="logo-removebg.png" className="h-24 rounded-3xl relative z-10 drop-shadow-2xl" />
+              <img src="logo-removebg.png" className="h-16 md:h-24 rounded-3xl relative z-10 drop-shadow-2xl" />
               {/* Glow Ring */}
               <motion.div className="absolute inset-0 rounded-3xl border-2 border-gradient-to-r from-blue-400/50 to-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
             </div>
 
             <div className="hidden md:block">
               <motion.h1
-                className="text-2xl font-bold text-[#F9F3EF]"
+                className="text-xl md:text-2xl font-bold text-[#F9F3EF]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
                 Nsr-Store
               </motion.h1>
               <motion.p
-                className="text-sm text-[#749BC2] -mt-1 font-medium"
+                className="text-xs md:text-sm text-[#749BC2] -mt-1 font-medium"
               >
                 أجهزتك الموثوقة تبدأ من هنا
               </motion.p>
@@ -130,7 +131,7 @@ const Navbar = () => {
               />
 
               <motion.button
-                className="bg-[#2C6D90] hover:bg-[#2C6D90]/90 text-[#F9F3EF] rounded-xl p-2 transition-all duration-300 font-medium"
+                className="bg-[#2C6D90] hover:bg-[#2C6D90]/90 text-[#F9F3EF] text-[#F9F3EF] rounded-xl p-2 transition-all duration-300 font-medium"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -147,9 +148,10 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
+              <Link to="/cart">
               <motion.div
-                className="w-6 h-6 group-hover:text-[#2C6D90] transition-colors duration-300"
-                whileHover={{ rotate: 5 }}
+                className="w-6 h-6 group-hover:text-[#ADCEFE] transition-colors duration-300"
+                
               >
                 <ShoppingBag className="w-full h-full" />
               </motion.div>
@@ -164,6 +166,7 @@ const Navbar = () => {
               >
                 2
               </motion.span>
+              </Link>
             </motion.button>
 
             {/* Mobile Menu Button */}

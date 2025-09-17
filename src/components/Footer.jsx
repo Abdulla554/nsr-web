@@ -4,171 +4,101 @@ import {
   FaFacebookF,
   FaInstagram,
   FaTwitter,
-  FaWhatsapp,
+  FaEnvelope,
+  FaPhone,
 } from "react-icons/fa";
+import logo from "/logo.png";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
 
   return (
-    <footer
-      className="relative bg-dark-900 py-12 px-4 md:px-16 text-primary-500 overflow-hidden backdrop-blur-sm"
-      style={{ backdropFilter: "blur(6px)" }}
-    >
-      {/* تأثير زجاجي */}
-      <div
-        className="absolute inset-0 bg-primary-500/5 rounded-3xl pointer-events-none"
-        style={{ zIndex: 0 }}
-      ></div>
-      <div className="relative z-10  flex flex-col md:flex-row md:justify-between md:items-stretch gap-12">
-        {/* Logo & Contact */}
-        <div className="flex flex-col items-center md:items-start gap-4 min-w-[220px] bg-primary-500/10 rounded-2xl shadow-lg p-6 border border-primary-500/10 backdrop-blur-sm h-full">
-          <div className=" py-2">
-            <img
-              src="/logo.png"
-              alt="Al-Sandan Logo"
-              className="h-24 object-contain rounded-lg "
-            />
-          </div>
-          <div className="text-lg font-semibold tracking-wide text-neutral-500">
-          {isArabic ? " ٠٧٥٠٠٠٧٨٨٧٤" : "07500078874"}
-          </div>
-          <div
-            className="text-sm text-neutral-500 text-center md:text-left"
-            dir={isArabic ? "rtl" : "ltr"}
-          >
-            <p className={`${isArabic ? "text-right" : "text-left"}`} dir={isArabic ? "rtl" : "ltr"}>
-              {isArabic ? "اربيل/ شارع ١٢٠ متري/ مجمع المدينة الايطالية ٢/ قرب السوپر ماركت" : "Arbil/ 120 meters street/ Italian city complex 2/ Near Super market"}
+    <footer className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white py-16 px-4 md:px-16 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary-500/10 to-secondary-500/10"></div>
+      </div>
+      
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          
+          {/* Brand Information - Column 1 */}
+          <div className="flex flex-col items-center md:items-start space-y-6">
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="شعار السندان" className="h-32 w-auto rounded-2xl shadow-2xl border-2 border-primary-500/20" />
+            </div>
+            <p className="text-base text-gray-200 text-center md:text-right font-medium leading-relaxed" dir="rtl">
+              تغيير مفهوم العناية بالسمع مع متجرنا
             </p>
           </div>
-          <a
-            href={`mailto:${t("footer.contact.email")}`}
-            className="text-sm text-neutral-500 hover:underline mt-1"
-          >
-            {t("footer.contact.email")}
-          </a>
-        </div>
 
-        {/* About Section */}
-        <div
-          className="flex-1 min-w-[240px] bg-primary-500/10 rounded-2xl shadow-lg md:h-[284px] justify-center p-6 flex flex-col items-start gap-3 border border-primary-500/10 backdrop-blur-sm "
-          dir={isArabic ? "rtl" : "ltr"}
-        >
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <svg
-              width="28"
-              height="28"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="text-secondary-500"
-            >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="currentColor"
-                opacity="0.15"
-              />
-              <path
-                d="M12 8v4m0 4h.01M12 6.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
-                stroke="currentColor"
-                className="text-neutral-500"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <h3 className="text-2xl font-extrabold text-neutral-500 tracking-wide drop-shadow-sm">
-              {t("footer.about.title")}
+          {/* Pages/Navigation - Column 2 */}
+          <div className="flex flex-col space-y-4">
+            <h3 className="text-xl text-center font-bold text-white mb-4 border-b-2 border-primary-500 pb-2 inline-block">
+              الصفحات
             </h3>
+            <a href="/" className="text-gray-200 hover:text-primary-400 transition-all duration-300 hover:translate-x-2 font-medium text-lg">
+              الرئيسية
+            </a>
+            <a href="/products" className="text-gray-200 hover:text-primary-400 transition-all duration-300 hover:translate-x-2 font-medium text-lg">
+              جميع المنتجات
+            </a>
+            <a href="/about" className="text-gray-200 hover:text-primary-400 transition-all duration-300 hover:translate-x-2 font-medium text-lg">
+              انشاء حساب | تسجيل دخول
+            </a>
           </div>
-          <p
-            className="text-neutral-500 leading-relaxed text-justify text-base"
-            style={{ textShadow: "0 1px 2px rgba(0,0,0,0.08)" }}
-          >
-            {t("footer.about.description")}
-          </p>
-        </div>
 
-        {/* Quick Links */}
-        <div
-          className="min-w-[200px] bg-primary-500/10 rounded-2xl shadow-lg p-6 flex flex-col items-start gap-3 border border-primary-500/10 backdrop-blur-sm h-full"
-          dir={isArabic ? "rtl" : "ltr"}
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <svg
-              width="26"
-              height="26"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="text-secondary-500"
-            >
-              <rect x="4" y="6" width="16" height="2" rx="1" className="fill-neutral-500" />
-              <rect
-                x="4"
-                y="11"
-                width="16"
-                height="2"
-                rx="1"
-                className="fill-neutral-500"
-                opacity="0.7"
-              />
-              <rect
-                x="4"
-                y="16"
-                width="16"
-                height="2"
-                rx="1"
-                className="fill-neutral-500"
-                opacity="0.4"
-              />
-            </svg>
-            <h3 className="text-xl font-extrabold text-neutral-500 tracking-wide drop-shadow-sm">
-              {t("footer.quickLinks.title")}
+          {/* Contact Information - Column 3 */}
+          <div className="flex flex-col space-y-4">
+            <h3 className="text-xl text-center font-bold text-white mb-4 border-b-2 border-primary-500 pb-2 inline-block">
+              الاتصال
             </h3>
+            <div className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
+              <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center">
+                <FaEnvelope className="text-primary-400 text-lg" />
+              </div>
+              <a href={`mailto:${t("footer.contact.email")}`} className="font-medium text-lg">
+                {t("footer.contact.email")}
+              </a>
+            </div>
+            <div className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
+              <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center">
+                <FaPhone className="text-primary-400 text-lg" />
+              </div>
+              <span className="font-medium text-lg">٠٧٥٠٠٠٧٨٨٧٤</span>
+            </div>
           </div>
-          <ul className="flex flex-col text-neutral-500 gap-2  w-full mt-1">
-            <li>
-              <a
-                href="/"
-                className="block w-full rounded-lg px-3 py-2 font-medium transition bg-primary-500/10 hover:bg-neutral-500 hover:text-primary-500 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary-500"
-              >
-                {t("footer.quickLinks.home")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="/products"
-                className="block w-full rounded-lg px-3 py-2 font-medium transition bg-primary-500/10 hover:bg-neutral-500 hover:text-primary-500 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary-500"
-              >
-                {t("footer.quickLinks.products")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="/about"
-                className="block w-full rounded-lg px-3 py-2 font-medium transition bg-primary-500/10 hover:bg-neutral-500 hover:text-primary-500 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary-500"
-              >
-                {t("footer.quickLinks.aboutUs")}
-              </a>
-            </li>
-            <li>
-              <a
-                href="/contact"
-                className="block w-full rounded-lg px-3 py-2 font-medium transition bg-primary-500/10 hover:bg-neutral-500 hover:text-primary-500 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-secondary-500"
-              >
-                {t("footer.quickLinks.contactUs")}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
 
-      {/* Footer Bottom */}
-      <div className="relative z-10 mt-10 pt-6 border-t-2 border-primary-500 border-dashed flex flex-col md:flex-row items-center justify-between gap-2 text-md text-neutral-500">
-        <p>{t("footer.copyright.rights")}</p>
-        <p>{t("footer.copyright.company")}</p>
+          {/* Social Media - Column 4 */}
+          <div className="flex  items-center flex-col space-y-4">
+            <h3 className="text-xl font-bold text-white mb-4  border-b-2 border-primary-500 pb-2 inline-block">
+              مواقع تواصل الاجتماعي
+            </h3>
+            <div className="flex items-center justify-center gap-4">
+              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
+                <FaTwitter className="text-white text-lg" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
+                <FaFacebookF className="text-white text-lg" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
+                <FaInstagram className="text-white text-lg" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom - Copyright */}
+        <div className="border-t-2 border-primary-500/30 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between text-base text-gray-300 font-medium">
+            <p>كل الحقوق محفوظة  لدى </p>
+            <p className="text-primary-400 font-bold"> 
+              شركة نصر للحاسبات
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );

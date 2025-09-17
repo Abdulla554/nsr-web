@@ -205,7 +205,7 @@ const ProductDetail = () => {
 
             {/* Availability */}
             <div className="flex items-center gap-4">
-              <span style={{ color: "#749BC2" }}>Available:</span>
+              <span style={{ color: "#749BC2" }}>متوفر:</span>
               <span
                 className="px-4 py-2 rounded-full font-bold text-sm"
                 style={{
@@ -219,7 +219,7 @@ const ProductDetail = () => {
 
             {/* Product SKU */}
             <div className="flex items-center gap-4">
-              <span style={{ color: "#749BC2" }}>Product SKU:</span>
+              <span style={{ color: "#749BC2" }}>رمز المنتج:</span>
               <span style={{ color: "#F9F3EF" }}>{product.sku}</span>
             </div>
 
@@ -241,7 +241,7 @@ const ProductDetail = () => {
                   className="block text-lg font-semibold mb-4"
                   style={{ color: "#F9F3EF" }}
                 >
-                  Quantity
+                  الكمية
                 </label>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-4">
                   <div
@@ -283,7 +283,7 @@ const ProductDetail = () => {
                     }}
                   >
                     <ShoppingCart className="w-6 h-6" />
-                    Add to cart
+                اضافة الى السلة
                   </button>
                 </div>
 

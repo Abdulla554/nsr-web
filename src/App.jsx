@@ -9,6 +9,7 @@ import Home from "./page/Home";
 import Products from "./page/Products";
 import ProductDetail from "./page/ProductDetail";
 import Categories from "./page/Categories";
+import Cart from "./page/Cart";
 const queryClient = new QueryClient();
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<ProductDetail/>} />
               <Route path="/categories" element={<Categories />} />
+              <Route path="/cart" element={<Cart />} />
               {/* <Route path="/contact" element={<Contact />} /> */}
             </Routes>
           </main>
