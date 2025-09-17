@@ -26,19 +26,19 @@ export default function Brands() {
       img: "/b4.png",
     } ,
     {
-      id: 1,
+      id: 5,
       img: "/b1.png",
     },
     {
-      id: 2,
+      id: 6,
       img: "/b2.png",
     },
     {
-      id: 3,
+      id: 7,
       img: "/b3.png",
     },
     {
-      id: 4,
+      id: 8,
       img: "/b4.png",
     } 
   ];

@@ -74,7 +74,6 @@ export default function Categories() {
             slidesPerView={1}
             loop={true}
             loopAdditionalSlides={2}
-            loopFillGroupWithBlank={false}
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',

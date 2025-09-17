@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
+      className={`fixed top-0 w-full z-20 transition-all duration-500 ${scrolled
         ? 'bg-dark-900 backdrop-blur-xl border-b border-[#2C6D90]/30 shadow-lg'
         : 'bg-dark-900 backdrop-blur-md'
         }`}
