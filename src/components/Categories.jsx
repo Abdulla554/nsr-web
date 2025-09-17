@@ -61,8 +61,8 @@ export default function Categories() {
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-100 mb-4 tracking-tight">
-            SHOP BY CATEGORIES
+          <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
+            SHOP BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">CATEGORIES</span>
           </h2>
         </div>
 

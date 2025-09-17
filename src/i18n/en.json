@@ -191,6 +191,10 @@
     "location": "Our Location"
   },
   "home": {
+    "company": {
+      "title": "Nasr Computer Company",
+      "description": "Leading in information technology and smart solutions, we provide the latest devices and technical services to meet our clients' needs with the highest standards of quality and innovation"
+    },
     "hero": {
       "title": "Advanced Hearing Solutions",
       "subtitle": "Better Hearing for a Better Future",
