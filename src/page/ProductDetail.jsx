@@ -18,14 +18,14 @@ const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
-  
+
   // استخدام Zustand store للسلة
   const { addToCart, isInCart, getQuantity } = useCartStore();
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   const product = {
     id: 1,
     brand: "Microsoft",
@@ -33,7 +33,7 @@ const ProductDetail = () => {
     description: "Microsoft Surface Laptop 7 is a high-performance laptop with a 13.8-inch PixelSense Flow touchscreen, 120 Hz refresh rate, and a Qualcomm Adreno GPU. It has 16 GB LPDDR5x RAM and 512GB Removable SSD storage. It also has a 1080p Full HD camera with wide field of view, Arabic & English keyboard, and Windows 11 Pro operating system.",
     price: 1950000, // تحويل السعر إلى رقم
     priceDisplay: "1,950.000 IQD",
-    sku: "109708",
+    category: "حاسبة بالة",
     availability: "In Stock",
     image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&h=400&fit=crop", // صورة أساسية للسلة
     images: [
@@ -125,7 +125,7 @@ const ProductDetail = () => {
   // دالة إضافة المنتج للسلة
   const handleAddToCart = () => {
     addToCart(product, quantity);
-    
+
   };
 
   // فحص ما إذا كان المنتج موجود في السلة
@@ -208,7 +208,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Right Side - Product Details */}
-          <div className="space-y-8 flex-1">
+          <div className="space-y-8 pt-4 flex-1">
             {/* Brand */}
             <div>
               <span
@@ -242,17 +242,16 @@ const ProductDetail = () => {
                     الوصف
                   </h3>
                 </div>
-                <div className="transition-all duration-300 group-hover:scale-110" style={{ 
-                  transform: isDescriptionOpen ? 'rotate(180deg)' : 'rotate(0deg)' 
+                <div className="transition-all duration-300 group-hover:scale-110" style={{
+                  transform: isDescriptionOpen ? 'rotate(180deg)' : 'rotate(0deg)'
                 }}>
                   <ChevronUp className="w-5 h-5" style={{ color: "#749BC2" }} />
                 </div>
               </button>
-              
+
               {/* Content */}
-              <div className={`transition-all duration-500 ease-in-out ${
-                isDescriptionOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
-              }`}>
+              <div className={`transition-all duration-500 ease-in-out ${isDescriptionOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+                }`}>
                 <div className="px-4 py-3 border-t border-[#749BC2]/10">
                   <p className="text-sm leading-tight" style={{ color: "#749BC2" }}>
                     {product.description}
@@ -261,7 +260,7 @@ const ProductDetail = () => {
               </div>
             </div>
 
-           
+
 
             {/* Product Info Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -269,11 +268,11 @@ const ProductDetail = () => {
               <div className="bg-gradient-to-r from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-lg p-4 border border-[#749BC2]/20 shadow-md hover:shadow-lg transition-all duration-300">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[#749BC2]"></div>
-                  <span className="text-sm font-medium " style={{ color: "#F9F3EF" }}>    
-رمز المنتج :
+                  <span className="text-sm font-medium " style={{ color: "#F9F3EF" }}>
+                    الفئة :
                   </span>
                 </div>
-                <span className="text-lg font-bold mt-1 block" style={{ color: "#F9F3EF" }}>{product.sku}</span>
+                <span className="text-lg font-bold mt-1 block" style={{ color: "#F9F3EF" }}>{product.category}</span>
               </div>
 
               {/* Price Card */}
@@ -308,109 +307,64 @@ const ProductDetail = () => {
             )}
 
             {/* Quantity and Buttons */}
-            <div className="space-y-6">
-              {/* Quantity Section */}
-              <div className="bg-gradient-to-r from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-xl p-6 border border-[#749BC2]/20 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="flex items-center justify-center gap-3 mb-6">
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#2C6D90] to-[#749BC2]"></div>
-                  <label
-                    className="text-lg font-bold"
-                    style={{ color: "#F9F3EF" }}
-                  >
-                    الكمية
-                  </label>
-                </div>
-                
-                {/* Quantity Controls */}
-                <div className="flex items-center justify-center">
-                  <div
-                    className="flex items-center rounded-xl shadow-2xl overflow-hidden border-2 border-[#749BC2]/30 hover:border-[#749BC2]/50 transition-all duration-300"
-                    style={{ backgroundColor: "#F9F3EF" }}
-                  >
-                    <button
-                      onClick={decrementQuantity}
-                      className="px-6 py-3 font-bold text-lg transition-all duration-300 hover:bg-[#2C6D90]/10 hover:scale-105 active:scale-95 group"
-                      style={{ color: "#1a1a2e" }}
-                    >
-                      <Minus className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                    </button>
-                    
-                    <div className="px-4 py-3 border-x-2 border-[#749BC2]/20 bg-gradient-to-r from-[#F9F3EF] to-[#F9F3EF]/90">
-                      <input
-                        type="number"
-                        value={quantity}
-                        onChange={(e) =>
-                          setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                        }
-                        className="w-20 text-center border-0 focus:ring-0 font-bold text-lg bg-transparent focus:outline-none"
-                        style={{ color: "#1a1a2e" }}
-                      />
-                    </div>
-                    
-                    <button
-                      onClick={incrementQuantity}
-                      className="px-6 py-3 font-bold text-lg transition-all duration-300 hover:bg-[#2C6D90]/10 hover:scale-105 active:scale-95 group"
-                      style={{ color: "#1a1a2e" }}
-                    >
-                      <Plus className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Add to Cart Button */}
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              {/* Quantity Selector */}
+              <div className="flex items-center bg-white/80 backdrop-blur-md rounded-full border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
                 <button
-                  onClick={handleAddToCart}
-                  className="group relative flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold text-base shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 overflow-hidden"
-                  style={{
-                    background: productInCart 
-                      ? "linear-gradient(135deg, #16a34a, #22c55e)" 
-                      : "linear-gradient(135deg, #2C6D90, #749BC2)",
-                    color: "#F9F3EF",
-                  }}
+                  onClick={decrementQuantity}
+                  className="px-5 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-[#2C6D90]/10 hover:to-[#749BC2]/10 rounded-l-full transition-all duration-300 hover:scale-110 active:scale-95 group"
                 >
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 -top-1 -left-1 w-0 h-0 bg-white/20 rounded-full group-hover:w-full group-hover:h-full group-hover:transition-all group-hover:duration-500 group-hover:opacity-0"></div>
-                  
-                  <ShoppingCart className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">{productInCart ? "إضافة المزيد" : "اضافة الى السلة"}</span>
+                  <Minus className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
                 </button>
 
-                {/* WhatsApp Button */}
-                <a
-                  href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name} - السعر: ${product.priceDisplay}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold text-base shadow-xl transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95 overflow-hidden"
-                  style={{
-                    background: "linear-gradient(135deg, #25D366, #128C7E)",
-                    color: "#F9F3EF",
-                  }}
+                <div className="px-6 py-4 border-x border-gray-200 bg-white/70 backdrop-blur-sm">
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                    }
+                    className="w-16 text-center border-0 focus:ring-0 font-bold text-xl bg-transparent focus:outline-none"
+                    style={{ color: "#1a1a2e" }}
+                  />
+                </div>
+
+                <button
+                  onClick={incrementQuantity}
+                  className="px-5 py-4 text-gray-700 hover:bg-gradient-to-r hover:from-[#2C6D90]/10 hover:to-[#749BC2]/10 rounded-r-full transition-all duration-300 hover:scale-110 active:scale-95 group"
                 >
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 -top-1 -left-1 w-0 h-0 bg-white/20 rounded-full group-hover:w-full group-hover:h-full group-hover:transition-all group-hover:duration-500 group-hover:opacity-0"></div>
-                  
-                  <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform duration-300 relative z-10" />
-                  <span className="relative z-10">واتساب</span>
-                </a>
+                  <Plus className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
+                </button>
               </div>
 
-              {/* Additional Info */}
-              <div className="text-center bg-gradient-to-r from-[#F9F3EF]/5 to-[#F9F3EF]/10 rounded-lg p-4 border border-[#749BC2]/10">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <div className="w-1 h-1 rounded-full bg-[#749BC2]"></div>
-                  <div className="w-1 h-1 rounded-full bg-[#2C6D90]"></div>
-                  <div className="w-1 h-1 rounded-full bg-[#749BC2]"></div>
-                </div>
-                <p className="text-xs font-medium" style={{ color: "#749BC2" }}>
-                  💬 يمكنك التواصل معنا عبر الواتساب للحصول على استشارة مجانية
-                </p>
-              </div>
+              {/* Add to Cart Button */}
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 relative bg-gradient-to-r from-[#2C6D90] via-[#3b82f6] to-[#749BC2] text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:shadow-3xl transform transition-all duration-500 hover:scale-105 active:scale-95 flex items-center justify-center gap-4 group overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <ShoppingCart className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300 relative z-10" />
+                <span className="relative z-10">
+                  {productInCart ? "إضافة المزيد" : "اضافة الى السلة"}
+                </span>
+              </button>
+
+              {/* WhatsApp Button */}
+              <a
+                href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name} - السعر: ${product.priceDisplay}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-125 group relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#25D366]/20 to-[#128C7E]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <MessageCircle className="w-7 h-7 text-[#25D366] group-hover:scale-125 transition-transform duration-300 relative z-10" />
+              </a>
             </div>
+
           </div>
         </div>
+
+
 
         {/* Product Specifications Section */}
         <div className="mt-20 px-4">
@@ -519,6 +473,139 @@ const ProductDetail = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+
+
+        {/* Related Products Section */}
+        <div className="mt-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4" style={{ color: "#F9F3EF" }}>
+                منتجات مشابهة
+              </h2>
+              <div className="flex items-center justify-center">
+                <div className="w-20 h-0.5 opacity-60" style={{ backgroundColor: '#749BC2' }}></div>
+                <div className="w-4 h-4 rounded-full mx-3 shadow-lg" style={{ backgroundColor: '#2C6D90' }}></div>
+                <div className="w-20 h-0.5 opacity-60" style={{ backgroundColor: '#749BC2' }}></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {/* Related Product 1 */}
+              <div className="group bg-gradient-to-br from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-2xl p-6 border border-[#749BC2]/20 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="relative mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=300&h=200&fit=crop"
+                    alt="Surface Laptop 6"
+                    className="w-full h-48 object-cover rounded-xl"
+                  />
+                  <div className="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    جديد
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: "#F9F3EF" }}>
+                  Microsoft Surface Laptop 6
+                </h3>
+                <p className="text-sm mb-4" style={{ color: "#749BC2" }}>
+                  Intel Core i7, 16GB RAM, 512GB SSD
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
+                    1,750.000 IQD
+                  </span>
+                  <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300">
+                    عرض
+                  </button>
+                </div>
+              </div>
+
+              {/* Related Product 2 */}
+              <div className="group bg-gradient-to-br from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-2xl p-6 border border-[#749BC2]/20 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="relative mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=300&h=200&fit=crop"
+                    alt="Surface Pro 9"
+                    className="w-full h-48 object-cover rounded-xl"
+                  />
+                  <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    خصم 15%
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: "#F9F3EF" }}>
+                  Microsoft Surface Pro 9
+                </h3>
+                <p className="text-sm mb-4" style={{ color: "#749BC2" }}>
+                  Intel Core i5, 8GB RAM, 256GB SSD
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
+                    1,200.000 IQD
+                  </span>
+                  <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300">
+                    عرض
+                  </button>
+                </div>
+              </div>
+
+              {/* Related Product 3 */}
+              <div className="group bg-gradient-to-br from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-2xl p-6 border border-[#749BC2]/20 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="relative mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?w=300&h=200&fit=crop"
+                    alt="Surface Studio"
+                    className="w-full h-48 object-cover rounded-xl"
+                  />
+                  <div className="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    مميز
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: "#F9F3EF" }}>
+                  Microsoft Surface Studio
+                </h3>
+                <p className="text-sm mb-4" style={{ color: "#749BC2" }}>
+                  Intel Core i7, 32GB RAM, 1TB SSD
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
+                    3,500.000 IQD
+                  </span>
+                  <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300">
+                    عرض
+                  </button>
+                </div>
+              </div>
+
+              {/* Related Product 4 */}
+              <div className="group bg-gradient-to-br from-[#F9F3EF]/10 to-[#F9F3EF]/5 rounded-2xl p-6 border border-[#749BC2]/20 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="relative mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=300&h=200&fit=crop"
+                    alt="Surface Book 3"
+                    className="w-full h-48 object-cover rounded-xl"
+                  />
+                  <div className="absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+                    الأكثر مبيعاً
+                  </div>
+                </div>
+                <h3 className="text-lg font-bold mb-2" style={{ color: "#F9F3EF" }}>
+                  Microsoft Surface Book 3
+                </h3>
+                <p className="text-sm mb-4" style={{ color: "#749BC2" }}>
+                  Intel Core i7, 16GB RAM, 512GB SSD
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
+                    2,200.000 IQD
+                  </span>
+                  <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300">
+                    عرض
+                  </button>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
