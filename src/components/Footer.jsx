@@ -19,11 +19,11 @@ const Footer = () => {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary-500/10 to-secondary-500/10"></div>
       </div>
-      
+
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
+
           {/* Brand Information - Column 1 */}
           <div className="flex flex-col items-center md:items-start space-y-6">
             <div className="flex items-center gap-3">
@@ -55,20 +55,18 @@ const Footer = () => {
             <h3 className="text-xl text-center font-bold text-white mb-4 border-b-2 border-primary-500 pb-2 inline-block">
               الاتصال
             </h3>
-            <div className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
-              <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center">
-                <FaEnvelope className="text-primary-400 text-lg" />
-              </div>
-              <a href={`mailto:${t("footer.contact.email")}`} className="font-medium text-lg">
-                {t("footer.contact.email")}
-              </a>
-            </div>
-            <div className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
+            <a href="tel:+9647750007083" className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
               <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center">
                 <FaPhone className="text-primary-400 text-lg" />
               </div>
-              <span className="font-medium text-lg">٠٧٥٠٠٠٧٨٨٧٤</span>
-            </div>
+              <span className="font-medium text-lg">07750007083</span>
+            </a>
+            <a href="tel:+9647850007083" className="flex items-center gap-3 text-gray-200 hover:text-primary-400 transition-all duration-300">
+              <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center">
+                <FaPhone className="text-primary-400 text-lg" />
+              </div>
+              <span className="font-medium text-lg">07850007083</span>
+            </a>
           </div>
 
           {/* Social Media - Column 4 */}
@@ -94,7 +92,7 @@ const Footer = () => {
         <div className="border-t-2 border-primary-500/30 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between text-base text-gray-300 font-medium">
             <p>كل الحقوق محفوظة  لدى </p>
-            <p className="text-primary-400 font-bold"> 
+            <p className="text-primary-400 font-bold">
               شركة نصر للحاسبات
             </p>
           </div>
