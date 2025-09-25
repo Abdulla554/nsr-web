@@ -354,7 +354,7 @@ const ProductDetail = () => {
                 href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name} - السعر: ${product.priceDisplay}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-16 h-16 bg-white/80 backdrop-blur-md border border-gray-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-125 group relative overflow-hidden"
+                className="w-16 h-16 bg-white/20 backdrop-blur-md border border-gray-200 rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-100 group relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#25D366]/20 to-[#128C7E]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <MessageCircle className="w-7 h-7 text-[#25D366] group-hover:scale-125 transition-transform duration-300 relative z-10" />
