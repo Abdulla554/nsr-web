@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
- 
+import { useQuery } from '@tanstack/react-query'
+import axiosInstance from '../lib/axios'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
 // Import Swiper styles
@@ -11,50 +12,109 @@ import 'swiper/css/navigation'
 export default function Categories() {
   const swiperRef = useRef(null);
 
-  const categories = [
-    {
-      id: 1,
-      title: "PC Cases",
-      image: "/s3.png",
-      buttonColor: "bg-white text-gray-900"
-    },
-    {
-      id: 2,
-      title: "Controllers", 
-      image: "/s4.png",
-      buttonColor: "bg-white text-gray-900"
-    },
-    {
-      id: 3,
-      title: "Gaming Mouse",
-      image: "/s2.png", 
-      buttonColor: "bg-red-500 text-white"
-    },
-    {
-        id: 4,
-        title: "PC Cases",
-        image: "/s4.png",
-        buttonColor: "bg-white text-gray-900"
-      },
-      {
-        id: 5,
-        title: "Controllers", 
-        image: "/s5.png",
-        buttonColor: "bg-white text-gray-900"
-      },
-      {
-        id: 6,
-        title: "Gaming Mouse",
-        image: "/s5.png", 
-        buttonColor: "bg-red-500 text-white"
+  // const categories = [
+  //   {
+  //     id: 1,
+  //     title: "PC Cases",
+  //     image: "/s3.png",
+  //     buttonColor: "bg-white text-gray-900"
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Controllers", 
+  //     image: "/s4.png",
+  //     buttonColor: "bg-white text-gray-900"
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Gaming Mouse",
+  //     image: "/s2.png", 
+  //     buttonColor: "bg-red-500 text-white"
+  //   },
+  //   {
+  //       id: 4,
+  //       title: "PC Cases",
+  //       image: "/s4.png",
+  //       buttonColor: "bg-white text-gray-900"
+  //     },
+  //     {
+  //       id: 5,
+  //       title: "Controllers", 
+  //       image: "/s5.png",
+  //       buttonColor: "bg-white text-gray-900"
+  //     },
+  //     {
+  //       id: 6,
+  //       title: "Gaming Mouse",
+  //       image: "/s5.png", 
+  //       buttonColor: "bg-red-500 text-white"
+  //     }
+  // ]
+
+  const {
+    data: categories,
+    isLoading,
+    error
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      try {
+        const response = await axiosInstance.get("/categories");
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        throw error;
       }
-  ]
+    },
+  });
+
+  // Check if we have enough categories for loop mode (minimum 3 categories)
+  const hasEnoughCategories = categories && categories.length >= 3;
 
   useEffect(() => {
     if (swiperRef.current) {
       swiperRef.current.update();
     }
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className="pb-20 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
+              SHOP BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">CATEGORIES</span>
+            </h2>
+          </div>
+          <div className="flex items-center justify-center py-16">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+              <p className="text-gray-400">Loading categories...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !categories || categories.length === 0) {
+    return (
+      <section className="pb-20 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
+              SHOP BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">CATEGORIES</span>
+            </h2>
+          </div>
+          <div className="flex items-center justify-center py-16">
+            <div className="text-center">
+              <p className="text-gray-400">No categories available</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="pb-20 bg-black">
@@ -72,8 +132,8 @@ export default function Categories() {
             modules={[Navigation]}
             spaceBetween={20}
             slidesPerView={1}
-            loop={true}
-            loopAdditionalSlides={2}
+            loop={hasEnoughCategories}
+            loopAdditionalSlides={hasEnoughCategories ? 2 : 0}
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
@@ -99,13 +159,15 @@ export default function Categories() {
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
               // إعادة تهيئة الـ loop عند تحميل المكون
-              setTimeout(() => {
-                swiper.update();
-              }, 100);
+              if (hasEnoughCategories) {
+                setTimeout(() => {
+                  swiper.update();
+                }, 100);
+              }
             }}
             className="categories-swiper"
           >
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <SwiperSlide key={category.id}>
                 <div className="relative group h-full">
                   {/* Category Card */}
@@ -113,8 +175,8 @@ export default function Categories() {
                     {/* Image Container */}
                     <div className="relative h-full overflow-hidden">
                       <img
-                        src={category.image}
-                        alt={category.title}
+                        src={category?.image}
+                        alt={category?.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       {/* Dark Overlay for better text contrast */}
@@ -123,8 +185,8 @@ export default function Categories() {
 
                     {/* Button */}
                     <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%]">
-                      <button className={`w-full font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group transform hover:scale-105 ${category.buttonColor}`}>
-                        <span className="text-xs sm:text-sm font-semibold">{category.title}</span>
+                      <button className={`w-full font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group transform hover:scale-105 ${category?.buttonColor}`}>
+                        <span className="text-xs sm:text-sm font-semibold">{category?.name}</span>
                         <div className="w-4 h-4 bg-gray-900 rounded flex items-center justify-center">
                           <svg
                             className="w-2 h-2 text-white"

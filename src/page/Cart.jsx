@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { 
   Trash2, 
@@ -14,7 +13,6 @@ import {
 import { useCartStore } from '../store/index'
 
 export default function Cart() {
-  const { t } = useTranslation()
   const navigate = useNavigate()
   
   // استخدام Zustand store للسلة

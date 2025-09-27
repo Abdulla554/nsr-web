@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Carousel from '../components/Carousel'
 import ProductShowcase from '../components/ProductShowcase'
 import Categories from '../components/Categories'
@@ -9,6 +9,9 @@ import Customer from '../components/Customer'
  
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="min-h-screen">
       <Carousel />

@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 // استيراد أيقونات FontAwesome
 import {
   FaFacebookF,
@@ -10,8 +9,6 @@ import {
 import logo from "/logo.png";
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
-  const isArabic = i18n.language === "ar";
 
   return (
     <footer className="bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white py-16 px-4 md:px-16 relative overflow-hidden">

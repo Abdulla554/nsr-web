@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Brands from '../components/Brands'
 
 export default function Categories() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const products = [
     {
       id: 1,

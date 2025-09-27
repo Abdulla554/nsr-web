@@ -4,7 +4,8 @@ import { ShoppingCart, Star, ChevronDown, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { useCartStore } from '../store/index';
-
+import axiosInstance from '../lib/axios';
+import { useQuery } from '@tanstack/react-query';
 const Products = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -96,17 +97,40 @@ const Products = () => {
     }
   ];
 
-  // استخراج الفئات والبراندات الفريدة
-  const uniqueCategories = [...new Set(products.map(product => product.category))];
-  const uniqueBrands = [...new Set(products.map(product => product.brand))];
-
-  // فلترة المنتجات
-  const filteredProducts = products.filter(product => {
-    const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
-    const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-    return categoryMatch && brandMatch;
+  
+  const {
+    data: categories,
+    isLoading: categoriesLoading,
+    error: categoriesError
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => {
+      try {
+        const response = await axiosInstance.get("/categories");
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        throw error;
+      }
+    },
   });
 
+  const {
+    data: brands,
+    isLoading: brandsLoading,
+    error: brandsError
+  } = useQuery({
+    queryKey: ["brands"],
+    queryFn: async () => {
+      try {
+        const response = await axiosInstance.get("/brands");
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+        throw error;
+      }
+    },
+  });
   // دوال إدارة الفلترة
   const toggleCategory = (category) => {
     setSelectedCategories(prev =>
@@ -208,13 +232,13 @@ const Products = () => {
 
                 {showCategoryDropdown && (
                   <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
-                    {uniqueCategories.map((category) => (
+                    {categories?.map((category) => (
                       <button
                         key={category}
                         onClick={() => toggleCategory(category)}
                         className="w-full px-4 py-3 gap-2 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
-                        <span>{category}</span>
+                        <span>{category?.name}</span>
                         {selectedCategories.includes(category) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
@@ -241,13 +265,13 @@ const Products = () => {
 
                 {showBrandDropdown && (
                   <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
-                    {uniqueBrands.map((brand) => (
+                    {brands?.map((brand) => (
                       <button
                         key={brand}
                         onClick={() => toggleBrand(brand)}
                         className="w-full px-4 py-3 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
-                        <span>{brand}</span>
+                        <span>{brand?.name}</span>
                         {selectedBrands.includes(brand) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
@@ -295,8 +319,8 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProducts.length > 0 ? (
-                filteredProducts.map((product, index) => (
+              {products?.length > 0 ? (
+                products?.map((product, index) => (
                   <div
                     key={product.id}
                     className={`group relative rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-105 ${hoveredItem === product.id ? "rotate-1" : ""
@@ -384,7 +408,7 @@ const Products = () => {
                               className="inline-block text-white px-3 py-1 rounded-full text-xs font-arabic-bold tracking-wide uppercase arabic-text"
                               style={{ backgroundColor: "#2C6D90" }}
                             >
-                              {product.category}
+                              {product?.category}
                             </span>
                           </div>
 
@@ -393,7 +417,7 @@ const Products = () => {
                             className="text-xl font-arabic-bold mb-2 transition-colors duration-300 group-hover:text-opacity-80 arabic-text"
                             style={{ color: "#1a1a2e" }}
                           >
-                            {product.name}
+                            {product?.name}
                           </h3>
 
                           {/* Product Details */}
@@ -401,7 +425,7 @@ const Products = () => {
                             className="text-sm mb-4 line-clamp-2 opacity-70 font-arabic-primary arabic-text"
                             style={{ color: "#1a1a2e" }}
                           >
-                            {product.details}
+                            {product?.details}
                           </p>
 
                           {/* Price and Cart Section */}
@@ -413,14 +437,14 @@ const Products = () => {
                                   className="text-lg line-through opacity-70 font-arabic-medium"
                                   style={{ color: "#dc2626" }}
                                 >
-                                  ${product.originalPrice.toFixed(2)}
+                                  ${product?.originalPrice.toFixed(2)}
                                 </span>
                               )}
                               <span
                                 className="text-2xl font-arabic-bold"
                                 style={{ color: "#1a1a2e" }}
                               >
-                                ${product.currentPrice.toFixed(2)}
+                                ${product?.currentPrice.toFixed(2)}
                               </span>
                             </div>
 
@@ -428,13 +452,13 @@ const Products = () => {
                             <button
                               onClick={(e) => handleAddToCart(product, e)}
                               className={`p-3 rounded-full transition-all duration-300 transform shadow-lg hover:shadow-xl group-hover:scale-110 ${
-                                isInCart(product.id) ? 'bg-green-600' : ''
+                                isInCart(product?.id) ? 'bg-green-600' : ''
                               }`}
                               style={{
-                                backgroundColor: isInCart(product.id) ? "#16a34a" : "#2C6D90",
+                                backgroundColor: isInCart(product?.id) ? "#16a34a" : "#2C6D90",
                                 color: "#F9F3EF",
                               }}
-                              title={isInCart(product.id) ? "موجود في السلة" : "إضافة للسلة"}
+                              title={isInCart(product?.id) ? "موجود في السلة" : "إضافة للسلة"}
                             >
                               <ShoppingCart className="w-5 h-5" />
                             </button>

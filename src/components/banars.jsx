@@ -2,7 +2,6 @@
 import React from 'react'
 import img2 from "/h1.png";
 import { motion } from "framer-motion";
-import { useTranslation } from 'react-i18next';
 
 
 const bgImage2 = {
@@ -15,7 +14,6 @@ const bgImage2 = {
     backgroundAttachment: "fixed",
 };
 export default function Banars() {
-    const { t } = useTranslation();
     return (
         <div>
             <motion.div
