@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
-import { useQuery } from '@tanstack/react-query'
-import axiosInstance from '../lib/axios'
+import { useNavigate } from 'react-router-dom'
+import { useCategories } from '../hooks'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
 // Import Swiper styles
@@ -11,65 +11,21 @@ import 'swiper/css/navigation'
 
 export default function Categories() {
   const swiperRef = useRef(null);
-
-  // const categories = [
-  //   {
-  //     id: 1,
-  //     title: "PC Cases",
-  //     image: "/s3.png",
-  //     buttonColor: "bg-white text-gray-900"
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Controllers", 
-  //     image: "/s4.png",
-  //     buttonColor: "bg-white text-gray-900"
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Gaming Mouse",
-  //     image: "/s2.png", 
-  //     buttonColor: "bg-red-500 text-white"
-  //   },
-  //   {
-  //       id: 4,
-  //       title: "PC Cases",
-  //       image: "/s4.png",
-  //       buttonColor: "bg-white text-gray-900"
-  //     },
-  //     {
-  //       id: 5,
-  //       title: "Controllers", 
-  //       image: "/s5.png",
-  //       buttonColor: "bg-white text-gray-900"
-  //     },
-  //     {
-  //       id: 6,
-  //       title: "Gaming Mouse",
-  //       image: "/s5.png", 
-  //       buttonColor: "bg-red-500 text-white"
-  //     }
-  // ]
+  const navigate = useNavigate();
 
   const {
     data: categories,
     isLoading,
     error
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      try {
-        const response = await axiosInstance.get("/categories");
-        return response.data;
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        throw error;
-      }
-    },
-  });
+  } = useCategories();
 
   // Check if we have enough categories for loop mode (minimum 3 categories)
   const hasEnoughCategories = categories && categories.length >= 3;
+
+  // دالة للتعامل مع النقر على الفئة
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/products?category=${categoryId}`);
+  };
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -185,7 +141,10 @@ export default function Categories() {
 
                     {/* Button */}
                     <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%]">
-                      <button className={`w-full font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group transform hover:scale-105 ${category?.buttonColor}`}>
+                      <button
+                        onClick={() => handleCategoryClick(category?.id)}
+                        className={`w-full font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group transform hover:scale-105 ${category?.buttonColor}`}
+                      >
                         <span className="text-xs sm:text-sm font-semibold">{category?.name}</span>
                         <div className="w-4 h-4 bg-gray-900 rounded flex items-center justify-center">
                           <svg

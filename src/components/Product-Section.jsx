@@ -3,10 +3,19 @@ import React, { useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useBestSellerProducts } from '../hooks';
+
 const ProductSection = () => {
     const [hoveredItem, setHoveredItem] = useState(null);
 
-    const products = [
+    const {
+        data: productsData,
+        isLoading,
+        error
+    } = useBestSellerProducts(4);
+
+    // Fallback data in case API fails
+    const fallbackProducts = [
         {
             id: 1,
             name: "Forge GK600 TKL",
@@ -17,8 +26,8 @@ const ProductSection = () => {
             reviews: 0,
             originalPrice: null,
             currentPrice: 40.00,
-            category: "Keyboards",
-            details: "لوحة مفاتيح ميكانيكية عالية احترافية مع ميكروفون الأداء مع مفاتيح RGB"
+            category: { name: "Keyboards" },
+            description: "لوحة مفاتيح ميكانيكية عالية احترافية مع ميكروفون الأداء مع مفاتيح RGB"
         },
         {
             id: 2,
@@ -30,8 +39,8 @@ const ProductSection = () => {
             reviews: 0,
             originalPrice: 80.00,
             currentPrice: 48.00,
-            category: "Accessories",
-            details: "محطة شحن مزدوجة لأجهزة التحكم مع إضاءة LED"
+            category: { name: "Accessories" },
+            description: "محطة شحن مزدوجة لأجهزة التحكم مع إضاءة LED"
         },
         {
             id: 3,
@@ -43,8 +52,8 @@ const ProductSection = () => {
             reviews: 0,
             originalPrice: 60.00,
             currentPrice: 40.00,
-            category: "Mice",
-            details: "فأرة ألعاب دقيقة مع إضاءة RGB و 16000 DPI"
+            category: { name: "Mice" },
+            description: "فأرة ألعاب دقيقة مع إضاءة RGB و 16000 DPI"
         },
         {
             id: 4,
@@ -56,15 +65,17 @@ const ProductSection = () => {
             reviews: 0,
             originalPrice: 120.00,
             currentPrice: 90.00,
-            category: "Audio",
-            details: "سماعات ألعاب احترافية مع ميكروفون عالي  ألعاب احترافية مع ميكروفون ألعاب احترافية مع ميكروفون ألعاب احترافية مع ميكروفون ألعاب احترافية مع ميكروفون الجودة"
+            category: { name: "Audio" },
+            description: "سماعات ألعاب احترافية مع ميكروفون عالي الجودة"
         }
     ];
+
+    const products = productsData?.data || fallbackProducts;
 
     return (
         <div className="bg-black min-h-screen py-20 px-4 md:px-16">
             <div className="max-w-7xl mx-auto">
-               
+
                 {/* Section Title */}
                 <motion.div
                     initial={{ opacity: 0, y: -50 }}
@@ -171,7 +182,7 @@ const ProductSection = () => {
                                                 className="inline-block text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase"
                                                 style={{ backgroundColor: "#2C6D90" }}
                                             >
-                                                {product.category}
+                                                {product.category?.name || product.category}
                                             </span>
                                         </div>
 
@@ -188,7 +199,7 @@ const ProductSection = () => {
                                             className="text-sm mb-4 line-clamp-2 opacity-70"
                                             style={{ color: "#1a1a2e" }}
                                         >
-                                            {product.details}
+                                            {product.description || product.details}
                                         </p>
 
                                         {/* Price and Cart Section */}
@@ -207,7 +218,7 @@ const ProductSection = () => {
                                                     className="text-2xl font-black"
                                                     style={{ color: "#1a1a2e" }}
                                                 >
-                                                    ${product.currentPrice.toFixed(2)}
+                                                    ${(product.price || product.currentPrice).toFixed(2)}
                                                 </span>
                                             </div>
 

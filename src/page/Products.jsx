@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Star, ChevronDown, Check } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { useCartStore } from '../store/index';
-import axiosInstance from '../lib/axios';
-import { useQuery } from '@tanstack/react-query';
+import { useProducts, useCategories, useBrands } from '../hooks';
 const Products = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showBrandDropdown, setShowBrandDropdown] = useState(false);
+  const [searchParams] = useSearchParams();
 
   // استخدام Zustand store للسلة
   const { addToCart, isInCart } = useCartStore();
@@ -19,6 +19,14 @@ const Products = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // قراءة معامل الفئة من URL
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategories([categoryParam]);
+    }
+  }, [searchParams]);
 
   // إغلاق القوائم المنسدلة عند النقر خارجها
   useEffect(() => {
@@ -97,40 +105,30 @@ const Products = () => {
     }
   ];
 
-  
+
+  // استخدام الـ hooks الجديدة
+  const {
+    data: productsData,
+    isLoading: productsLoading,
+    error: productsError
+  } = useProducts({
+    page: 1,
+    limit: 12,
+    categoryId: selectedCategories.length > 0 ? selectedCategories[0] : '',
+    brandId: selectedBrands.length > 0 ? selectedBrands[0] : ''
+  });
+
   const {
     data: categories,
     isLoading: categoriesLoading,
     error: categoriesError
-  } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      try {
-        const response = await axiosInstance.get("/categories");
-        return response.data;
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-        throw error;
-      }
-    },
-  });
+  } = useCategories();
 
   const {
     data: brands,
     isLoading: brandsLoading,
     error: brandsError
-  } = useQuery({
-    queryKey: ["brands"],
-    queryFn: async () => {
-      try {
-        const response = await axiosInstance.get("/brands");
-        return response.data;
-      } catch (error) {
-        console.error("Error fetching brands:", error);
-        throw error;
-      }
-    },
-  });
+  } = useBrands();
   // دوال إدارة الفلترة
   const toggleCategory = (category) => {
     setSelectedCategories(prev =>
@@ -157,7 +155,7 @@ const Products = () => {
   const handleAddToCart = (product, event) => {
     event.preventDefault(); // منع الانتقال للصفحة
     event.stopPropagation();
-    
+
     const cartProduct = {
       id: product.id,
       name: product.name,
@@ -166,9 +164,9 @@ const Products = () => {
       brand: product.brand,
       category: product.category
     };
-    
+
     addToCart(cartProduct, 1);
- 
+
   };
 
   return (
@@ -197,18 +195,18 @@ const Products = () => {
             <button
               onClick={clearAllFilters}
               className={`w-full px-4 py-3 rounded-lg flex items-center justify-between transition-all duration-300 font-arabic-bold arabic-text ${selectedCategories.length === 0 && selectedBrands.length === 0
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-800 text-white hover:bg-gray-700'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-800 text-white hover:bg-gray-700'
                 }`}
             >
               <span>جميع المنتجات</span>
               <div className={`w-6 h-6 rounded-full flex items-center justify-center ${selectedCategories.length === 0 && selectedBrands.length === 0
-                  ? 'bg-white'
-                  : 'bg-gray-600'
+                ? 'bg-white'
+                : 'bg-gray-600'
                 }`}>
                 <div className={`w-2 h-2 rounded-full ${selectedCategories.length === 0 && selectedBrands.length === 0
-                    ? 'bg-blue-600'
-                    : 'bg-gray-400'
+                  ? 'bg-blue-600'
+                  : 'bg-gray-400'
                   }`}></div>
               </div>
             </button>
@@ -319,8 +317,8 @@ const Products = () => {
 
             {/* Products Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {products?.length > 0 ? (
-                products?.map((product, index) => (
+              {productsData?.data?.length > 0 ? (
+                productsData.data.map((product, index) => (
                   <div
                     key={product.id}
                     className={`group relative rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-105 ${hoveredItem === product.id ? "rotate-1" : ""
@@ -408,7 +406,7 @@ const Products = () => {
                               className="inline-block text-white px-3 py-1 rounded-full text-xs font-arabic-bold tracking-wide uppercase arabic-text"
                               style={{ backgroundColor: "#2C6D90" }}
                             >
-                              {product?.category}
+                              {product?.category?.name || product?.category}
                             </span>
                           </div>
 
@@ -425,7 +423,7 @@ const Products = () => {
                             className="text-sm mb-4 line-clamp-2 opacity-70 font-arabic-primary arabic-text"
                             style={{ color: "#1a1a2e" }}
                           >
-                            {product?.details}
+                            {product?.description || product?.details}
                           </p>
 
                           {/* Price and Cart Section */}
@@ -444,16 +442,15 @@ const Products = () => {
                                 className="text-2xl font-arabic-bold"
                                 style={{ color: "#1a1a2e" }}
                               >
-                                ${product?.currentPrice.toFixed(2)}
+                                ${(product?.price || product?.currentPrice || 0).toFixed(2)}
                               </span>
                             </div>
 
                             {/* Cart Button */}
                             <button
                               onClick={(e) => handleAddToCart(product, e)}
-                              className={`p-3 rounded-full transition-all duration-300 transform shadow-lg hover:shadow-xl group-hover:scale-110 ${
-                                isInCart(product?.id) ? 'bg-green-600' : ''
-                              }`}
+                              className={`p-3 rounded-full transition-all duration-300 transform shadow-lg hover:shadow-xl group-hover:scale-110 ${isInCart(product?.id) ? 'bg-green-600' : ''
+                                }`}
                               style={{
                                 backgroundColor: isInCart(product?.id) ? "#16a34a" : "#2C6D90",
                                 color: "#F9F3EF",

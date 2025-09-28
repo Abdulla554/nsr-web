@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   // استخدام Zustand store للحصول على عدد العناصر في السلة
   const { getTotalItems } = useCartStore();
@@ -22,6 +23,41 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // إغلاق القائمة عند النقر خارجها أو الضغط على Escape
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // lg breakpoint
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isOpen]);
 
   const navLinks = [
     { name: "الرئيسية", path: "/", icon: Monitor },
@@ -39,12 +75,12 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="px-4 md:px-6 py-4">
+      <div className="px-3 sm:px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between">
 
           {/* Logo Section */}
           <motion.div
-            className="flex items-center gap-4"
+            className="flex items-center gap-2 sm:gap-4"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
@@ -52,21 +88,25 @@ const Navbar = () => {
               <motion.div
                 className="absolute inset-0 bg-[#2C6D90]/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
-              <img src="logo-removebg.png" className="h-16 md:h-24 rounded-3xl relative z-10 drop-shadow-2xl" />
+              <img
+                src="logo-removebg.png"
+                className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 rounded-2xl sm:rounded-3xl relative z-10 drop-shadow-2xl"
+                alt="Nsr Store Logo"
+              />
               {/* Glow Ring */}
-              <motion.div className="absolute inset-0 rounded-3xl border-2 border-gradient-to-r from-blue-400/50 to-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
+              <motion.div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-gradient-to-r from-blue-400/50 to-cyan-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }} />
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden sm:block">
               <motion.h1
-                className="text-xl md:text-2xl font-bold text-[#F9F3EF]"
+                className="text-lg sm:text-xl md:text-2xl font-bold text-[#F9F3EF]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
                 Nsr-Store
               </motion.h1>
               <motion.p
-                className="text-xs md:text-sm text-[#749BC2] -mt-1 font-medium"
+                className="text-xs sm:text-sm text-[#749BC2] -mt-1 font-medium hidden md:block"
               >
                 أجهزتك الموثوقة تبدأ من هنا
               </motion.p>
@@ -74,31 +114,31 @@ const Navbar = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav dir="rtl" className="hidden lg:flex items-center gap-2">
+          <nav dir="rtl" className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link, index) => {
               const IconComponent = link.icon;
               return (
                 <motion.a
                   key={link.path}
                   href={link.path}
-                  className="relative group px-6 py-3 rounded-xl transition-all duration-300 overflow-hidden hover:bg-[#0f3461]/50"
+                  className="relative group px-3 xl:px-6 py-2 xl:py-3 rounded-xl transition-all duration-300 overflow-hidden hover:bg-[#0f3461]/50"
                   whileHover={{ y: -2 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.4 }}
                 >
-                  <div className="relative flex items-center gap-3 text-[#F9F3EF]/80 group-hover:text-[#F9F3EF] transition-all duration-300">
+                  <div className="relative flex items-center gap-2 xl:gap-3 text-[#F9F3EF]/80 group-hover:text-[#F9F3EF] transition-all duration-300">
                     {IconComponent && (
-                      <IconComponent className="w-5 h-5 group-hover:text-[#749BC2] transition-colors duration-300" />
+                      <IconComponent className="w-4 xl:w-5 h-4 xl:h-5 group-hover:text-[#749BC2] transition-colors duration-300" />
                     )}
-                    <span className="font-semibold text-base">
+                    <span className="font-semibold text-sm xl:text-base">
                       {link.name}
                     </span>
                   </div>
 
                   {/* Active Indicator */}
                   <motion.div
-                    className="absolute bottom-0 left-1/2 h-0.5 bg-[#749BC2] rounded-full w-0 group-hover:w-8 transition-all duration-300"
+                    className="absolute bottom-0 left-1/2 h-0.5 bg-[#749BC2] rounded-full w-0 group-hover:w-6 xl:group-hover:w-8 transition-all duration-300"
                     style={{ transform: "translateX(-50%)" }}
                   />
                 </motion.a>
@@ -107,21 +147,21 @@ const Navbar = () => {
           </nav>
 
           {/* Search & Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
 
             {/* Search Bar */}
             <motion.div
-              className={`hidden md:flex items-center transition-all duration-400 ${searchFocused
+              className={`hidden sm:flex items-center transition-all duration-400 ${searchFocused
                 ? 'bg-[#749BC2]/25 border-[#2C6D90]/60 shadow-lg scale-[1.02]'
                 : 'bg-[#749BC2]/15 border-[#749BC2]/40'
-                } backdrop-blur-md rounded-2xl border px-5 py-3 min-w-80`}
+                } backdrop-blur-md rounded-xl sm:rounded-2xl border px-3 sm:px-4 md:px-5 py-2 sm:py-3 min-w-48 sm:min-w-64 md:min-w-80`}
               whileHover={{ scale: 1.01 }}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <motion.div
-                className={`w-5 h-5 transition-all duration-300 ml-3 ${searchFocused ? 'text-[#2C6D90]' : 'text-[#F9F3EF]/60'
+                className={`w-4 sm:w-5 h-4 sm:h-5 transition-all duration-300 ml-2 sm:ml-3 ${searchFocused ? 'text-[#2C6D90]' : 'text-[#F9F3EF]/60'
                   }`}
               >
                 <Search className="w-full h-full" />
@@ -129,24 +169,24 @@ const Navbar = () => {
 
               <input
                 type="text"
-                placeholder="ابحث عن المنتج الذي تريده..."
-                className="bg-transparent text-[#F9F3EF] placeholder-[#F9F3EF]/50 outline-none flex-1 text-right font-medium"
+                placeholder="ابحث عن المنتج..."
+                className="bg-transparent text-[#F9F3EF] placeholder-[#F9F3EF]/50 outline-none flex-1 text-right font-medium text-sm sm:text-base"
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
               />
 
               <motion.button
-                className="bg-[#2C6D90] hover:bg-[#2C6D90]/90 text-[#F9F3EF] text-[#F9F3EF] rounded-xl p-2 transition-all duration-300 font-medium"
+                className="bg-[#2C6D90] hover:bg-[#2C6D90]/90 text-[#F9F3EF] rounded-lg sm:rounded-xl p-1.5 sm:p-2 transition-all duration-300 font-medium"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Search className="w-4 h-4" />
+                <Search className="w-3 h-3 sm:w-4 sm:h-4" />
               </motion.button>
             </motion.div>
 
             {/* Shopping Cart */}
             <motion.button
-              className="relative bg-[#749BC2]/20 hover:bg-[#749BC2]/30 border border-[#749BC2]/50 text-[#F9F3EF] rounded-2xl p-3 transition-all duration-300 group"
+              className="relative bg-[#749BC2]/20 hover:bg-[#749BC2]/30 border border-[#749BC2]/50 text-[#F9F3EF] rounded-xl sm:rounded-2xl p-2 sm:p-3 transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: 20 }}
@@ -154,34 +194,34 @@ const Navbar = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Link to="/cart">
-              <motion.div
-                className="w-6 h-6 group-hover:text-[#ADCEFE] transition-colors duration-300"
-                
-              >
-                <ShoppingBag className="w-full h-full" />
-              </motion.div>
+                <motion.div
+                  className="w-5 h-5 sm:w-6 sm:h-6 group-hover:text-[#ADCEFE] transition-colors duration-300"
 
-              {/* Cart Badge */}
-              {totalItems > 0 && (
-                <motion.span
-                  className="absolute -top-2 -right-2 bg-[#2C6D90] text-[#F9F3EF] text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
                 >
-                  {totalItems}
-                </motion.span>
-              )}
+                  <ShoppingBag className="w-full h-full" />
+                </motion.div>
+
+                {/* Cart Badge */}
+                {totalItems > 0 && (
+                  <motion.span
+                    className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-[#2C6D90] text-[#F9F3EF] text-xs font-bold rounded-full w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center shadow-md"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                  >
+                    {totalItems}
+                  </motion.span>
+                )}
               </Link>
             </motion.button>
 
             {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-[#F9F3EF]/80 hover:text-[#F9F3EF] transition-colors duration-300 p-2"
+              className="lg:hidden text-[#F9F3EF]/80 hover:text-[#F9F3EF] transition-colors duration-300 p-1.5 sm:p-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -194,7 +234,7 @@ const Navbar = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -204,7 +244,7 @@ const Navbar = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="w-6 h-6" />
+                    <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -216,44 +256,45 @@ const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              ref={mobileMenuRef}
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: "auto", y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden mt-6 overflow-hidden"
+              className="lg:hidden mt-4 sm:mt-6 overflow-hidden"
             >
-              <div className="bg-[#749BC2]/20 backdrop-blur-lg rounded-2xl p-6 border border-[#2C6D90]/30 shadow-lg">
+              <div className="bg-[#749BC2]/20 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-[#2C6D90]/30 shadow-lg z-100">
 
                 {/* Mobile Search */}
-                <div className="flex items-center bg-[#1a1a2e]/40 backdrop-blur-sm rounded-xl px-4 py-3 mb-6 border border-[#749BC2]/30">
-                  <Search className="w-5 h-5 text-[#F9F3EF]/60 ml-3" />
+                <div className="flex items-center bg-[#1a1a2e]/40 backdrop-blur-sm rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 mb-4 sm:mb-6 border border-[#749BC2]/30">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5 text-[#F9F3EF]/60 ml-2 sm:ml-3" />
                   <input
                     type="text"
-                    placeholder="ابحث عن المنتج الذي تريده..."
-                    className="bg-transparent text-[#F9F3EF] placeholder-[#F9F3EF]/50 outline-none flex-1 text-right font-medium"
+                    placeholder="ابحث عن المنتج..."
+                    className="bg-transparent text-[#F9F3EF] placeholder-[#F9F3EF]/50 outline-none flex-1 text-right font-medium text-sm sm:text-base"
                   />
-                  <button className="bg-[#2C6D90] text-[#F9F3EF] rounded-lg p-2">
-                    <Search className="w-4 h-4" />
+                  <button className="bg-[#2C6D90] text-[#F9F3EF] rounded-lg p-1.5 sm:p-2">
+                    <Search className="w-3 h-3 sm:w-4 sm:h-4" />
                   </button>
                 </div>
 
                 {/* Mobile Navigation Links */}
-                <div className="space-y-2">
+                <div className="space-y-1 sm:space-y-2">
                   {navLinks.map((item, index) => {
                     const IconComponent = item.icon;
                     return (
                       <motion.a
                         key={item.path}
                         href={item.path}
-                        className="flex items-center gap-3 text-[#F9F3EF]/80 hover:text-[#F9F3EF] p-3 rounded-xl hover:bg-[#1a1a2e]/30 transition-all duration-300 group"
+                        className="flex items-center gap-2 sm:gap-3 text-[#F9F3EF]/80 hover:text-[#F9F3EF] p-2.5 sm:p-3 rounded-lg sm:rounded-xl hover:bg-[#1a1a2e]/30 transition-all duration-300 group"
                         onClick={() => setIsOpen(false)}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1, duration: 0.3 }}
                         whileHover={{ x: 5 }}
                       >
-                        {IconComponent && <IconComponent className="w-5 h-5 group-hover:text-[#2C6D90] transition-colors duration-300" />}
-                        <span className="font-medium text-base">{item.name}</span>
+                        {IconComponent && <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 group-hover:text-[#2C6D90] transition-colors duration-300" />}
+                        <span className="font-medium text-sm sm:text-base">{item.name}</span>
                       </motion.a>
                     );
                   })}
