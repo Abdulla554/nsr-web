@@ -102,6 +102,7 @@ export default function Checkout() {
                     customerName: orderData.name,
                     customerEmail: orderData.email,
                     customerPhone: orderData.phone,
+                    location: orderData.address || 'موقع غير محدد',
                     totalAmount: total,
                     items: orderItems
                 })

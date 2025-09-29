@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
-    ArrowRight,
     Package,
     Clock,
     CheckCircle,
@@ -12,7 +11,9 @@ import {
     User,
     Phone,
     Mail,
-    Calendar
+    Calendar,
+    MapPin,
+    ArrowLeft
 } from 'lucide-react'
 import { useOrdersStore } from '../store/index'
 
@@ -117,7 +118,7 @@ export default function Orders() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <span>الرئيسية</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowLeft className="w-4 h-4" />
                         <span>طلباتي</span>
                     </motion.div>
                     <motion.div
@@ -126,12 +127,7 @@ export default function Orders() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.3 }}
                     >
-                        <button
-                            onClick={() => navigate("/")}
-                            className="text-[#749BC2] hover:text-[#F9F3EF] transition-colors duration-300"
-                        >
-                            عودة
-                        </button>
+
                     </motion.div>
                 </div>
 
@@ -267,11 +263,21 @@ export default function Orders() {
                                                         <p className="text-[#F9F3EF] font-medium">{formatDate(order.createdAt)}</p>
                                                     </div>
                                                 </div>
+
+                                                {order.location && (
+                                                    <div className="flex items-center gap-3">
+                                                        <MapPin className="w-5 h-5 text-[#749BC2]" />
+                                                        <div>
+                                                            <p className="text-[#749BC2] text-sm">الموقع</p>
+                                                            <p className="text-[#F9F3EF] font-medium">{order.location}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
                                         {/* Order Summary */}
-                                        <div className="lg:w-80">
+                                        <div className="lg:w-80">   
                                             <div className="bg-white/5 rounded-xl p-4 mb-4">
                                                 <h4 className="text-[#F9F3EF] font-semibold mb-3">ملخص الطلب</h4>
                                                 <div className="space-y-2">
