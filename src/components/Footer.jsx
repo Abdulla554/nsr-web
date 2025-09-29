@@ -42,9 +42,7 @@ const Footer = () => {
             <a href="/products" className="text-gray-200 hover:text-primary-400 transition-all duration-300 hover:translate-x-2 font-medium text-lg">
               جميع المنتجات
             </a>
-            <a href="/about" className="text-gray-200 hover:text-primary-400 transition-all duration-300 hover:translate-x-2 font-medium text-lg">
-              انشاء حساب | تسجيل دخول
-            </a>
+           
           </div>
 
           {/* Contact Information - Column 3 */}

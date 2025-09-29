@@ -560,7 +560,7 @@ export default function Checkout() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <span>الرئيسية</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowLeft className="w-4 h-4" />
                         <span>السلة</span>
                         <ArrowRight className="w-4 h-4" />
                         <span>إتمام الطلب</span>
@@ -645,7 +645,7 @@ export default function Checkout() {
                                 whileTap={{ scale: 0.95 }}
                                 disabled={currentStep === 1}
                             >
-                                <ArrowLeft className="w-5 h-5" />
+                                <ArrowRight className="w-5 h-5" />
                                 السابق
                             </motion.button>
 
@@ -664,7 +664,7 @@ export default function Checkout() {
                                 ) : (
                                     <>
                                         {currentStep === 2 ? 'إنشاء الطلب' : 'التالي'}
-                                        <ArrowRight className="w-5 h-5" />
+                                        <ArrowLeft className="w-5 h-5" />
                                     </>
                                 )}
                             </motion.button>
@@ -673,5 +673,5 @@ export default function Checkout() {
                 </motion.div>
             </div>
         </div>
-    )
+    );
 }

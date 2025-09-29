@@ -12,7 +12,8 @@ import {
   CreditCard,
   Truck,
   Gift,
-  X
+  X,
+  ArrowLeft
 } from 'lucide-react'
 import { useCartStore } from '../store/index'
 
@@ -52,7 +53,7 @@ export default function Cart() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 pb-16" style={{ backgroundColor: "#1a1a2e" }}>
+    <div className="min-h-screen pt-24 pb-16 md:pt-36" style={{ backgroundColor: "#1a1a2e" }} >
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20">
         
         {/* Header */}
@@ -69,7 +70,7 @@ export default function Cart() {
               </h1>
               <div className="flex items-center gap-2 text-sm" style={{ color: "#749BC2" }}>
                 <span>الرئيسية</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowLeft className="w-4 h-4" />
                 <span>السلة</span>
               </div>
             </div>
