@@ -6,21 +6,25 @@ import Brands from '../components/Brands'
 import ProductSection from '../components/Product-Section'
 import Banars from '../components/banars'
 import Customer from '../components/Customer'
- 
+import { useVisitors } from '../hooks'
+
 
 export default function Home() {
+  // تتبع الزوار
+  useVisitors();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <div className="min-h-screen">
       <Carousel />
-      <Customer/>
+      <Customer />
       <Categories />
-      <Banars/>
+      <Banars />
       <ProductShowcase />
-      <Brands/>
-      <ProductSection/>
+      <Brands />
+      <ProductSection />
     </div>
   )
 }

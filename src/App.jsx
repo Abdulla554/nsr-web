@@ -10,12 +10,23 @@ import Categories from "./page/Categories";
 import Cart from "./page/Cart";
 import Checkout from "./page/Checkout";
 import Orders from "./page/Orders";
+import { useVisitors } from "./hooks";
+
 const queryClient = new QueryClient();
+
+// مكون لتتبع الزوار
+function VisitorTracker() {
+  console.log("🎯 VisitorTracker component mounted");
+  useVisitors();
+  return null;
+}
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
 
       <div className="flex flex-col min-h-screen ">
+        <VisitorTracker />
         <Navbar />
         <main className="flex-grow ">
           <Routes>
