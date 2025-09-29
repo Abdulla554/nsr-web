@@ -1,4 +1,4 @@
-import ApiService from './api';
+import ApiService from "./api";
 
 class ProductsService extends ApiService {
   constructor() {
@@ -10,16 +10,16 @@ class ProductsService extends ApiService {
     const {
       page = 1,
       limit = 10,
-      search = '',
-      categoryId = '',
-      brandId = '',
-      minPrice = '',
-      maxPrice = '',
-      isNew = '',
-      isBestSeller = '',
-      isFeatured = '',
-      sortBy = '',
-      sortOrder = ''
+      search = "",
+      categoryId = "",
+      brandId = "",
+      minPrice = "",
+      maxPrice = "",
+      isNew = "",
+      isBestSeller = "",
+      isFeatured = "",
+      sortBy = "",
+      sortOrder = "",
     } = params;
 
     const queryParams = {
@@ -34,10 +34,10 @@ class ProductsService extends ApiService {
       ...(isBestSeller && { isBestSeller }),
       ...(isFeatured && { isFeatured }),
       ...(sortBy && { sortBy }),
-      ...(sortOrder && { sortOrder })
+      ...(sortOrder && { sortOrder }),
     };
 
-    return this.get('/products', queryParams);
+    return this.get("/products", queryParams);
   }
 
   // جلب منتج واحد
@@ -81,17 +81,22 @@ class ProductsService extends ApiService {
   }
 
   // ترتيب المنتجات
-  async sortProducts(sortBy, sortOrder = 'asc', params = {}) {
+  async sortProducts(sortBy, sortOrder = "asc", params = {}) {
     return this.getProducts({ sortBy, sortOrder, ...params });
   }
 
-  // جلب منتجات مشابهة
+  // جلب منتجات مشابهة (الطريقة القديمة - البحث في الفئة)
   async getSimilarProducts(categoryId, limit = 4, excludeId = null) {
     const params = { categoryId, limit };
     if (excludeId) {
       params.excludeId = excludeId;
     }
     return this.getProducts(params);
+  }
+
+  // جلب المنتجات المتشابهة (الطريقة الجديدة - استخدام الـ endpoint المخصص)
+  async getRelatedProducts(productId, limit = 4) {
+    return this.get(`/products/${productId}/related`, { limit });
   }
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { productsService } from "../services";
 
@@ -57,13 +58,23 @@ export const useSearchProducts = (searchTerm, params = {}) => {
   });
 };
 
-// Hook لجلب المنتجات المشابهة
+// Hook لجلب المنتجات المشابهة (الطريقة القديمة)
 export const useSimilarProducts = (categoryId, limit = 4, excludeId = null) => {
   return useQuery({
     queryKey: ["products", "similar", categoryId, limit, excludeId],
     queryFn: () =>
       productsService.getSimilarProducts(categoryId, limit, excludeId),
     enabled: !!categoryId,
+    staleTime: 10 * 60 * 1000,
+  });
+};
+
+// Hook لجلب المنتجات المتشابهة (الطريقة الجديدة)
+export const useRelatedProducts = (productId, limit = 4) => {
+  return useQuery({
+    queryKey: ["products", "related", productId, limit],
+    queryFn: () => productsService.getRelatedProducts(productId, limit),
+    enabled: !!productId,
     staleTime: 10 * 60 * 1000,
   });
 };

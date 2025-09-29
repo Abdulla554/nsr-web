@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Monitor, Cpu, HardDrive, Camera, Palette, Keyboard, Settings, Database, Usb } from 'lucide-react';
 import { useCartStore } from '../store/index';
-import { useProduct, useSimilarProducts } from '../hooks';
+import { useProduct, useRelatedProducts } from '../hooks';
 import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
@@ -38,16 +38,16 @@ const ProductDetail = () => {
 
   const product = productData;
 
-  // جلب المنتجات المشابهة
+  // جلب المنتجات المتشابهة
   const {
-    data: similarProductsData,
-  } = useSimilarProducts(product?.category?.id, 8, id);
+    data: relatedProductsData,
+  } = useRelatedProducts(id, 8);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const similarProducts = similarProductsData?.data || similarProductsData || [];
+  const similarProducts = relatedProductsData?.data || relatedProductsData || [];
 
   // تحديد الصور (أقصى 5 صور)
   const thumbnails = product?.images?.slice(0, 5) || [];
@@ -487,7 +487,7 @@ const ProductDetail = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 mt-20">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-black mb-6" style={{ color: "#F9F3EF" }}>
-            منتجات من نفس البراند
+            منتجات متشابهة
           </h2>
           <div className="flex items-center justify-center">
             <div className="w-24 h-1 bg-gradient-to-r from-[#2C6D90] to-[#749BC2] rounded-full"></div>
