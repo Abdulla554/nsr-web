@@ -207,7 +207,7 @@ export default function Checkout() {
                             <div>
                                 <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
                                     <MapPin className="w-4 h-4" style={{ color: "#749BC2" }} />
-                                    العنوان (اختياري)
+                                    العنوان *
                                 </label>
                                 <input
                                     type="text"
@@ -220,6 +220,7 @@ export default function Checkout() {
                                         color: "#F9F3EF"
                                     }}
                                     placeholder="مثال: شارع XX، حي XX، بغداد"
+                                    required
                                 />
                             </div>
                         </div>
