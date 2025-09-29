@@ -1,211 +1,93 @@
-# نظام إدارة APIs
+# نظام الطلبات والمستخدمين
 
-هذا النظام يوفر طريقة منظمة وموحدة لإدارة جميع طلبات API في التطبيق.
+## نظرة عامة
 
-## البنية
+تم إنشاء نظام متكامل لإدارة الطلبات والمستخدمين يتضمن:
 
-```
-src/
-├── services/
-│   ├── api.js              # الكلاس الأساسي لـ API
-│   ├── productsService.js  # خدمة المنتجات
-│   ├── categoriesService.js # خدمة الفئات
-│   ├── brandsService.js     # خدمة الماركات
-│   ├── bannersService.js    # خدمة الإعلانات
-│   ├── ordersService.js     # خدمة الطلبات
-│   ├── dashboardService.js  # خدمة لوحة التحكم
-│   └── index.js            # تصدير جميع الخدمات
-├── hooks/
-│   ├── useProducts.js      # hooks للمنتجات
-│   ├── useCategories.js    # hooks للفئات
-│   ├── useBrands.js        # hooks للماركات
-│   ├── useBanners.js       # hooks للإعلانات
-│   ├── useOrders.js        # hooks للطلبات
-│   ├── useDashboard.js      # hooks للوحة التحكم
-│   └── index.js            # تصدير جميع الـ hooks
-└── components/
-    ├── LoadingSpinner.jsx  # مكون التحميل
-    ├── ErrorBoundary.jsx   # مكون معالجة الأخطاء
-    └── EmptyState.jsx      # مكون الحالة الفارغة
-```
+### 🔧 الخدمات (Services)
 
-## الاستخدام
+- **usersService.js**: خدمة إدارة المستخدمين
+- **ordersService.js**: خدمة إدارة الطلبات
 
-### 1. استخدام الخدمات مباشرة
+### 📱 الصفحات (Pages)
 
-```javascript
-import { productsService } from "../services";
+- **Checkout.jsx**: صفحة إتمام الطلب متعددة الخطوات
+- **Orders.jsx**: صفحة عرض طلبات المستخدم
 
-// جلب جميع المنتجات
-const products = await productsService.getProducts({
-  page: 1,
-  limit: 10,
-  search: "MacBook",
-});
+### 🗄️ إدارة الحالة (Store)
 
-// جلب منتج واحد
-const product = await productsService.getProduct("prod_123");
-```
+- **useOrdersStore**: Zustand store لإدارة حالة الطلبات والمستخدمين
 
-### 2. استخدام الـ Hooks (الأفضل)
+## 🚀 الميزات
 
-```javascript
-import { useProducts, useCategories } from "../hooks";
+### نظام الطلب متعدد الخطوات
 
-function ProductsPage() {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useProducts({
-    page: 1,
-    limit: 12,
-    categoryId: "cat_123",
-  });
+1. **الخطوة الأولى**: إدخال معلومات المستخدم
 
-  const { data: categories } = useCategories();
+   - إنشاء حساب جديد أو البحث عن مستخدم موجود
+   - حفظ معلومات المستخدم في localStorage
 
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorBoundary error={error} />;
-  if (!products?.data?.length) return <EmptyState type="products" />;
+2. **الخطوة الثانية**: تأكيد الطلب
 
-  return (
-    <div>
-      {products.data.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
-  );
-}
-```
+   - عرض تفاصيل العميل
+   - عرض المنتجات المطلوبة
+   - ملخص الطلب مع الأسعار
 
-## الخدمات المتاحة
+3. **الخطوة الثالثة**: تأكيد النجاح
+   - عرض رقم الطلب
+   - إعادة توجيه لصفحة الطلبات
 
-### ProductsService
+### صفحة الطلبات
 
-- `getProducts(params)` - جلب المنتجات مع الفلترة
-- `getProduct(id)` - جلب منتج واحد
-- `getFeaturedProducts(limit)` - المنتجات المميزة
-- `getNewProducts(limit)` - المنتجات الجديدة
-- `getBestSellerProducts(limit)` - الأكثر مبيعاً
-- `searchProducts(term, params)` - البحث
-- `filterProductsByPrice(min, max, params)` - فلترة بالأسعار
-- `filterProductsByCategory(id, params)` - فلترة بالفئة
-- `filterProductsByBrand(id, params)` - فلترة بالماركة
-- `sortProducts(by, order, params)` - ترتيب المنتجات
-- `getSimilarProducts(categoryId, limit, excludeId)` - منتجات مشابهة
+- البحث عن الطلبات بالاسم ورقم الهاتف
+- عرض جميع طلبات المستخدم
+- عرض حالة كل طلب مع الألوان المناسبة
+- عرض تفاصيل المنتجات في كل طلب
 
-### CategoriesService
+## 🔗 API Endpoints المستخدمة
 
-- `getCategories()` - جلب جميع الفئات
-- `getCategory(id)` - جلب فئة واحدة
+### المستخدمين
 
-### BrandsService
+- `GET /users/orders?name={userName}&phone={userPhone}` - جلب طلبات المستخدم
+- `POST /users/find-or-create` - البحث عن مستخدم أو إنشاء جديد
+- `GET /users/{id}` - جلب بيانات مستخدم
 
-- `getBrands()` - جلب جميع الماركات
-- `getBrand(id)` - جلب ماركة واحدة
+### الطلبات
 
-### BannersService
+- `POST /orders` - إنشاء طلب جديد
+- `GET /orders` - جلب جميع الطلبات
+- `GET /orders?status={status}` - جلب الطلبات حسب الحالة
+- `GET /orders/{id}` - جلب طلب واحد
+- `PATCH /orders/{id}` - تحديث حالة الطلب
+- `DELETE /orders/{id}` - حذف طلب
 
-- `getBanners()` - جلب جميع الإعلانات
-- `getActiveBanners()` - الإعلانات النشطة فقط
-- `getBanner(id)` - جلب إعلان واحد
+## 🎨 حالات الطلبات
 
-### OrdersService
+- **PENDING** (في الانتظار) - أصفر
+- **CONFIRMED** (مؤكد) - أزرق
+- **SHIPPED** (تم الشحن) - بنفسجي
+- **DELIVERED** (تم التسليم) - أخضر
+- **CANCELLED** (ملغي) - أحمر
 
-- `createOrder(orderData)` - إنشاء طلب جديد
-- `getOrder(id)` - جلب طلب واحد
-- `updateOrderStatus(id, status)` - تحديث حالة الطلب
-- `getAllOrders(params)` - جلب جميع الطلبات
-- `deleteOrder(id)` - حذف طلب
+## 🔄 تدفق العمل
 
-### DashboardService
+1. المستخدم يضيف منتجات للسلة
+2. يضغط على "شراء الان" في صفحة السلة
+3. يتم توجيهه لصفحة إتمام الطلب
+4. يدخل معلوماته الشخصية (الخطوة 1)
+5. يرى ملخص الطلب (الخطوة 2)
+6. يتم إنشاء الطلب وحفظه (الخطوة 3)
+7. يمكنه عرض طلباته من صفحة "طلباتي"
 
-- `getStats()` - الإحصائيات العامة
-- `getVisitorsStats()` - إحصائيات الزوار
-- `incrementVisitors()` - زيادة عدد الزوار
-- `getSalesStats(period)` - إحصائيات المبيعات
-- `getProductsStats()` - إحصائيات المنتجات
+## 💾 التخزين المحلي
 
-## الـ Hooks المتاحة
+- معلومات المستخدم: `localStorage.getItem('userInfo')`
+- السلة: `localStorage.getItem('cart')`
 
-### useProducts
+## 🎯 المكونات الرئيسية
 
-```javascript
-const { data, isLoading, error } = useProducts({
-  page: 1,
-  limit: 10,
-  search: "MacBook",
-  categoryId: "cat_123",
-  brandId: "brand_123",
-  minPrice: 1000,
-  maxPrice: 5000,
-  isNew: true,
-  isBestSeller: true,
-  isFeatured: true,
-  sortBy: "price",
-  sortOrder: "asc",
-});
-```
-
-### useProduct
-
-```javascript
-const { data: product, isLoading, error } = useProduct("prod_123");
-```
-
-### useFeaturedProducts
-
-```javascript
-const { data: featured } = useFeaturedProducts(8);
-```
-
-### useNewProducts
-
-```javascript
-const { data: newProducts } = useNewProducts(6);
-```
-
-### useBestSellerProducts
-
-```javascript
-const { data: bestSellers } = useBestSellerProducts(6);
-```
-
-### useSearchProducts
-
-```javascript
-const { data: searchResults } = useSearchProducts("MacBook", {
-  page: 1,
-  limit: 12,
-});
-```
-
-### useSimilarProducts
-
-```javascript
-const { data: similar } = useSimilarProducts("cat_123", 4, "prod_123");
-```
-
-## معالجة الأخطاء
-
-النظام يتضمن معالجة شاملة للأخطاء:
-
-1. **Loading States** - حالات التحميل
-2. **Error Handling** - معالجة الأخطاء
-3. **Empty States** - الحالات الفارغة
-4. **Retry Logic** - إعادة المحاولة
-5. **Fallback Data** - البيانات الاحتياطية
-
-## المميزات
-
-- ✅ **منظم وموحد** - بنية واضحة ومنطقية
-- ✅ **Type Safe** - دعم TypeScript
-- ✅ **Caching** - تخزين مؤقت مع React Query
-- ✅ **Error Handling** - معالجة شاملة للأخطاء
-- ✅ **Loading States** - حالات التحميل
-- ✅ **Retry Logic** - إعادة المحاولة التلقائية
-- ✅ **Fallback Data** - بيانات احتياطية
-- ✅ **Performance** - أداء محسن
-- ✅ **Maintainable** - سهولة الصيانة
-- ✅ **Scalable** - قابل للتوسع
+- **Checkout**: نظام طلب متعدد الخطوات
+- **Orders**: صفحة عرض الطلبات
+- **useOrdersStore**: إدارة حالة الطلبات
+- **usersService**: خدمة المستخدمين
+- **ordersService**: خدمة الطلبات

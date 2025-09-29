@@ -1,4 +1,4 @@
- 
+
 import { create } from "zustand";
 
 // Create the Zustand store
@@ -58,7 +58,7 @@ export const useCartStore = create((set, get) => ({
         }
         return item;
       }).filter(Boolean);
-      
+
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return { cart: updatedCart };
     }),
@@ -93,4 +93,80 @@ export const useCartStore = create((set, get) => ({
     localStorage.removeItem("cart"); // Clear localStorage
     set({ cart: [] }); // This updates the store state immediately
   },
+}));
+
+// Orders Store
+export const useOrdersStore = create((set) => ({
+  userOrders: [],
+  loading: false,
+  currentUser: null,
+
+  // جلب طلبات المستخدم
+  fetchUserOrders: async (name, phone) => {
+    set({ loading: true });
+    try {
+      const { default: usersService } = await import('../services/usersService');
+      const response = await usersService.getUserOrders(name, phone);
+
+      if (response && response.success) {
+        set({
+          userOrders: response.data.orders || [],
+          currentUser: response.data.user,
+          loading: false
+        });
+      } else {
+        set({ userOrders: [], loading: false });
+      }
+    } catch (error) {
+      console.error('Error fetching user orders:', error);
+      set({ userOrders: [], loading: false });
+      throw error; // إعادة رمي الخطأ للتعامل معه في المكون
+    }
+  },
+
+  // إنشاء طلب جديد
+  createOrder: async (orderData) => {
+    set({ loading: true });
+    try {
+      const { default: ordersService } = await import('../services/ordersService');
+      const response = await ordersService.createOrder(orderData);
+
+      if (response.id) {
+        // إضافة الطلب الجديد إلى قائمة الطلبات
+        set((state) => ({
+          userOrders: [response, ...state.userOrders],
+          loading: false
+        }));
+        return response;
+      }
+    } catch (error) {
+      console.error('Error creating order:', error);
+      set({ loading: false });
+      throw error;
+    }
+  },
+
+  // إنشاء أو البحث عن مستخدم
+  findOrCreateUser: async (userData) => {
+    try {
+      const { default: usersService } = await import('../services/usersService');
+      const response = await usersService.findOrCreateUser(userData);
+
+      if (response.success) {
+        set({ currentUser: response.data });
+        // حفظ معلومات المستخدم في localStorage
+        localStorage.setItem('userInfo', JSON.stringify(response.data));
+        return response.data;
+      }
+    } catch (error) {
+      console.error('Error finding/creating user:', error);
+      throw error;
+    }
+  },
+
+  // مسح بيانات المستخدم
+  clearUserData: () => {
+    localStorage.removeItem('userInfo');
+    set({ userOrders: [], currentUser: null });
+  }
 }));

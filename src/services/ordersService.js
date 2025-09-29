@@ -7,35 +7,27 @@ class OrdersService extends ApiService {
 
   // إنشاء طلب جديد
   async createOrder(orderData) {
-    const { customerName, customerEmail, customerPhone, items } = orderData;
+    return this.post("/orders", orderData);
+  }
 
-    const orderPayload = {
-      customerName,
-      customerEmail,
-      customerPhone,
-      items: items.map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-    };
+  // جلب جميع الطلبات
+  async getAllOrders() {
+    return this.get("/orders");
+  }
 
-    return this.post("/orders", orderPayload);
+  // جلب الطلبات حسب الحالة
+  async getOrdersByStatus(status) {
+    return this.get("/orders", { status });
   }
 
   // جلب طلب واحد
-  async getOrder(id) {
+  async getOrderById(id) {
     return this.get(`/orders/${id}`);
   }
 
   // تحديث حالة الطلب
   async updateOrderStatus(id, status) {
     return this.patch(`/orders/${id}`, { status });
-  }
-
-  // جلب جميع الطلبات (للمدير)
-  async getAllOrders(params = {}) {
-    return this.get("/orders", params);
   }
 
   // حذف طلب

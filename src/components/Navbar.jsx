@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive, Package } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from '../store/index';
 
@@ -63,6 +63,7 @@ const Navbar = () => {
     { name: "الرئيسية", path: "/", icon: Monitor },
     { name: "الفئات", path: "/categories", icon: Cpu },
     { name: "المنتجات", path: "/products", icon: HardDrive },
+    { name: "طلباتي", path: "/orders", icon: Package },
   ];
 
   return (
