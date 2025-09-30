@@ -74,7 +74,7 @@ const ProductSection = () => {
 
     return (
         <div className="bg-black min-h-screen py-20 px-4 md:px-16">
-            <div className="max-w-7xl mx-auto">
+            <div className="">
 
                 {/* Section Title */}
                 <motion.div
@@ -250,28 +250,6 @@ const ProductSection = () => {
                     ))}
                 </div>
             </div>
-
-            <style jsx="true">{`
-         @keyframes fadeInUp {
-           from {
-             opacity: 0;
-             transform: translateY(30px);
-           }
-           to {
-             opacity: 1;
-             transform: translateY(0);
-           }
-         }
-
-         @keyframes pulse {
-           0%, 100% {
-             opacity: 0.6;
-           }
-           50% {
-             opacity: 1;
-           }
-         }
-       `}</style>
         </div>
     );
 };

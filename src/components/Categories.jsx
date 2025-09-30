@@ -35,7 +35,7 @@ export default function Categories() {
 
   if (isLoading) {
     return (
-      <section className="pb-20 bg-black">
+      <section className="pb-20 bg-dark-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
@@ -55,7 +55,7 @@ export default function Categories() {
 
   if (error || !categories || categories.length === 0) {
     return (
-      <section className="pb-20 bg-black">
+      <section className="pb-20 bg-dark-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
@@ -73,7 +73,7 @@ export default function Categories() {
   }
 
   return (
-    <section className="pb-20 bg-black">
+    <section className="pb-20 bg-dark-900">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">

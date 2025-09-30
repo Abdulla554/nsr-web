@@ -85,8 +85,8 @@ const ProductDetail = () => {
   if (isLoading) {
     return (
       <div
-        className="min-h-screen mt-20 py-20 px-4 md:px-20 flex items-center justify-center"
-        style={{ backgroundColor: "#1a1a2e" }}
+        className="min-h-screen mt-20 bg-dark-900 py-20 px-4 md:px-20 flex items-center justify-center"
+   
       >
         <div className="text-center">
           <div className="relative">
@@ -106,7 +106,7 @@ const ProductDetail = () => {
   if (!product || !product.id) {
     return (
       <div
-        className="min-h-screen mt-20 py-20 px-4 md:px-20 flex items-center justify-center"
+        className="min-h-screen mt-20 bg-dark-900 py-20 px-4 md:px-20 flex items-center justify-center"
         style={{ backgroundColor: "#1a1a2e" }}
       >
         <div className="text-center">
@@ -124,11 +124,11 @@ const ProductDetail = () => {
 
   return (
     <div
-      className="min-h-screen pt-24 pb-12"
-      style={{ backgroundColor: "#1a1a2e" }}
+      className="min-h-screen bg-dark-900 pt-24 pb-12"
+    
     >
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative md:pt-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2C6D90]/10 via-transparent to-[#749BC2]/10"></div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 relative z-10">

@@ -186,15 +186,16 @@ const Navbar = () => {
             </motion.div>
 
             {/* Shopping Cart */}
+            <Link to="/cart">
             <motion.button
-              className="relative bg-[#749BC2]/20 hover:bg-[#749BC2]/30 border border-[#749BC2]/50 text-[#F9F3EF] rounded-xl sm:rounded-2xl p-2 sm:p-3 transition-all duration-300 group"
+              className="relative bg-[#749BC2]/20 hover:bg-gray-900 border border-[#749BC2]/50 text-[#F9F3EF] rounded-xl sm:rounded-2xl p-2 sm:p-3 transition-all duration-300 group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link to="/cart">
+          
                 <motion.div
                   className="w-5 h-5 sm:w-6 sm:h-6 group-hover:text-[#ADCEFE] transition-colors duration-300"
 
@@ -216,8 +217,9 @@ const Navbar = () => {
                     {totalItems}
                   </motion.span>
                 )}
-              </Link>
+
             </motion.button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <motion.button

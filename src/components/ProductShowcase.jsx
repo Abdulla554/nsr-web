@@ -44,7 +44,7 @@ const ProductShowcase = () => {
   // حالة التحميل
   if (isLoading) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-8 px-4">
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-20">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
@@ -58,7 +58,7 @@ const ProductShowcase = () => {
   // حالة الخطأ
   if (hasError) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-8 px-4">
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-20">
             <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -74,7 +74,7 @@ const ProductShowcase = () => {
   // حالة عدم وجود منتجات
   if (!displayProducts || displayProducts.length === 0) {
     return (
-      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-8 px-4">
+      <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-8 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-20">
             <div className="w-16 h-16 bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -88,7 +88,7 @@ const ProductShowcase = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 py-8 px-4">
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* العنوان الرئيسي */}
         <motion.div
@@ -125,7 +125,7 @@ const ProductShowcase = () => {
                   alt={displayProducts[0]?.name || "Product"}
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-blue-400">{displayProducts[0]?.category?.name || "Category"}</span>
                   <h4 className="text-sm font-bold mt-1">{displayProducts[0]?.name || "Product"}</h4>
@@ -150,7 +150,7 @@ const ProductShowcase = () => {
                   alt={displayProducts[1]?.name || "Product"}
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-red-400">{displayProducts[1]?.category?.name || "Category"}</span>
                   <h4 className="text-sm font-bold mt-1">{displayProducts[1]?.name || "Product"}</h4>
@@ -179,7 +179,7 @@ const ProductShowcase = () => {
                 alt={displayProducts[2]?.name || "Product"}
                 className="w-full md:h-[600px] object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-900/70 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 text-white">
                 <span className="text-sm font-medium text-green-400">{displayProducts[2]?.category?.name || "Category"}</span>
                 <h3 className="text-2xl font-bold mt-1">{displayProducts[2]?.name || "Product"}</h3>
@@ -217,7 +217,7 @@ const ProductShowcase = () => {
                   alt={displayProducts[3]?.name || "Product"}
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-purple-400">{displayProducts[3]?.category?.name || "Category"}</span>
                   <h4 className="text-sm font-bold mt-1">{displayProducts[3]?.name || "Product"}</h4>
@@ -242,7 +242,7 @@ const ProductShowcase = () => {
                   alt={displayProducts[4]?.name || "Product"}
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-yellow-400">{displayProducts[4]?.category?.name || "Category"}</span>
                   <h4 className="text-sm font-bold mt-1">{displayProducts[4]?.name || "Product"}</h4>

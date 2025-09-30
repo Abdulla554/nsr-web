@@ -28,10 +28,10 @@ export default function Customer() {
   
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-dark-900 text-white">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-black"></div>
+        
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center ">

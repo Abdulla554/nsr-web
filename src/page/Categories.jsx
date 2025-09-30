@@ -6,6 +6,7 @@ import { useCategories } from '../hooks/useCategories'
 import { useProducts } from '../hooks/useProducts'
 import LoadingSpinner from '../components/LoadingSpinner'
 import ErrorBoundary from '../components/ErrorBoundary'
+import ProductSection from '../components/Product-Section'
 
 export default function Categories() {
   useEffect(() => {
@@ -110,10 +111,10 @@ export default function Categories() {
     ];
 
   return (
-    <div className="min-h-screen bg-black mt-2 py-2 md:py-20 px-2 md:px-4 lg:px-16">
-      <div className="container pb-20 mx-auto px-4 md:px-8 lg:px-16 max-w-7xl">
+    <div className="min-h-screen bg-black mt-2 py-2 md:py-20 px-2 md:px-0  ">
+      <div className="container pb-20 mx-auto px-4 md:px-8 lg:px-16  ">
         {/* Page Header with Enhanced Design */}
-        <div className="text-center mb-16 relative">
+        <div className="text-center my-16 relative">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <motion.div
@@ -160,15 +161,12 @@ export default function Categories() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-arabic-heading text-white font-black mb-6 leading-tight tracking-tight relative"
           >
-            <span className="relative">
+            <span className="relative flex  justify-center gap-4">
               Gaming
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-pulse">
                 Collection
               </span>
-              {/* Glowing effect */}
-              <div className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 blur-sm opacity-50">
-                Gaming Collection
-              </div>
+
             </span>
           </motion.h1>
 
@@ -181,15 +179,15 @@ export default function Categories() {
             <span className="bg-gradient-to-r from-gray-300 to-white bg-clip-text text-transparent">
               اكتشف مجموعتنا المميزة من أفضل البراندات العالمية في عالم الألعاب والتكنولوجيا
             </span>
-            <div className="mt-4 flex justify-center gap-8 text-sm">
-              <span className="text-blue-400 font-bold">
-                {categories.length} فئة
-              </span>
-              <span className="text-purple-400 font-bold">
-                {products.length} منتج
-              </span>
-            </div>
           </motion.p>
+          <div className="mt-4 flex justify-center gap-8 text-sm">
+            <span className="text-blue-400 font-bold">
+              {categories.length} فئة
+            </span>
+            <span className="text-purple-400 font-bold">
+              {products.length} منتج
+            </span>
+          </div>
         </div>
 
         {/* Categories Grid - Show ALL Categories */}
@@ -249,10 +247,8 @@ export default function Categories() {
       </div>
       <Brands />
 
-      {/* Products Section */}
-      <section className="py-10">
+      {/* <section className="py-10">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          {/* Section Header */}
           <div className="text-center mb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -287,7 +283,6 @@ export default function Categories() {
             </div>
           </div>
 
-          {/* Products Grid - Show ALL Products */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             {products.map((product, index) => (
               <motion.div
@@ -295,22 +290,18 @@ export default function Categories() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
+                className="group "
               >
                 <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-500 hover:transform hover:scale-105 relative overflow-hidden group">
-                  {/* Animated Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                  {/* Glowing Border Effect */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></div>
 
-                  {/* Discount Badge with Enhanced Animation */}
                   {product.discount && (
                     <motion.div
                       initial={{ scale: 0, rotate: -180 }}
                       animate={{ scale: 1, rotate: 0 }}
                       transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                      className="absolute -top-2 -right-2 z-10"
+                      className="absolute top-4 -right-2 z-10"
                     >
                       <div className={`bg-gradient-to-r ${product.discountColor} text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse`}>
                         {product.discount}
@@ -318,7 +309,6 @@ export default function Categories() {
                     </motion.div>
                   )}
 
-                  {/* FREE GIFT Badge with Animation */}
                   {product.freeGift && (
                     <motion.div
                       initial={{ x: -50, opacity: 0 }}
@@ -332,7 +322,6 @@ export default function Categories() {
                     </motion.div>
                   )}
 
-                  {/* Product Image with Enhanced Effects */}
                   <div className="relative mb-6 bg-gradient-to-br from-gray-800/50 to-gray-700/50 rounded-xl p-4 group-hover:from-blue-900/30 group-hover:to-purple-900/30 transition-all duration-500">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <img
@@ -340,7 +329,6 @@ export default function Categories() {
                       alt={product.title}
                       className="w-full h-48 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500"
                     />
-                    {/* Floating particles effect */}
                     <div className="absolute inset-0 overflow-hidden rounded-xl">
                       <motion.div
                         animate={{
@@ -369,12 +357,10 @@ export default function Categories() {
                     </div>
                   </div>
 
-                  {/* Product Title with Gradient Text */}
                   <h3 className="text-white font-arabic-bold text-lg mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
                     {product.title}
                   </h3>
 
-                  {/* Price with Enhanced Styling */}
                   <div className="flex items-center gap-3">
                     {product.originalPrice && (
                       <span className="text-gray-400 line-through text-lg">
@@ -386,14 +372,14 @@ export default function Categories() {
                     </span>
                   </div>
 
-                  {/* Hover Effect Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <ProductSection />
 
     </div>
   )

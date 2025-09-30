@@ -21,7 +21,7 @@ export default function Brands() {
   const hasMinimumBrands = brands && brands.length >= 2;
   if (isLoading) {
     return (
-      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
+      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -46,7 +46,7 @@ export default function Brands() {
 
   if (error) {
     return (
-      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
+      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -73,7 +73,7 @@ export default function Brands() {
 
   if (!brands || brands.length === 0) {
     return (
-      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
+      <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -98,7 +98,7 @@ export default function Brands() {
   }
 
   return (
-    <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-black to-gray-800 relative overflow-hidden">
+    <section className="py-8 md:py-16 bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -109,7 +109,7 @@ export default function Brands() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-8 md:mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
             العلامات التجارية
           </h2>
@@ -160,9 +160,9 @@ export default function Brands() {
           >
             {brands?.map((brand) => (
               <SwiperSlide key={brand.id}>
-                <div className="relative group h-full">
+                <div className="relative pt-4 group h-full">
                   {/* Brand Card */}
-                  <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 h-20 md:h-24 flex items-center justify-center p-4 md:p-6 shadow-lg hover:shadow-2xl border border-white/20">
+                  <div className="relative  bg-white/95 backdrop-blur-sm rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 h-20 md:h-24 flex items-center justify-center p-4 md:p-6 shadow-lg hover:shadow-2xl border border-white/20">
                     {/* Glow Effect */}
                     <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm bg-gradient-to-r from-[#2C6D90]/20 to-[#749BC2]/20"></div>
 
@@ -182,10 +182,10 @@ export default function Brands() {
           </Swiper>
 
           {/* Custom Navigation Buttons - Hidden on mobile */}
-          <button className="brands-button-prev-custom hidden md:flex absolute -left-6 lg:-left-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:scale-110 border border-white/20">
+          <button className="brands-button-prev-custom hidden md:flex absolute -left-6 lg:-left-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:scale-110 border border-white/20">
             <ChevronLeftIcon className="w-5 h-5 lg:w-6 lg:h-6 text-gray-700 group-hover:text-[#2C6D90] transition-colors duration-300" />
           </button>
-          <button className="brands-button-next-custom hidden md:flex absolute -right-6 lg:-right-12 top-1/2 -translate-y-1/2 z-10 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:scale-110 border border-white/20">
+          <button className="brands-button-next-custom hidden md:flex absolute -right-6 lg:-right-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:scale-110 border border-white/20">
             <ChevronRightIcon className="w-5 h-5 lg:w-6 lg:h-6 text-gray-700 group-hover:text-[#2C6D90] transition-colors duration-300" />
           </button>
         </div>

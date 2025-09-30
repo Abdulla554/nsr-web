@@ -99,12 +99,12 @@ export default function Orders() {
     }
 
     return (
-        <div className="min-h-screen bg-dark-900 pt-24 pb-16">
+        <div className="min-h-screen bg-dark-900 py-24">
             <div className="max-w-7xl mx-auto px-4 md:px-6">
                 {/* Header Section */}
                 <div className="text-center pt-16 mb-8">
                     <motion.h1
-                        className="text-4xl md:text-5xl font-bold text-[#F9F3EF] mb-4"
+                        className="text-4xl md:text-5xl font-bold text-[#F9F3EF] mb-4 md:my-8"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
@@ -112,7 +112,7 @@ export default function Orders() {
                         طلباتي
                     </motion.h1>
                     <motion.div
-                        className="flex items-center justify-center gap-2 text-[#749BC2] mb-6"
+                        className="flex items-center justify-center gap-2 text-[#749BC2] my-6"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}

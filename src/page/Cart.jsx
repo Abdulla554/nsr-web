@@ -53,22 +53,22 @@ export default function Cart() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-24 pb-16 md:pt-36" style={{ backgroundColor: "#1a1a2e" }} >
+    <div className="min-h-screen py-24 bg-dark-900  md:pt-36"   >
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20">
         
         {/* Header */}
         <div className="mb-12">
           <motion.div
-            className="flex items-center justify-between mb-6"
+            className="flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div>
-              <h1 className="text-4xl md:text-5xl font-black mb-3" style={{ color: "#F9F3EF" }}>
+              <h1 className="text-4xl md:text-5xl font-black my-3" style={{ color: "#F9F3EF" }}>
                 سلة التسوق
               </h1>
-              <div className="flex items-center gap-2 text-sm" style={{ color: "#749BC2" }}>
+              <div className="flex hidden md:flex mt-4 items-center gap-2 text-sm" style={{ color: "#749BC2" }}>
                 <span>الرئيسية</span>
                 <ArrowLeft className="w-4 h-4" />
                 <span>السلة</span>
