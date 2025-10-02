@@ -229,11 +229,11 @@ const ProductDetail = () => {
 
                 <div className="flex items-end gap-4">
                   <span className="text-4xl font-black" style={{ color: "#F9F3EF" }}>
-                    ${product.price?.toFixed(2)}
+                    {product.price?.toFixed(2)} IQD
                   </span>
                   {product.originalPrice && product.originalPrice !== product.price && (
                     <span className="text-xl text-gray-400 line-through mb-1">
-                      ${product.originalPrice?.toFixed(2)}
+                      {product.originalPrice?.toFixed(2)} IQD
                     </span>
                   )}
                 </div>
@@ -373,7 +373,7 @@ const ProductDetail = () => {
                   </button>
 
                   <a
-                    href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name || product.title} - السعر: $${product.price}`}
+                    href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name || product.title} - السعر: ${product.price} IQD`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-16 h-16 bg-gradient-to-r from-[#25D366] to-[#128C7E] rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
@@ -480,7 +480,7 @@ const ProductDetail = () => {
 
                   <div className="flex items-center justify-between">
                     <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
-                      ${relatedProduct.price?.toFixed(2)}
+                      {relatedProduct.price?.toFixed(2)} IQD
                     </span>
                     <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
                       عرض

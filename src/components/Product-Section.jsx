@@ -175,7 +175,7 @@ const ProductSection = () => {
                                     </div>
 
                                     {/* Product Info */}
-                                    <div className="p-6">
+                                    <div className="p-5">
                                         {/* Category */}
                                         <div className="mb-3">
                                             <span
@@ -203,7 +203,7 @@ const ProductSection = () => {
                                         </p>
 
                                         {/* Price and Cart Section */}
-                                        <div className="flex items-center justify-between">
+                                        <div className="flex items-center  justify-between">
                                             {/* Prices */}
                                             <div className="flex items-center text-center gap-2">
                                                 {product.originalPrice && (
@@ -211,14 +211,14 @@ const ProductSection = () => {
                                                         className="text-lg line-through opacity-70"
                                                         style={{ color: "#dc2626" }}
                                                     >
-                                                        ${product.originalPrice.toFixed(2)}
+                                                        {product.originalPrice.toFixed(2)} IQD
                                                     </span>
                                                 )}
                                                 <span
                                                     className="text-2xl font-black"
                                                     style={{ color: "#1a1a2e" }}
                                                 >
-                                                    ${(product.price || product.currentPrice).toFixed(2)}
+                                                    {(product.price || product.currentPrice).toFixed(2)} IQD
                                                 </span>
                                             </div>
 

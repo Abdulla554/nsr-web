@@ -364,11 +364,11 @@ export default function Categories() {
                   <div className="flex items-center gap-3">
                     {product.originalPrice && (
                       <span className="text-gray-400 line-through text-lg">
-                        ${product.originalPrice}
+                        {product.originalPrice} IQD
                       </span>
                     )}
                     <span className={`text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${product.priceGradient} group-hover:animate-pulse`}>
-                      ${product.price}
+                      {product.price} IQD
                     </span>
                   </div>
 

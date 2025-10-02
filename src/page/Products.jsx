@@ -171,7 +171,7 @@ const Products = () => {
 
   return (
     <div className="bg-black min-h-screen py-20 px-4 md:px-16">
-      <div className="max-w-7xl mx-auto">
+      <div className="">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -232,12 +232,12 @@ const Products = () => {
                   <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
                     {categories?.map((category) => (
                       <button
-                        key={category}
-                        onClick={() => toggleCategory(category)}
+                        key={category?.id || category}
+                        onClick={() => toggleCategory(category?.id || category)}
                         className="w-full px-4 py-3 gap-2 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
-                        <span>{category?.name}</span>
-                        {selectedCategories.includes(category) && (
+                        <span>{category?.name || category}</span>
+                        {selectedCategories.includes(category?.id || category) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
                       </button>
@@ -265,12 +265,12 @@ const Products = () => {
                   <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
                     {brands?.map((brand) => (
                       <button
-                        key={brand}
-                        onClick={() => toggleBrand(brand)}
+                        key={brand?.id || brand}
+                        onClick={() => toggleBrand(brand?.id || brand)}
                         className="w-full px-4 py-3 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
-                        <span>{brand?.name}</span>
-                        {selectedBrands.includes(brand) && (
+                        <span>{brand?.name || brand}</span>
+                        {selectedBrands.includes(brand?.id || brand) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
                       </button>
@@ -284,28 +284,34 @@ const Products = () => {
                 <div className="mt-4 p-3 bg-gray-800 rounded-lg">
                   <h4 className="text-sm font-arabic-bold text-gray-300 mb-2 arabic-text">الفلاتر النشطة:</h4>
                   <div className="space-y-1">
-                    {selectedCategories.map((category) => (
-                      <div key={category} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
-                        <span className="text-blue-400">الفئة: {category}</span>
-                        <button
-                          onClick={() => toggleCategory(category)}
-                          className="text-red-400 hover:text-red-300"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    ))}
-                    {selectedBrands.map((brand) => (
-                      <div key={brand} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
-                        <span className="text-green-400">البراند: {brand}</span>
-                        <button
-                          onClick={() => toggleBrand(brand)}
-                          className="text-red-400 hover:text-red-300"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    ))}
+                    {selectedCategories.map((categoryId) => {
+                      const category = categories?.find(cat => (cat?.id || cat) === categoryId);
+                      return (
+                        <div key={categoryId} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
+                          <span className="text-blue-400">الفئة: {category?.name || categoryId}</span>
+                          <button
+                            onClick={() => toggleCategory(categoryId)}
+                            className="text-red-400 hover:text-red-300"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      );
+                    })}
+                    {selectedBrands.map((brandId) => {
+                      const brand = brands?.find(br => (br?.id || br) === brandId);
+                      return (
+                        <div key={brandId} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
+                          <span className="text-green-400">البراند: {brand?.name || brandId}</span>
+                          <button
+                            onClick={() => toggleBrand(brandId)}
+                            className="text-red-400 hover:text-red-300"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -435,14 +441,14 @@ const Products = () => {
                                   className="text-lg line-through opacity-70 font-arabic-medium"
                                   style={{ color: "#dc2626" }}
                                 >
-                                  ${product?.originalPrice.toFixed(2)}
+                                  {product?.originalPrice.toFixed(2)} IQD
                                 </span>
                               )}
                               <span
                                 className="text-2xl font-arabic-bold"
                                 style={{ color: "#1a1a2e" }}
                               >
-                                ${(product?.price || product?.currentPrice || 0).toFixed(2)}
+                                {(product?.price || product?.currentPrice || 0).toFixed(2)} IQD
                               </span>
                             </div>
 
@@ -494,7 +500,6 @@ const Products = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
