@@ -233,15 +233,7 @@ const ProductDetail = () => {
                   {product.name || product.title}
                 </h1>
 
-                {/* Rating stars (placeholder) */}
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-sm" style={{ color: "#749BC2" }}>(4.8 من 5)</span>
-                </div>
+              
               </div>
 
               {/* Price Section */}
@@ -415,36 +407,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      {/* Product Status Indicators */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 mt-16">
-        <div className="flex flex-wrap gap-4 justify-center">
-          {product.isNew && (
-            <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              🆕 منتج جديد
-            </div>
-          )}
-          {product.isBestSeller && (
-            <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              🔥 الأكثر مبيعاً
-            </div>
-          )}
-          {product.isFeatured && (
-            <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              ⭐ منتج مميز
-            </div>
-          )}
-          {product.stock > 0 && product.stock <= 10 && (
-            <div className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              ⚠️ آخر قطع متبقية
-            </div>
-          )}
-          {product.stock === 0 && (
-            <div className="bg-gradient-to-r from-gray-500 to-gray-600 text-white px-6 py-3 rounded-full font-bold shadow-lg">
-              ❌ غير متوفر
-            </div>
-          )}
-        </div>
-      </div>
+     
 
       {/* Specifications Section */}
       {product.specifications && Object.keys(product.specifications).length > 0 && (
