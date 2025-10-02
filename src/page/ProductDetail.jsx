@@ -142,27 +142,9 @@ const ProductDetail = () => {
                   className="relative overflow-hidden rounded-3xl shadow-2xl"
                   style={{ backgroundColor: "#F9F3EF" }}
                 >
-                  {/* Floating badges */}
-                  <div className="absolute top-6 left-6 z-20 flex flex-col gap-2">
-                    {product.isNew && (
-                      <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg animate-pulse">
-                        🆕 جديد
-                      </div>
-                    )}
-                    {discountPercentage > 0 && (
-                      <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                        -{discountPercentage}%
-                      </div>
-                    )}
-                  </div>
+                  
 
-                  {/* Wishlist button */}
-                  <button
-                    onClick={() => setIsWishlisted(!isWishlisted)}
-                    className="absolute top-6 right-6 z-20 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-                  >
-                    <Heart className={`w-5 h-5 transition-colors duration-300 ${isWishlisted ? 'text-red-500 fill-current' : 'text-gray-600'}`} />
-                  </button>
+               
 
                   <div className="p-8">
                     <img
@@ -222,12 +204,7 @@ const ProductDetail = () => {
             <div className="space-y-8">
               {/* Brand & Title */}
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-8 bg-gradient-to-b from-[#2C6D90] to-[#749BC2] rounded-full"></div>
-                  <span className="text-lg font-semibold" style={{ color: "#749BC2" }}>
-                    {product.brand?.name || "غير محدد"}
-                  </span>
-                </div>
+                 
 
                 <h1 className="text-4xl lg:text-5xl font-black leading-tight" style={{ color: "#F9F3EF" }}>
                   {product.name || product.title}
@@ -279,11 +256,14 @@ const ProductDetail = () => {
                     <div className={`w-3 h-3 rounded-full ${product.stock > 10 ? 'bg-green-500' :
                       product.stock > 0 ? 'bg-yellow-500' : 'bg-red-500'
                       }`}></div>
-                    <span className="text-sm" style={{ color: "#749BC2" }}>المخزون</span>
+                    <span className="text-sm" style={{ color: "#749BC2" }}>
+                      الماركة
+                    </span>
                   </div>
                   <p className="font-semibold" style={{ color: "#F9F3EF" }}>
-                    {product.stock || 0} قطعة
+                  {product.brand?.name || "غير محدد"}
                   </p>
+                  
                 </div>
               </div>
 
