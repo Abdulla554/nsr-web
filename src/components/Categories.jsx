@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, Autoplay } from 'swiper/modules'
 import { useNavigate } from 'react-router-dom'
 import { useCategories } from '../hooks'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
@@ -73,23 +73,25 @@ export default function Categories() {
   }
 
   return (
-    <section className="pb-20 bg-dark-900">
+    <section className="py-20 bg-dark-900">
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="text-center mb-16">
           <h2 className="text-4xl text-gray-100 md:text-5xl font-black mb-4 tracking-tight">
-            SHOP BY <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">CATEGORIES</span>
+          تسوق حسب <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">الفئات</span>
           </h2>
         </div>
 
         {/* Swiper Container */}
         <div className="relative max-w-6xl mx-auto px-4 lg:px-0">
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
             loop={hasEnoughCategories}
             loopAdditionalSlides={hasEnoughCategories ? 2 : 0}
+            autoplay={hasEnoughCategories ? { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true } : false}
+            speed={4500}
             navigation={{
               nextEl: '.swiper-button-next-custom',
               prevEl: '.swiper-button-prev-custom',
@@ -170,10 +172,10 @@ export default function Categories() {
           </Swiper>
 
           {/* Custom Navigation Buttons */}
-          <button className="swiper-button-prev-custom absolute -left-4 sm:-left-8 lg:-left-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:scale-110">
+          <button className="swiper-button-prev-custom absolute -left-1 sm:-left-8 lg:-left-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:scale-110">
             <ChevronLeftIcon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 group-hover:text-gray-900" />
           </button>
-          <button className="swiper-button-next-custom absolute -right-4 sm:-right-8 lg:-right-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:scale-110">
+          <button className="swiper-button-next-custom absolute -right-1 sm:-right-8 lg:-right-20 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group hover:scale-110">
             <ChevronRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 group-hover:text-gray-900" />
           </button>
         </div>

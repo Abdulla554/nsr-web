@@ -73,7 +73,7 @@ const ProductSection = () => {
     const products = productsData?.data || fallbackProducts;
 
     return (
-        <div className="bg-black min-h-screen py-20 px-4 md:px-16">
+        <div className="bg-black min-h-screen py-20 px-6 md:px-16">
             <div className="">
 
                 {/* Section Title */}
@@ -83,12 +83,12 @@ const ProductSection = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-12"
                 >
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                        Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Products</span>
-                    </h1>
-                    <p className="text-gray-300 text-lg md:text-xl">
-                        Explore our latest collection of high-quality products and accessories
-                    </p>
+                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                            مجموعة <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">منتجاتنا</span>
+                        </h1>
+                        <p className="text-gray-300 text-lg md:text-xl">
+                            استكشف أحدث مجموعتنا من المنتجات والإكسسوارات عالية الجودة
+                        </p>
                 </motion.div>
 
 

@@ -88,7 +88,7 @@ const ProductShowcase = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-8 px-4">
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-dark-900 to-gray-800 py-10 px-4">
       <div className="max-w-7xl mx-auto">
         {/* العنوان الرئيسي */}
         <motion.div
@@ -98,10 +98,12 @@ const ProductShowcase = () => {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            Gaming <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Collection</span>
+
+            مجموعة ألعاب <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            </span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl">
-            Discover the latest gaming peripherals and accessories
+            اكتشف أحدث ألعاب الألعاب والإكسسوارات
           </p>
         </motion.div>
 
@@ -128,13 +130,15 @@ const ProductShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-blue-400">{displayProducts[0]?.category?.name || "Category"}</span>
-                  <h4 className="text-sm font-bold mt-1">{displayProducts[0]?.name || "Product"}</h4>
+                  <h4 className="text-sm font-bold ">{displayProducts[0]?.name || "Product"}</h4>
+                  <div className="flex gap-3 mt-1">
                   {displayProducts[0]?.isNew && (
                     <span className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full mt-1">جديد</span>
                   )}
                   {displayProducts[0]?.isBestSeller && (
                     <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full mt-1 ml-1">الأكثر مبيعاً</span>
                   )}
+                  </div>
                 </div>
                 <div className="absolute top-3 right-3 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
               </div>
@@ -153,13 +157,15 @@ const ProductShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-red-400">{displayProducts[1]?.category?.name || "Category"}</span>
-                  <h4 className="text-sm font-bold mt-1">{displayProducts[1]?.name || "Product"}</h4>
+                  <h4 className="text-sm font-bold ">{displayProducts[1]?.name || "Product"}</h4>
+                  <div className="flex gap-3 mt-1">
                   {displayProducts[1]?.isNew && (
                     <span className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full mt-1">جديد</span>
                   )}
                   {displayProducts[1]?.isBestSeller && (
                     <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full mt-1 ml-1">الأكثر مبيعاً</span>
                   )}
+                  </div>
                 </div>
                 <div className="absolute top-3 right-3 w-2 h-2 bg-red-400 rounded-full animate-pulse" />
               </div>
@@ -184,7 +190,7 @@ const ProductShowcase = () => {
                 <span className="text-sm font-medium text-green-400">{displayProducts[2]?.category?.name || "Category"}</span>
                 <h3 className="text-2xl font-bold mt-1">{displayProducts[2]?.name || "Product"}</h3>
                 <p className="text-gray-300 mt-2">{displayProducts[2]?.description || "Precision & Power"}</p>
-                <div className="flex gap-2 mt-2">
+                <div className="flex gap-3 mt-3">
                   {displayProducts[2]?.isNew && (
                     <span className="inline-block bg-green-500 text-white text-xs px-3 py-1 rounded-full">جديد</span>
                   )}
@@ -220,13 +226,15 @@ const ProductShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-purple-400">{displayProducts[3]?.category?.name || "Category"}</span>
-                  <h4 className="text-sm font-bold mt-1">{displayProducts[3]?.name || "Product"}</h4>
+                  <h4 className="text-sm font-bold ">{displayProducts[3]?.name || "Product"}</h4>
+                  <div className="flex gap-3 mt-1">
                   {displayProducts[3]?.isNew && (
                     <span className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full mt-1">جديد</span>
                   )}
                   {displayProducts[3]?.isBestSeller && (
                     <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full mt-1 ml-1">الأكثر مبيعاً</span>
                   )}
+                  </div>
                 </div>
                 <div className="absolute top-3 right-3 w-2 h-2 bg-purple-400 rounded-full animate-pulse" />
               </div>
@@ -245,13 +253,15 @@ const ProductShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
                   <span className="text-xs font-medium text-yellow-400">{displayProducts[4]?.category?.name || "Category"}</span>
-                  <h4 className="text-sm font-bold mt-1">{displayProducts[4]?.name || "Product"}</h4>
+                  <h4 className="text-sm font-bold ">{displayProducts[4]?.name || "Product"}</h4>
+                  <div className="flex gap-3 mt-1">
                   {displayProducts[4]?.isNew && (
                     <span className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded-full mt-1">جديد</span>
                   )}
                   {displayProducts[4]?.isBestSeller && (
                     <span className="inline-block bg-orange-500 text-white text-xs px-2 py-1 rounded-full mt-1 ml-1">الأكثر مبيعاً</span>
                   )}
+                  </div>
                 </div>
                 <div className="absolute top-3 right-3 w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
               </div>

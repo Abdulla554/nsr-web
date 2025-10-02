@@ -154,14 +154,14 @@ export default function Orders() {
                             />
                         </div>
                         <div>
-                            <label className="block text-[#749BC2] text-sm font-medium mb-2">
+                            <label className="block text-right text-[#749BC2] text-sm font-medium mb-2">
                                 رقم الهاتف
                             </label>
                             <input
                                 type="tel"
                                 value={userInfo.phone}
                                 onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
-                                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-[#F9F3EF] placeholder-[#749BC2] focus:outline-none focus:border-[#2C6D90] transition-colors"
+                                className="w-full bg-white/10 border border-white/20 rounded-xl text-right px-4 py-3 text-[#F9F3EF] placeholder-[#749BC2] focus:outline-none focus:border-[#2C6D90] transition-colors text-right"
                                 placeholder="أدخل رقم هاتفك"
                                 required
                             />

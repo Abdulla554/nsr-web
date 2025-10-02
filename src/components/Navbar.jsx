@@ -230,15 +230,7 @@ const Navbar = () => {
             >
               <AnimatePresence mode="wait">
                 {isOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </motion.div>
+                  <div></div>
                 ) : (
                   <motion.div
                     key="menu"

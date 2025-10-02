@@ -161,10 +161,10 @@ export default function Categories() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-6xl font-arabic-heading text-white font-black mb-6 leading-tight tracking-tight relative"
           >
-            <span className="relative flex  justify-center gap-4">
-              Gaming
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-pulse">
-                Collection
+            <span className="relative flex justify-center items-center gap-4">
+            مجموعة
+              <span className="text-transparent bg-clip-text py-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-pulse">
+              ألعاب
               </span>
 
             </span>

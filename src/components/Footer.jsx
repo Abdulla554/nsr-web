@@ -70,9 +70,7 @@ const Footer = () => {
               مواقع تواصل الاجتماعي
             </h3>
             <div className="flex items-center justify-center gap-4">
-              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
-                <FaTwitter className="text-white text-lg" />
-              </a>
+              
               <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
                 <FaFacebookF className="text-white text-lg" />
               </a>
