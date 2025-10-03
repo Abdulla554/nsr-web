@@ -47,7 +47,7 @@ const ProductDetail = () => {
     data: relatedProductsData,
   } = useRelatedProducts(id, 8);
 
- 
+
 
   const similarProducts = relatedProductsData?.data || relatedProductsData || [];
 
@@ -326,15 +326,7 @@ const ProductDetail = () => {
                     الكمية
                   </span>
                   <div className="flex items-center gap-3">
-                    {/* Input */}
-                    <input
-                      type="number"
-                      value={quantity}
-                      onChange={(e) =>
-                        setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                      }
-                      className="w-20 h-12 p-2 rounded-full border border-gray-300 text-center text-base font-medium text-gray-900"
-                    />
+
 
                     {/* Decrement Button */}
                     <button
@@ -343,6 +335,22 @@ const ProductDetail = () => {
                     >
                       −
                     </button>
+                    {/* Input */}
+
+                    
+                    <div
+                      className="w-20 h-12 flex items-center justify-center 
+             text-2xl font-semibold tracking-wide text-gray-800 
+             rounded-full border border-gray-200 
+             bg-gray-50 shadow-md 
+             select-none"
+                    >
+                      {quantity}
+                    </div>
+                    
+
+
+
 
                     {/* Increment Button */}
                     <button
@@ -432,40 +440,40 @@ const ProductDetail = () => {
             .slice(0, 4)
             .map((relatedProduct) => (
               <Link to={`/product/${relatedProduct.id}`}>
-              <div
-                key={relatedProduct.id}
-                className="group bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={relatedProduct.image}
-                    alt={relatedProduct.name || relatedProduct.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div
+                  key={relatedProduct.id}
+                  className="group bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={relatedProduct.image}
+                      alt={relatedProduct.name || relatedProduct.title}
+                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                 
-                </div>
 
-                <div className="p-5 space-y-3">
-                  <h3 className="text-lg font-bold line-clamp-2" style={{ color: "#F9F3EF" }}>
-                    {relatedProduct.name || relatedProduct.title}
-                  </h3>
+                  </div>
 
-                  <p className="text-sm line-clamp-2" style={{ color: "#749BC2" }}>
-                    {relatedProduct.description}
-                  </p>
+                  <div className="p-5 space-y-3">
+                    <h3 className="text-lg font-bold line-clamp-2" style={{ color: "#F9F3EF" }}>
+                      {relatedProduct.name || relatedProduct.title}
+                    </h3>
 
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
-                      {relatedProduct.price?.toFixed(2)} IQD
-                    </span>
-                    <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      عرض
-                    </button>
+                    <p className="text-sm line-clamp-2" style={{ color: "#749BC2" }}>
+                      {relatedProduct.description}
+                    </p>
+
+                    <div className="flex items-center justify-between">
+                      <span className="text-xl font-bold" style={{ color: "#F9F3EF" }}>
+                        {relatedProduct.price?.toFixed(2)} IQD
+                      </span>
+                      <button className="bg-gradient-to-r from-[#2C6D90] to-[#749BC2] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+                        عرض
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
               </Link>
             ))}
 
