@@ -18,7 +18,7 @@ import {
 import { Monitor, Cpu, HardDrive, Camera, Palette, Keyboard, Settings, Database, Usb } from 'lucide-react';
 import { useCartStore } from '../store/index';
 import { useProduct, useRelatedProducts } from '../hooks';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const ProductDetail = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -26,7 +26,11 @@ const ProductDetail = () => {
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const { id } = useParams();
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentImage(0);
+    setQuantity(1);
+  }, [id]);
   // استخدام Zustand store للسلة
   const { addToCart, isInCart, getQuantity } = useCartStore();
 
@@ -43,9 +47,7 @@ const ProductDetail = () => {
     data: relatedProductsData,
   } = useRelatedProducts(id, 8);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+ 
 
   const similarProducts = relatedProductsData?.data || relatedProductsData || [];
 
@@ -86,7 +88,7 @@ const ProductDetail = () => {
     return (
       <div
         className="min-h-screen mt-20 bg-dark-900 py-20 px-4 md:px-20 flex items-center justify-center"
-   
+
       >
         <div className="text-center">
           <div className="relative">
@@ -125,7 +127,7 @@ const ProductDetail = () => {
   return (
     <div
       className="min-h-screen bg-dark-900 pt-24 pb-12"
-    
+
     >
       {/* Hero Section */}
       <div className="relative md:pt-24 overflow-hidden">
@@ -142,20 +144,20 @@ const ProductDetail = () => {
                   className="relative overflow-hidden rounded-3xl shadow-2xl"
                   style={{ backgroundColor: "#F9F3EF" }}
                 >
-                  
 
-               
 
-                  <div className="p-8">
+
+
+                  <div className="p-0">
                     <img
                       src={product.images?.[currentImage] || product.image}
                       alt={product.name || product.title}
-                      className="w-full h-[450px] lg:h-[500px] object-contain rounded-2xl transform transition-all duration-700 hover:scale-105"
+                      className="w-full h-full object-contain rounded-3xl transform transition-all duration-700 hover:scale-[1.02]"
                     />
                   </div>
 
                   {/* Navigation arrows */}
-                  {thumbnails.length > 1 && (
+                  {/* {thumbnails.length > 1 && (
                     <>
                       <button
                         onClick={prevImage}
@@ -170,7 +172,7 @@ const ProductDetail = () => {
                         <ChevronRight className="w-6 h-6" />
                       </button>
                     </>
-                  )}
+                  )} */}
                 </div>
               </div>
 
@@ -204,13 +206,13 @@ const ProductDetail = () => {
             <div className="space-y-8">
               {/* Brand & Title */}
               <div className="space-y-4">
-                 
+
 
                 <h1 className="text-4xl lg:text-5xl font-black leading-tight" style={{ color: "#F9F3EF" }}>
                   {product.name || product.title}
                 </h1>
 
-              
+
               </div>
 
               {/* Price Section */}
@@ -261,9 +263,9 @@ const ProductDetail = () => {
                     </span>
                   </div>
                   <p className="font-semibold" style={{ color: "#F9F3EF" }}>
-                  {product.brand?.name || "غير محدد"}
+                    {product.brand?.name || "غير محدد"}
                   </p>
-                  
+
                 </div>
               </div>
 
@@ -299,7 +301,7 @@ const ProductDetail = () => {
               )}
 
               {/* Tags */}
-              {product.tags && product.tags.length > 0 && (
+              {/* {product.tags && product.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
                   {product.tags.map((tag, index) => (
                     <span
@@ -310,84 +312,71 @@ const ProductDetail = () => {
                     </span>
                   ))}
                 </div>
-              )}
+              )} */}
+
+
 
               {/* Quantity & Actions */}
               <div className="space-y-6">
-                {/* Cart Status */}
-                {productInCart && (
-                  <div className="flex items-center gap-4 p-4 bg-green-500/20 rounded-xl border border-green-500/30">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <span style={{ color: "#F9F3EF" }}>موجود في السلة: {cartQuantity} قطعة</span>
-                  </div>
-                )}
+
 
                 {/* Quantity Selector */}
-                <div className="flex items-center justify-center">
-                  <div className="flex items-center bg-white/90 backdrop-blur-sm rounded-full shadow-xl border border-gray-200 overflow-hidden">
+                <div className="flex items-center justify-start gap-6">
+                  <span className="block text-base font-medium text-white">
+                    الكمية
+                  </span>
+                  <div className="flex items-center gap-3">
+                    {/* Input */}
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={(e) =>
+                        setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                      }
+                      className="w-20 h-12 p-2 rounded-full border border-gray-300 text-center text-base font-medium text-gray-900"
+                    />
+
+                    {/* Decrement Button */}
                     <button
                       onClick={decrementQuantity}
-                      className="px-5 py-4 text-gray-700 hover:bg-[#2C6D90]/10 transition-all duration-300 hover:text-[#2C6D90]"
+                      className="w-12 h-12 rounded-full border text-white border-gray-300 flex items-center justify-center text-lg font-medium hover:text-gray-900 hover:bg-gray-100"
                     >
-                      <Minus className="w-5 h-5" />
+                      −
                     </button>
 
-                    <div className="px-6 py-4 border-x border-gray-200 bg-white/80">
-                      <input
-                        type="number"
-                        value={quantity}
-                        onChange={(e) =>
-                          setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                        }
-                        className="w-16 text-center text-xl font-bold bg-transparent border-0 focus:outline-none"
-                        style={{ color: "#1a1a2e" }}
-                      />
-                    </div>
-
+                    {/* Increment Button */}
                     <button
                       onClick={incrementQuantity}
-                      className="px-5 py-4 text-gray-700 hover:bg-[#2C6D90]/10 transition-all duration-300 hover:text-[#2C6D90]"
+                      className="w-12 h-12 rounded-full text-white border border-gray-300 flex items-center justify-center text-lg font-medium hover:text-gray-900 hover:bg-gray-100"
                     >
-                      <Plus className="w-5 h-5" />
+                      +
                     </button>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-4">
-                  <button
-                    onClick={handleAddToCart}
-                    disabled={!product.stock || product.stock === 0}
-                    className={`flex-1 relative overflow-hidden text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl transform transition-all duration-500 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 group ${product.stock > 0
-                      ? 'bg-gradient-to-r from-[#2C6D90] via-[#3b82f6] to-[#749BC2] hover:shadow-2xl'
-                      : 'bg-gray-500 cursor-not-allowed'
-                      }`}
-                  >
-                    {product.stock > 0 && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                    )}
-                    <ShoppingCart className="w-6 h-6 relative z-10" />
-                    <span className="relative z-10">
-                      {product.stock === 0 ? "غير متوفر" : productInCart ? "إضافة المزيد" : "إضافة للسلة"}
-                    </span>
+                <div className="flex flex-col gap-3">
+                  {/* Buy Now */}
+                  <button className="w-full py-4 rounded-full font-medium text-base text-white bg-[#25D366]/60 hover:opacity-90 transition">
+                    تواصل معنا
                   </button>
 
-                  <a
-                    href={`https://wa.me/9647750007083?text=مرحباً، أريد الاستفسار عن المنتج: ${product.name || product.title} - السعر: ${product.price} IQD`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-16 h-16 bg-gradient-to-r from-[#25D366] to-[#128C7E] rounded-2xl flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
-                  >
-                    <MessageCircle className="w-7 h-7 text-white" />
-                  </a>
+                  {/* Add To Card */}
+                  <button className="w-full py-4 rounded-full text-white font-medium text-base hover:text-gray-900 border border-gray-400 hover:bg-gray-100 transition">
+                    اضافة الى السلة
+                  </button>
                 </div>
               </div>
+
+
+
+
             </div>
           </div>
         </div>
       </div>
 
-     
+
 
       {/* Specifications Section */}
       {product.specifications && Object.keys(product.specifications).length > 0 && (
@@ -442,6 +431,7 @@ const ProductDetail = () => {
             .filter(relatedProduct => relatedProduct.id !== product.id)
             .slice(0, 4)
             .map((relatedProduct) => (
+              <Link to={`/product/${relatedProduct.id}`}>
               <div
                 key={relatedProduct.id}
                 className="group bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105"
@@ -454,19 +444,7 @@ const ProductDetail = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                  {/* Badges */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-1">
-                    {relatedProduct.isNew && (
-                      <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-2 py-1 rounded-full text-xs font-bold">
-                        جديد
-                      </span>
-                    )}
-                    {relatedProduct.isBestSeller && (
-                      <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                        مبيع
-                      </span>
-                    )}
-                  </div>
+                 
                 </div>
 
                 <div className="p-5 space-y-3">
@@ -488,6 +466,7 @@ const ProductDetail = () => {
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
 
           {similarProducts.filter(relatedProduct => relatedProduct.id !== product.id).length === 0 && (

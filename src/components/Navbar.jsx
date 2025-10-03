@@ -90,7 +90,7 @@ const Navbar = () => {
                 className="absolute inset-0 bg-[#2C6D90]/10 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
               <img
-                src="logo-removebg.png"
+                src="/logo-removebg.png"
                 className="h-12 sm:h-14 md:h-16 lg:h-20 xl:h-24 rounded-2xl sm:rounded-3xl relative z-10 drop-shadow-2xl"
                 alt="Nsr Store Logo"
               />
