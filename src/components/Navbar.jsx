@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ShoppingBag, Menu, X, Monitor, Cpu, HardDrive, Package, Tag, Users } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, Monitor, Cpu, HardDrive, Package, Tag, Users } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartStore } from '../store/index';
 import { useSearchProducts, useCategories, useBrands } from '../hooks';
@@ -386,7 +386,7 @@ const Navbar = () => {
                   className="w-5 h-5 sm:w-6 sm:h-6 group-hover:text-[#ADCEFE] transition-colors duration-300"
 
                 >
-                  <ShoppingBag className="w-full h-full" />
+                  <ShoppingCart className="w-full h-full" />
                 </motion.div>
 
                 {/* Cart Badge */}

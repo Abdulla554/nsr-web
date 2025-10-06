@@ -7,7 +7,7 @@ import {
   Plus,
   Minus,
   ArrowRight,
-  ShoppingBag,
+  ShoppingCart,
   Package,
   CreditCard,
   Truck,
@@ -100,7 +100,7 @@ export default function Cart() {
           >
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#2C6D90" }}>
-                <ShoppingBag className="w-6 h-6" style={{ color: "#F9F3EF" }} />
+                <ShoppingCart className="w-6 h-6" style={{ color: "#F9F3EF" }} />
               </div>
               <div>
                 <p className="text-sm" style={{ color: "#749BC2" }}>المنتجات</p>
@@ -142,7 +142,7 @@ export default function Cart() {
               >
                 <div className="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center" 
                   style={{ backgroundColor: "rgba(116, 155, 194, 0.1)" }}>
-                  <ShoppingBag className="w-16 h-16" style={{ color: "#749BC2" }} />
+                  <ShoppingCart className="w-16 h-16" style={{ color: "#749BC2" }} />
                 </div>
                 <h3 className="text-2xl font-bold mb-3" style={{ color: "#F9F3EF" }}>
                   السلة فارغة

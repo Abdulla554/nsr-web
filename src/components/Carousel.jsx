@@ -110,7 +110,7 @@ const HeroCarousel = () => {
               />
 
               {/* Content Overlay */}
-              {banner.title && (
+              {/* {banner.title && (
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                   <h3 className="text-white text-lg md:text-2xl lg:text-3xl font-bold mb-2">
                     {banner.title}
@@ -121,7 +121,7 @@ const HeroCarousel = () => {
                     </p>
                   )}
                 </div>
-              )}
+              )} */}
             </div>
           </SwiperSlide>
         ))}
