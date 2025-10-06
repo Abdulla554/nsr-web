@@ -18,7 +18,7 @@ const HeroCarousel = () => {
   const slideDuration = 4000; // 4 ثواني لكل شريحة
 
   // Check if we have enough slides for loop mode (minimum 3 slides)
-  const hasEnoughSlides = banners && banners.length >= 3;
+  const hasEnoughSlides = banners && banners.length >= 1;
 
   useEffect(() => {
     // Only run progress animation if we have enough slides for loop mode
@@ -129,7 +129,7 @@ const HeroCarousel = () => {
 
       {/* Progress Bar */}
       {hasEnoughSlides && (
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-60 md:w-80 h-1 bg-white/30 rounded-full overflow-hidden backdrop-blur-sm">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-40  h-1 bg-white/30 rounded-full overflow-hidden backdrop-blur-sm">
           <div
             className="h-full bg-gradient-to-r from-[#2C6D90] to-[#749BC2] rounded-full transition-all duration-75 ease-linear shadow-lg"
             style={{ width: `${progress}%` }}

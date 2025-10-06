@@ -129,7 +129,7 @@ export default function Categories() {
               <SwiperSlide key={category.id}>
                 <div className="relative group h-full">
                   {/* Category Card */}
-                  <div className="relative overflow-hidden rounded-2xl bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 h-[300px] sm:h-[350px] md:h-[400px]">
+                  <div onClick={() => handleCategoryClick(category?.id)} className="relative overflow-hidden rounded-2xl bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 h-[300px] sm:h-[350px] md:h-[400px]">
                     {/* Image Container */}
                     <div className="relative h-full overflow-hidden">
                       <img
@@ -142,15 +142,15 @@ export default function Categories() {
                     </div>
 
                     {/* Button */}
-                    <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%]">
+                    <div className="absolute bg-nsr-primary rounded-2xl bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[80%]">
                       <button
                         onClick={() => handleCategoryClick(category?.id)}
                         className={`w-full font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group transform hover:scale-105 ${category?.buttonColor}`}
                       >
-                        <span className="text-xs sm:text-sm font-semibold">{category?.name}</span>
-                        <div className="w-4 h-4 bg-gray-900 rounded flex items-center justify-center">
+                        <span className="text-xs text-white sm:text-sm font-semibold">{category?.name}</span>
+                        <div className="w-6 h-6  rounded flex items-center justify-center">
                           <svg
-                            className="w-2 h-2 text-white"
+                            className="w-6 h-6 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"

@@ -110,6 +110,49 @@ export default function Categories() {
       }
     ];
 
+  const CategoryCard = ({ category, index, heightClass = "h-[300px] md:h-[350px]" }) => (
+    <motion.div
+      key={category.id}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group cursor-pointer"
+    >
+      <div className={`relative ${heightClass} rounded-3xl overflow-hidden bg-gradient-to-br ${category.bgColor} group-hover:scale-105 transition-all duration-500`}>
+        <div className="absolute inset-0">
+          <img
+            src={category.image}
+            alt={category.title}
+            className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 h-full flex flex-col justify-end p-6 lg:p-8">
+          <div className="text-white">
+            <p className="text-sm text-gray-200 mb-2 font-medium tracking-wide">{category.subtitle}</p>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-black mb-4 leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200">{category.title}</span>
+            </h3>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-bold text-sm tracking-wider hover:bg-white/20 transition-all duration-300"
+            >
+              {category.buttonText}
+              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </motion.button>
+          </div>
+        </div>
+
+        <div className="absolute top-4 right-4 w-8 h-8 border-2 border-white/30 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-4 left-4 w-6 h-6 border-2 border-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+      </div>
+    </motion.div>
+  );
+
   return (
     <div className="min-h-screen bg-black mt-2 py-2 md:py-20 px-2 md:px-0  ">
       <div className="container pb-20 mx-auto px-4 md:px-8 lg:px-16  ">
@@ -190,58 +233,33 @@ export default function Categories() {
           </div>
         </div>
 
-        {/* Categories Grid - Show ALL Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 max-w-7xl mx-auto mb-16">
-          {categories.map((category, index) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className={`relative h-[300px] md:h-[350px] rounded-3xl overflow-hidden bg-gradient-to-br ${category.bgColor} group-hover:scale-105 transition-all duration-500`}>
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src={category.image}
-                    alt={category.title}
-                    className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-end p-6 lg:p-8">
-                  <div className="text-white">
-                    <p className="text-sm text-gray-200 mb-2 font-medium tracking-wide">
-                      {category.subtitle}
-                    </p>
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-black mb-4 leading-tight">
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200">
-                        {category.title}
-                      </span>
-                    </h3>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white font-bold text-sm tracking-wider hover:bg-white/20 transition-all duration-300"
-                    >
-                      {category.buttonText}
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </motion.button>
-                  </div>
-                </div>
-
-                {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 w-8 h-8 border-2 border-white/30 rounded-full animate-pulse"></div>
-                <div className="absolute bottom-4 left-4 w-6 h-6 border-2 border-white/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {categories.length >= 3 ? (
+          <div className="max-w-7xl mx-auto mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+              <div>
+                <CategoryCard category={categories[0]} index={0} heightClass="h-[300px] md:h-[500px]" />
               </div>
-            </motion.div>
-          ))}
-        </div>
+              <div className="grid grid-rows-2 gap-6 md:gap-8 lg:gap-10">
+                <CategoryCard category={categories[1]} index={1} heightClass="h-[230px] md:h-[240px] lg:h-[240px]" />
+                <CategoryCard category={categories[2]} index={2} heightClass="h-[230px] md:h-[240px] lg:h-[240px]" />
+              </div>
+            </div>
+
+            {categories.length > 3 && (
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+                {categories.slice(3).map((category, idx) => (
+                  <CategoryCard key={category.id} category={category} index={idx + 3} />
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-10 max-w-7xl mx-auto mb-16">
+            {categories.map((category, index) => (
+              <CategoryCard key={category.id} category={category} index={index} />
+            ))}
+          </div>
+        )}
 
 
       </div>
