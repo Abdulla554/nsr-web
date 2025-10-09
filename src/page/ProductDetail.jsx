@@ -432,15 +432,16 @@ const ProductDetail = () => {
               <p className="text-sm" style={{ color: "#749BC2" }}>هل تريد الإضافة مرة أخرى؟</p>
             </div>
             <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end">
-              <button onClick={handleCancelAdd}
-                className="w-full sm:w-auto px-5 py-3 rounded-xl font-medium border transition"
-                style={{ color: "#F9F3EF", borderColor: "rgba(116, 155, 194, 0.3)" }}>
-                إلغاء
-              </button>
+            
               <button onClick={handleConfirmAdd}
                 className="w-full sm:w-auto px-5 py-3 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition"
                 style={{ backgroundColor: "#2C6D90", color: "#F9F3EF" }}>
                 إضافة مرة أخرى
+              </button>
+              <button onClick={handleCancelAdd}
+                className="w-full sm:w-auto px-5 py-3 rounded-xl font-medium border transition"
+                style={{ color: "#F9F3EF", borderColor: "rgba(116, 155, 194, 0.3)" }}>
+                إلغاء
               </button>
             </div>
           </div>

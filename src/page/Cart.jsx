@@ -401,16 +401,7 @@ export default function Cart() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#749BC2" }}>
-                      <Gift className="w-5 h-5" style={{ color: "#F9F3EF" }} />
-                    </div>
-                    <div>
-                      <p className="font-semibold" style={{ color: "#F9F3EF" }}>هدايا مجانية</p>
-                      <p className="text-sm" style={{ color: "#749BC2" }}>مع الطلبات الكبيرة</p>
-                    </div>
-                  </div>
+                   
                 </div>
               </div>
             </motion.div>
