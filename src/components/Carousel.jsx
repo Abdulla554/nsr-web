@@ -83,7 +83,7 @@ const HeroCarousel = () => {
   }
 
   return (
-    <div className="w-full h-[450px] lg:h-[750px] relative pt-3">
+    <div className="w-full h-[450px] lg:h-[750px] relative pt-2">
       {/* Background Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
 
