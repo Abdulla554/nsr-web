@@ -8,6 +8,7 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import ErrorBoundary from '../components/ErrorBoundary'
 import ProductSection from '../components/Product-Section'
 import { ArrowLeft } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Categories() {
   useEffect(() => {
@@ -135,6 +136,7 @@ export default function Categories() {
             <h3 className="text-xl md:text-2xl lg:text-3xl font-black mb-4 leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200">{category.title}</span>
             </h3>
+            <Link to={`/products`}>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -143,6 +145,7 @@ export default function Categories() {
                تسوق الان
                <ArrowLeft className="w-4 h-4" />
             </motion.button>
+            </Link>
           </div>
         </div>
 
