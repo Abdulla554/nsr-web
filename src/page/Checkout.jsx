@@ -46,6 +46,7 @@ export default function Checkout() {
     const total = productsPrice + deliveryPrice
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (cart.length === 0 && !orderSuccess) {
             navigate('/')
         }
@@ -110,6 +111,7 @@ export default function Checkout() {
                 setCreatedOrder(newOrder)
                 setOrderSuccess(true)
                 setCurrentStep(3)
+                window.scrollTo(0, 0);
                 clearCart()
             } catch (error) {
                 console.error('Error creating order:', error)
@@ -544,7 +546,7 @@ export default function Checkout() {
             <div className="max-w-5xl mx-auto px-4 md:px-8">
 
                 {/* Header */}
-                <div className="my-16">
+                <div className="my-20">
                     <motion.h1
                         className="text-4xl md:text-5xl font-black mb-4"
                         style={{ color: "#F9F3EF" }}
