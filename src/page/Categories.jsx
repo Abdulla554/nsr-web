@@ -154,7 +154,7 @@ export default function Categories() {
   );
 
   return (
-    <div className="min-h-screen bg-black mt-2 py-2 md:py-20 px-2 md:px-0  ">
+    <div className="min-h-screen bg-black mt-4 py-2 md:py-20 px-2 md:px-0  ">
       <div className="container pb-20 mx-auto px-4 md:px-8 lg:px-16  ">
         {/* Page Header with Enhanced Design */}
         <div className="text-center my-16 relative">

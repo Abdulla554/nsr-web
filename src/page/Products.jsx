@@ -169,8 +169,8 @@ const Products = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen py-20 px-4 md:px-16">
-      <div className="">
+    <div className="bg-black min-h-screen  py-20 px-4 md:px-16">
+      <div className="pt-5">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}

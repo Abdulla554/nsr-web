@@ -41,7 +41,7 @@ export default function Checkout() {
     const [createdOrder, setCreatedOrder] = useState(null)
     const [error, setError] = useState('')
 
-    const deliveryPrice = 5000
+    const deliveryPrice = 0
     const productsPrice = getTotalPrice()
     const total = productsPrice + deliveryPrice
 
@@ -188,7 +188,7 @@ export default function Checkout() {
                             <div>
                                 <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
                                     <Mail className="w-4 h-4" style={{ color: "#749BC2" }} />
-                                    البريد الإلكتروني (اختياري)
+                                    البريد الإلكتروني  
                                 </label>
                                 <input
                                     type="email"
@@ -540,11 +540,11 @@ export default function Checkout() {
     }
 
     return (
-        <div className="min-h-screen pt-24 pb-16" style={{ backgroundColor: "#1a1a2e" }}>
+        <div className="min-h-screen py-24 bg-black "  >
             <div className="max-w-5xl mx-auto px-4 md:px-8">
 
                 {/* Header */}
-                <div className="mb-12">
+                <div className="my-16">
                     <motion.h1
                         className="text-4xl md:text-5xl font-black mb-4"
                         style={{ color: "#F9F3EF" }}
@@ -564,14 +564,14 @@ export default function Checkout() {
                         <span>الرئيسية</span>
                         <ArrowLeft className="w-4 h-4" />
                         <span>السلة</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowLeft className="w-4 h-4" />
                         <span>إتمام الطلب</span>
                     </motion.div>
                 </div>
 
                 {/* Progress Steps */}
                 <motion.div
-                    className="flex items-center justify-center mb-12"
+                    className="flex items-center text-center justify-center mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -582,8 +582,8 @@ export default function Checkout() {
                         const isCompleted = currentStep > step.id
 
                         return (
-                            <div key={step.id} className="flex items-center">
-                                <div className="flex flex-col items-center">
+                            <div key={step.id} className="flex text-center items-center">
+                                <div className="flex flex-col text-center items-center">
                                     <div className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${isCompleted
                                         ? 'bg-green-500 scale-110'
                                         : isActive

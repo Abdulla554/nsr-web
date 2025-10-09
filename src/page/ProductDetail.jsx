@@ -347,7 +347,7 @@ const ProductDetail = () => {
 
 
                 {/* Quantity Selector */}
-                <div className="flex items-center justify-start gap-6">
+                <div className="flex items-center justify-center md:justify-start gap-6">
                   <span className="block text-base font-medium text-white">
                     الكمية
                   </span>

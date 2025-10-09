@@ -123,8 +123,8 @@ const ProductShowcase = () => {
             >
               <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-blue-900/20 to-purple-900/20 border border-white/10 hover:border-blue-400/50 transition-all duration-300">
                 <img
-                  src={displayProducts[0]?.image || "/s1.png"}
-                  alt={displayProducts[0]?.name || "Product"}
+                  src={displayProducts[0]?.image }
+                  alt={displayProducts[0]?.name }
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
@@ -150,8 +150,8 @@ const ProductShowcase = () => {
             >
               <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-red-900/20 to-orange-900/20 border border-white/10 hover:border-red-400/50 transition-all duration-300">
                 <img
-                  src={displayProducts[1]?.image || "/s2.png"}
-                  alt={displayProducts[1]?.name || "Product"}
+                  src={displayProducts[1]?.image}
+                  alt={displayProducts[1]?.name  }
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
@@ -181,8 +181,8 @@ const ProductShowcase = () => {
           >
             <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-green-900/20 to-teal-900/20 border border-white/10 hover:border-green-400/50 transition-all duration-300">
               <img
-                src={displayProducts[2]?.image || "/s3.png"}
-                alt={displayProducts[2]?.name || "Product"}
+                src={displayProducts[2]?.image  }
+                alt={displayProducts[2]?.name }
                 className="w-full md:h-[600px] object-cover group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-900/70 via-transparent to-transparent" />
@@ -219,8 +219,8 @@ const ProductShowcase = () => {
             >
               <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-white/10 hover:border-purple-400/50 transition-all duration-300">
                 <img
-                  src={displayProducts[3]?.image || "/s4.png"}
-                  alt={displayProducts[3]?.name || "Product"}
+                  src={displayProducts[3]?.image }
+                  alt={displayProducts[3]?.name }
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
@@ -246,8 +246,8 @@ const ProductShowcase = () => {
             >
               <div className="relative h-full rounded-2xl overflow-hidden bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border border-white/10 hover:border-yellow-400/50 transition-all duration-300">
                 <img
-                  src={displayProducts[4]?.image || "/s5.png"}
-                  alt={displayProducts[4]?.name || "Product"}
+                  src={displayProducts[4]?.image }
+                  alt={displayProducts[4]?.name }
                   className="w-full md:h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
