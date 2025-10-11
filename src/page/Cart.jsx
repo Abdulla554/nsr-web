@@ -32,8 +32,8 @@ export default function Cart() {
   const [discountCode, setDiscountCode] = useState('')
   const [appliedDiscount, setAppliedDiscount] = useState(0)
 
-  const deliveryPrice = 0
   const productsPrice = getTotalPrice()
+  const deliveryPrice = productsPrice < 25000 ? 5000 : 0
   const total = productsPrice + deliveryPrice - appliedDiscount
 
   const applyDiscount = () => {
@@ -325,8 +325,8 @@ export default function Cart() {
                       <Truck className="w-5 h-5" style={{ color: "#749BC2" }} />
                       <span style={{ color: "#749BC2" }}>التوصيل</span>
                     </div>
-                    <span className="font-bold text-green-500" >
-                       مجاني
+                    <span className={`font-bold ${deliveryPrice === 0 ? 'text-green-500' : ''}`} style={deliveryPrice > 0 ? { color: "#F9F3EF" } : {}}>
+                      {deliveryPrice === 0 ? 'مجاني' : `${deliveryPrice.toLocaleString()} د.ع`}
                     </span>
                   </div>
 
