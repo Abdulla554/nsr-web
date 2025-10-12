@@ -102,16 +102,15 @@ export const useOrdersStore = create((set) => ({
   currentUser: null,
 
   // جلب طلبات المستخدم
-  fetchUserOrders: async (name, phone) => {
+  fetchUserOrders: async (phone) => {
     set({ loading: true });
     try {
-      const { default: usersService } = await import('../services/usersService');
-      const response = await usersService.getUserOrders(name, phone);
+      const { default: axiosInstance } = await import('../lib/axios');
+      const response = await axiosInstance.get(`/orders/by-phone/${phone}`);
 
-      if (response && response.success) {
+      if (response && response.data) {
         set({
-          userOrders: response.data.orders || [],
-          currentUser: response.data.user,
+          userOrders: response.data || [],
           loading: false
         });
       } else {

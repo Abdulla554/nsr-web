@@ -80,11 +80,18 @@ export default function Checkout() {
             }
 
             try {
-                await findOrCreateUser({
+                // إرسال الإيميل فقط إذا كان غير فارغ
+                const userData = {
                     name: orderData.name,
-                    email: orderData.email,
                     phone: orderData.phone
-                })
+                }
+
+                // إضافة الإيميل فقط إذا كان موجوداً وغير فارغ
+                if (orderData.email && orderData.email.trim() !== '') {
+                    userData.email = orderData.email.trim()
+                }
+
+                await findOrCreateUser(userData)
                 setCurrentStep(2)
             } catch (error) {
                 console.error('Error creating user:', error)
@@ -98,14 +105,21 @@ export default function Checkout() {
                     price: item.price
                 }))
 
-                const newOrder = await createOrder({
+                // إعداد بيانات الطلب
+                const orderPayload = {
                     customerName: orderData.name,
-                    customerEmail: orderData.email,
                     customerPhone: orderData.phone,
                     location: orderData.address || 'موقع غير محدد',
                     totalAmount: total,
                     items: orderItems
-                })
+                }
+
+                // إضافة الإيميل فقط إذا كان موجوداً وغير فارغ
+                if (orderData.email && orderData.email.trim() !== '') {
+                    orderPayload.customerEmail = orderData.email.trim()
+                }
+
+                const newOrder = await createOrder(orderPayload)
 
                 setCreatedOrder(newOrder)
                 setOrderSuccess(true)
@@ -201,6 +215,7 @@ export default function Checkout() {
                                         color: "#F9F3EF"
                                     }}
                                     placeholder="مثال: example@email.com"
+
                                 />
                             </div>
 

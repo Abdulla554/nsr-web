@@ -16,6 +16,7 @@ import {
     ArrowLeft
 } from 'lucide-react'
 import { useOrdersStore } from '../store/index'
+import axiosInstance from '../lib/axios'
 
 const statusConfig = {
     PENDING: {
@@ -66,7 +67,7 @@ export default function Orders() {
         if (savedUser) {
             const user = JSON.parse(savedUser)
             setUserInfo({ name: user.name, phone: user.phone })
-            fetchUserOrders(user.name, user.phone)
+            fetchUserOrders(user.phone)
         }
     }, [fetchUserOrders])
 
@@ -75,7 +76,7 @@ export default function Orders() {
         setError('')
         if (userInfo.name && userInfo.phone) {
             try {
-                await fetchUserOrders(userInfo.name, userInfo.phone)
+                await fetchUserOrders(userInfo.phone)
             } catch (error) {
                 console.error('Error fetching orders:', error)
                 setError('حدث خطأ في جلب الطلبات. تأكد من صحة البيانات أو أن الخادم يعمل.')
@@ -85,7 +86,7 @@ export default function Orders() {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString)
-        return date.toLocaleDateString('ar-SA', {
+        return date.toLocaleDateString('en-us', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -161,7 +162,7 @@ export default function Orders() {
                                 type="tel"
                                 value={userInfo.phone}
                                 onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
-                                className="w-full bg-white/10 border border-white/20 rounded-xl text-right px-4 py-3 text-[#F9F3EF] placeholder-[#749BC2] focus:outline-none focus:border-[#2C6D90] transition-colors text-right"
+                                className="w-full bg-white/10 border border-white/20 rounded-xl text-right px-4 py-3 text-[#F9F3EF] placeholder-[#749BC2] focus:outline-none focus:border-[#2C6D90] transition-colors"
                                 placeholder="أدخل رقم هاتفك"
                                 required
                             />
@@ -277,7 +278,7 @@ export default function Orders() {
                                         </div>
 
                                         {/* Order Summary */}
-                                        <div className="lg:w-80">   
+                                        <div className="lg:w-80">
                                             <div className="bg-white/5 rounded-xl p-4 mb-4">
                                                 <h4 className="text-[#F9F3EF] font-semibold mb-3">ملخص الطلب</h4>
                                                 <div className="space-y-2">
