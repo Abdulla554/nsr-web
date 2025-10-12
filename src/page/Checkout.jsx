@@ -93,6 +93,10 @@ export default function Checkout() {
                 }
 
                 await findOrCreateUser(userData)
+
+                // الانتقال للخطوة التالية بعد إنشاء المستخدم بنجاح
+                setCurrentStep(2)
+                window.scrollTo(0, 0)
             } catch (error) {
                 console.error('Error creating order:', error)
                 setError('حدث خطأ في إنشاء الطلب. يرجى المحاولة مرة أخرى')
