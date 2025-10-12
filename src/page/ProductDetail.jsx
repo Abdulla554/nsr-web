@@ -25,6 +25,7 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const { id } = useParams();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -74,9 +75,34 @@ const ProductDetail = () => {
 
   // دالة إضافة المنتج للسلة
   const handleAddToCart = () => {
-    if (product) {
-      addToCart(product, quantity);
+    if (!product) return;
+
+    // إذا كان المنتج موجودًا بالفعل في السلة، اعرض تأكيدًا قبل الإضافة مرة أخرى
+    if (isInCart(product.id)) {
+      setIsConfirmOpen(true);
+      return;
     }
+
+    addToCart(product, quantity);
+  };
+
+  const handleConfirmAdd = () => {
+    if (!product) return;
+    addToCart(product, quantity);
+    setIsConfirmOpen(false);
+  };
+
+  const handleCancelAdd = () => setIsConfirmOpen(false);
+
+  // دالة فتح واتساب مع معلومات المنتج
+  const handleWhatsAppContact = () => {
+    if (!product?.id) return;
+    const whatsappNumber = "9647750007083"; // بدون علامة + حسب صيغة wa.me
+    const productName = product.name || product.title || "منتج";
+    const productUrl = `${window.location.origin}/product/${product.id}`;
+    const message = `مرحبا، أود الاستفسار عن المنتج رقم ${product.id} (${productName}).\nرابط المنتج: ${productUrl}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   };
 
   // فحص ما إذا كان المنتج موجود في السلة
@@ -321,7 +347,7 @@ const ProductDetail = () => {
 
 
                 {/* Quantity Selector */}
-                <div className="flex items-center justify-start gap-6">
+                <div className="flex items-center justify-center md:justify-start gap-6">
                   <span className="block text-base font-medium text-white">
                     الكمية
                   </span>
@@ -337,7 +363,7 @@ const ProductDetail = () => {
                     </button>
                     {/* Input */}
 
-                    
+
                     <div
                       className="w-20 h-12 flex items-center justify-center 
              text-2xl font-semibold tracking-wide text-gray-800 
@@ -347,7 +373,7 @@ const ProductDetail = () => {
                     >
                       {quantity}
                     </div>
-                    
+
 
 
 
@@ -365,12 +391,12 @@ const ProductDetail = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col gap-3">
                   {/* Buy Now */}
-                  <button className="w-full py-4 rounded-full font-medium text-base text-white bg-[#25D366]/60 hover:opacity-90 transition">
+                  <button onClick={handleWhatsAppContact} className="w-full py-4 rounded-full font-medium text-base text-white bg-[#25D366]/60 hover:opacity-90 transition">
                     تواصل معنا
                   </button>
 
                   {/* Add To Card */}
-                  <button className="w-full py-4 rounded-full text-white font-medium text-base hover:text-gray-900 border border-gray-400 hover:bg-gray-100 transition">
+                  <button onClick={handleAddToCart} className="w-full py-4 rounded-full text-white font-medium text-base hover:text-gray-900 border border-gray-400 hover:bg-gray-100 transition">
                     اضافة الى السلة
                   </button>
                 </div>
@@ -387,6 +413,43 @@ const ProductDetail = () => {
 
 
       {/* Specifications Section */}
+      {/* Confirmation Modal */}
+      {isConfirmOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleCancelAdd}></div>
+          <div className="relative w-full max-w-md rounded-2xl border shadow-2xl overflow-hidden"
+            style={{ backgroundColor: "#1a1a2e", borderColor: "rgba(116, 155, 194, 0.3)" }}>
+            <div className="px-6 py-5 border-b" style={{ borderColor: "rgba(116, 155, 194, 0.2)" }}>
+              <h3 className="text-xl font-bold" style={{ color: "#F9F3EF" }}>تأكيد الإضافة</h3>
+            </div>
+            <div className="px-6 py-5 space-y-3">
+              <p className="text-base leading-relaxed" style={{ color: "#749BC2" }}>
+                لقد قمت بإضافة المنتج
+                <span className="mx-1 font-semibold" style={{ color: "#F9F3EF" }}>{product.name || product.title}</span>
+                إلى السلة بكمية
+                <span className="mx-1 font-semibold" style={{ color: "#F9F3EF" }}>{getQuantity(product.id)}</span>.
+              </p>
+              <p className="text-sm" style={{ color: "#749BC2" }}>هل تريد الإضافة مرة أخرى؟</p>
+            </div>
+            <div className="px-6 pb-6 pt-2 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end">
+            
+              <button onClick={handleConfirmAdd}
+                className="w-full sm:w-auto px-5 py-3 rounded-xl font-semibold shadow-lg hover:shadow-2xl transition"
+                style={{ backgroundColor: "#2C6D90", color: "#F9F3EF" }}>
+                إضافة مرة أخرى
+              </button>
+              <button onClick={handleCancelAdd}
+                className="w-full sm:w-auto px-5 py-3 rounded-xl font-medium border transition"
+                style={{ color: "#F9F3EF", borderColor: "rgba(116, 155, 194, 0.3)" }}>
+                إلغاء
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      
+      
       {product.specifications && Object.keys(product.specifications).length > 0 && (
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-20 mt-20">
           <div className="text-center mb-12">

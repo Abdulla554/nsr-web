@@ -171,7 +171,7 @@ export default function Brands() {
                       <img
                         src={brand?.logo || brand?.image}
                         alt={brand?.title || brand?.name || 'Brand'}
-                        className="max-h-12 md:max-h-16 max-w-20 md:max-w-24 object-contain filter drop-shadow-sm group-hover:drop-shadow-lg transition-all duration-300"
+                        className="max-h-12 md:max-h-24 max-w-20 md:max-w-full object-fill filter drop-shadow-sm group-hover:drop-shadow-lg transition-all duration-300"
                         loading="lazy"
                       />
                     </div>

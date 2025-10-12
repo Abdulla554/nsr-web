@@ -7,8 +7,8 @@ import { useCartStore } from '../store/index';
 import { useProducts, useCategories, useBrands } from '../hooks';
 const Products = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showBrandDropdown, setShowBrandDropdown] = useState(false);
   const [searchParams] = useSearchParams();
@@ -20,11 +20,17 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // قراءة معامل الفئة من URL
+  // قراءة معاملات URL
   useEffect(() => {
     const categoryParam = searchParams.get('category');
+    const brandParam = searchParams.get('brandId');
+    
     if (categoryParam) {
-      setSelectedCategories([categoryParam]);
+      setSelectedCategory(categoryParam);
+    }
+    
+    if (brandParam) {
+      setSelectedBrand(brandParam);
     }
   }, [searchParams]);
 
@@ -114,8 +120,9 @@ const Products = () => {
   } = useProducts({
     page: 1,
     limit: 12,
-    categoryId: selectedCategories.length > 0 ? selectedCategories[0] : '',
-    brandId: selectedBrands.length > 0 ? selectedBrands[0] : ''
+    search: searchParams.get('search') || '',
+    categoryId: selectedCategory || '',
+    brandId: selectedBrand || ''
   });
 
   const {
@@ -130,25 +137,17 @@ const Products = () => {
     error: brandsError
   } = useBrands();
   // دوال إدارة الفلترة
-  const toggleCategory = (category) => {
-    setSelectedCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(c => c !== category)
-        : [...prev, category]
-    );
+  const selectCategory = (category) => {
+    setSelectedCategory(selectedCategory === category ? null : category);
   };
 
-  const toggleBrand = (brand) => {
-    setSelectedBrands(prev =>
-      prev.includes(brand)
-        ? prev.filter(b => b !== brand)
-        : [...prev, brand]
-    );
+  const selectBrand = (brand) => {
+    setSelectedBrand(selectedBrand === brand ? null : brand);
   };
 
   const clearAllFilters = () => {
-    setSelectedCategories([]);
-    setSelectedBrands([]);
+    setSelectedCategory(null);
+    setSelectedBrand(null);
   };
 
   // دالة إضافة المنتج للسلة
@@ -170,8 +169,8 @@ const Products = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen py-20 px-4 md:px-16">
-      <div className="">
+    <div className="bg-black min-h-screen  py-20 px-4 md:px-16">
+      <div className="pt-5">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
@@ -180,10 +179,15 @@ const Products = () => {
           className="text-center my-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">منتجاتنا</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              {searchParams.get('search') ? `نتائج البحث عن "${searchParams.get('search')}"` : 'منتجاتنا'}
+            </span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl">
-            استكشف أحدث مجموعتنا من المنتجات والإكسسوارات عالية الجودة
+            {searchParams.get('search') 
+              ? `تم العثور على ${productsData?.data?.length || 0} منتج يطابق بحثك`
+              : 'استكشف أحدث مجموعتنا من المنتجات والإكسسوارات عالية الجودة'
+            }
           </p>
         </motion.div>
 
@@ -194,17 +198,17 @@ const Products = () => {
             {/* All Products Button */}
             <button
               onClick={clearAllFilters}
-              className={`w-full px-4 py-3 rounded-lg flex items-center justify-between transition-all duration-300 font-arabic-bold arabic-text ${selectedCategories.length === 0 && selectedBrands.length === 0
+              className={`w-full px-4 py-3 rounded-lg flex items-center justify-between transition-all duration-300 font-arabic-bold arabic-text ${!selectedCategory && !selectedBrand
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-800 text-white hover:bg-gray-700'
                 }`}
             >
               <span>جميع المنتجات</span>
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center ${selectedCategories.length === 0 && selectedBrands.length === 0
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center ${!selectedCategory && !selectedBrand
                 ? 'bg-white'
                 : 'bg-gray-600'
                 }`}>
-                <div className={`w-2 h-2 rounded-full ${selectedCategories.length === 0 && selectedBrands.length === 0
+                <div className={`w-2 h-2 rounded-full ${!selectedCategory && !selectedBrand
                   ? 'bg-blue-600'
                   : 'bg-gray-400'
                   }`}></div>
@@ -233,11 +237,11 @@ const Products = () => {
                     {categories?.map((category) => (
                       <button
                         key={category?.id || category}
-                        onClick={() => toggleCategory(category?.id || category)}
+                        onClick={() => selectCategory(category?.id || category)}
                         className="w-full px-4 py-3 gap-2 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
                         <span>{category?.name || category}</span>
-                        {selectedCategories.includes(category?.id || category) && (
+                        {selectedCategory === (category?.id || category) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
                       </button>
@@ -266,11 +270,11 @@ const Products = () => {
                     {brands?.map((brand) => (
                       <button
                         key={brand?.id || brand}
-                        onClick={() => toggleBrand(brand?.id || brand)}
+                        onClick={() => selectBrand(brand?.id || brand)}
                         className="w-full px-4 py-3 text-right text-white hover:bg-gray-700 flex items-center justify-between transition-colors duration-200 font-arabic-primary arabic-text"
                       >
                         <span>{brand?.name || brand}</span>
-                        {selectedBrands.includes(brand?.id || brand) && (
+                        {selectedBrand === (brand?.id || brand) && (
                           <Check className="w-4 h-4 text-blue-400" />
                         )}
                       </button>
@@ -280,38 +284,36 @@ const Products = () => {
               </div>
 
               {/* Active Filters Display */}
-              {(selectedCategories.length > 0 || selectedBrands.length > 0) && (
+              {(selectedCategory || selectedBrand) && (
                 <div className="mt-4 p-3 bg-gray-800 rounded-lg">
                   <h4 className="text-sm font-arabic-bold text-gray-300 mb-2 arabic-text">الفلاتر النشطة:</h4>
                   <div className="space-y-1">
-                    {selectedCategories.map((categoryId) => {
-                      const category = categories?.find(cat => (cat?.id || cat) === categoryId);
-                      return (
-                        <div key={categoryId} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
-                          <span className="text-blue-400">الفئة: {category?.name || categoryId}</span>
-                          <button
-                            onClick={() => toggleCategory(categoryId)}
-                            className="text-red-400 hover:text-red-300"
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      );
-                    })}
-                    {selectedBrands.map((brandId) => {
-                      const brand = brands?.find(br => (br?.id || br) === brandId);
-                      return (
-                        <div key={brandId} className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
-                          <span className="text-green-400">البراند: {brand?.name || brandId}</span>
-                          <button
-                            onClick={() => toggleBrand(brandId)}
-                            className="text-red-400 hover:text-red-300"
-                          >
-                            ✕
-                          </button>
-                        </div>
-                      );
-                    })}
+                    {selectedCategory && (
+                      <div className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
+                        <span className="text-blue-400">
+                          الفئة: {categories?.find(cat => (cat?.id || cat) === selectedCategory)?.name || selectedCategory}
+                        </span>
+                        <button
+                          onClick={() => selectCategory(selectedCategory)}
+                          className="text-red-400 hover:text-red-300"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    )}
+                    {selectedBrand && (
+                      <div className="flex items-center justify-between text-xs font-arabic-primary arabic-text">
+                        <span className="text-green-400">
+                          البراند: {brands?.find(br => (br?.id || br) === selectedBrand)?.name || selectedBrand}
+                        </span>
+                        <button
+                          onClick={() => selectBrand(selectedBrand)}
+                          className="text-red-400 hover:text-red-300"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}

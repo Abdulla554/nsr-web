@@ -18,7 +18,7 @@ const HeroCarousel = () => {
   const slideDuration = 4000; // 4 ثواني لكل شريحة
 
   // Check if we have enough slides for loop mode (minimum 3 slides)
-  const hasEnoughSlides = banners && banners.length >= 3;
+  const hasEnoughSlides = banners && banners.length >= 1;
 
   useEffect(() => {
     // Only run progress animation if we have enough slides for loop mode
@@ -83,7 +83,7 @@ const HeroCarousel = () => {
   }
 
   return (
-    <div className="w-full h-[450px] md:h-[500px] lg:h-[600px] relative pt-2">
+    <div className="w-full h-[450px] lg:h-[750px] relative pt-2">
       {/* Background Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
 
@@ -110,7 +110,7 @@ const HeroCarousel = () => {
               />
 
               {/* Content Overlay */}
-              {banner.title && (
+              {/* {banner.title && (
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                   <h3 className="text-white text-lg md:text-2xl lg:text-3xl font-bold mb-2">
                     {banner.title}
@@ -121,7 +121,7 @@ const HeroCarousel = () => {
                     </p>
                   )}
                 </div>
-              )}
+              )} */}
             </div>
           </SwiperSlide>
         ))}
@@ -129,7 +129,7 @@ const HeroCarousel = () => {
 
       {/* Progress Bar */}
       {hasEnoughSlides && (
-        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-60 md:w-80 h-1 bg-white/30 rounded-full overflow-hidden backdrop-blur-sm">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-40  h-1 bg-white/30 rounded-full overflow-hidden backdrop-blur-sm">
           <div
             className="h-full bg-gradient-to-r from-[#2C6D90] to-[#749BC2] rounded-full transition-all duration-75 ease-linear shadow-lg"
             style={{ width: `${progress}%` }}

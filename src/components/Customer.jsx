@@ -4,7 +4,7 @@ import { FaShippingFast, FaShieldAlt, FaHeadset, FaGift, FaTools, FaLaptop, FaGa
 
 export default function Customer() {
   const services = [
-   
+
     {
       icon: <FaShieldAlt className="text-3xl" />,
       title: "ضمان الخدمة",
@@ -25,14 +25,14 @@ export default function Customer() {
     }
   ]
 
-  
+
 
   return (
     <div className="bg-dark-900 text-white">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
-        
-        
+
+
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center ">
             <motion.div
@@ -87,11 +87,11 @@ export default function Customer() {
                       {service.icon}
                     </div>
                   </div>
-                  
+
                   <h3 className="text-xl font-arabic-bold mb-4 text-white">
                     {service.title}
                   </h3>
-                  
+
                   <p className="text-gray-400 font-arabic-primary leading-relaxed">
                     {service.description}
                   </p>
@@ -102,7 +102,7 @@ export default function Customer() {
         </div>
       </section>
 
-   
+
     </div>
   )
 }

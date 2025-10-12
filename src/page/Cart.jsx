@@ -7,7 +7,7 @@ import {
   Plus,
   Minus,
   ArrowRight,
-  ShoppingBag,
+  ShoppingCart,
   Package,
   CreditCard,
   Truck,
@@ -32,8 +32,8 @@ export default function Cart() {
   const [discountCode, setDiscountCode] = useState('')
   const [appliedDiscount, setAppliedDiscount] = useState(0)
 
-  const deliveryPrice = 5000
   const productsPrice = getTotalPrice()
+  const deliveryPrice = productsPrice < 25000 ? 5000 : 0
   const total = productsPrice + deliveryPrice - appliedDiscount
 
   const applyDiscount = () => {
@@ -100,7 +100,7 @@ export default function Cart() {
           >
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: "#2C6D90" }}>
-                <ShoppingBag className="w-6 h-6" style={{ color: "#F9F3EF" }} />
+                <ShoppingCart className="w-6 h-6" style={{ color: "#F9F3EF" }} />
               </div>
               <div>
                 <p className="text-sm" style={{ color: "#749BC2" }}>المنتجات</p>
@@ -142,7 +142,7 @@ export default function Cart() {
               >
                 <div className="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center" 
                   style={{ backgroundColor: "rgba(116, 155, 194, 0.1)" }}>
-                  <ShoppingBag className="w-16 h-16" style={{ color: "#749BC2" }} />
+                  <ShoppingCart className="w-16 h-16" style={{ color: "#749BC2" }} />
                 </div>
                 <h3 className="text-2xl font-bold mb-3" style={{ color: "#F9F3EF" }}>
                   السلة فارغة
@@ -325,8 +325,8 @@ export default function Cart() {
                       <Truck className="w-5 h-5" style={{ color: "#749BC2" }} />
                       <span style={{ color: "#749BC2" }}>التوصيل</span>
                     </div>
-                    <span className="font-bold" style={{ color: "#F9F3EF" }}>
-                      {deliveryPrice.toLocaleString()} د.ع
+                    <span className={`font-bold ${deliveryPrice === 0 ? 'text-green-500' : ''}`} style={deliveryPrice > 0 ? { color: "#F9F3EF" } : {}}>
+                      {deliveryPrice === 0 ? 'مجاني' : `${deliveryPrice.toLocaleString()} د.ع`}
                     </span>
                   </div>
 
@@ -401,16 +401,7 @@ export default function Cart() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: "#749BC2" }}>
-                      <Gift className="w-5 h-5" style={{ color: "#F9F3EF" }} />
-                    </div>
-                    <div>
-                      <p className="font-semibold" style={{ color: "#F9F3EF" }}>هدايا مجانية</p>
-                      <p className="text-sm" style={{ color: "#749BC2" }}>مع الطلبات الكبيرة</p>
-                    </div>
-                  </div>
+                   
                 </div>
               </div>
             </motion.div>

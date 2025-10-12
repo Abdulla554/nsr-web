@@ -10,7 +10,7 @@ import {
     XCircle,
     User,
     Phone,
-    Mail,
+    FileText,
     Calendar,
     MapPin,
     ArrowLeft
@@ -62,6 +62,7 @@ export default function Orders() {
     const [error, setError] = useState('')
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         // جلب معلومات المستخدم من localStorage إذا كانت موجودة
         const savedUser = localStorage.getItem('userInfo')
         if (savedUser) {
@@ -86,12 +87,15 @@ export default function Orders() {
 
     const formatDate = (dateString) => {
         const date = new Date(dateString)
+
         return date.toLocaleDateString('en-us', {
+
             year: 'numeric',
             month: 'long',
             day: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
+            calendar: 'gregory'
         })
     }
 
@@ -249,13 +253,15 @@ export default function Orders() {
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center gap-3">
-                                                    <Mail className="w-5 h-5 text-[#749BC2]" />
-                                                    <div>
-                                                        <p className="text-[#749BC2] text-sm">البريد الإلكتروني</p>
-                                                        <p className="text-[#F9F3EF] font-medium">{order.customerEmail}</p>
+                                                {order.notes && (
+                                                    <div className="flex items-center gap-3">
+                                                        <FileText className="w-5 h-5 text-[#749BC2]" />
+                                                        <div>
+                                                            <p className="text-[#749BC2] text-sm">الملاحظات</p>
+                                                            <p className="text-[#F9F3EF] font-medium">{order.notes}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                )}
 
                                                 <div className="flex items-center gap-3">
                                                     <Calendar className="w-5 h-5 text-[#749BC2]" />

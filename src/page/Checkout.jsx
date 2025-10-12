@@ -7,7 +7,7 @@ import {
     ArrowLeft,
     User,
     Phone,
-    Mail,
+    FileText,
     MapPin,
     CheckCircle,
     Package,
@@ -33,19 +33,20 @@ export default function Checkout() {
     const [currentStep, setCurrentStep] = useState(1)
     const [orderData, setOrderData] = useState({
         name: '',
-        email: '',
         phone: '',
-        address: ''
+        address: '',
+        notes: ''
     })
     const [orderSuccess, setOrderSuccess] = useState(false)
     const [createdOrder, setCreatedOrder] = useState(null)
     const [error, setError] = useState('')
 
-    const deliveryPrice = 5000
     const productsPrice = getTotalPrice()
+    const deliveryPrice = productsPrice < 25000 ? 5000 : 0
     const total = productsPrice + deliveryPrice
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (cart.length === 0 && !orderSuccess) {
             navigate('/')
         }
@@ -55,9 +56,9 @@ export default function Checkout() {
             const user = JSON.parse(savedUser)
             setOrderData({
                 name: user.name || '',
-                email: user.email || '',
                 phone: user.phone || '',
-                address: ''
+                address: '',
+                notes: ''
             })
         }
     }, [cart.length, navigate, orderSuccess])
@@ -92,10 +93,9 @@ export default function Checkout() {
                 }
 
                 await findOrCreateUser(userData)
-                setCurrentStep(2)
             } catch (error) {
-                console.error('Error creating user:', error)
-                setError('حدث خطأ. يرجى المحاولة مرة أخرى')
+                console.error('Error creating order:', error)
+                setError('حدث خطأ في إنشاء الطلب. يرجى المحاولة مرة أخرى')
             }
         } else if (currentStep === 2) {
             try {
@@ -110,6 +110,7 @@ export default function Checkout() {
                     customerName: orderData.name,
                     customerPhone: orderData.phone,
                     location: orderData.address || 'موقع غير محدد',
+                    notes: orderData.notes || '',
                     totalAmount: total,
                     items: orderItems
                 }
@@ -124,6 +125,7 @@ export default function Checkout() {
                 setCreatedOrder(newOrder)
                 setOrderSuccess(true)
                 setCurrentStep(3)
+                window.scrollTo(0, 0);
                 clearCart()
             } catch (error) {
                 console.error('Error creating order:', error)
@@ -198,45 +200,45 @@ export default function Checkout() {
                                     required
                                 />
                             </div>
+                            <div className='md:col-span-2 '>
+                                <div>
+                                    <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
+                                        <MapPin className="w-4 h-4" style={{ color: "#749BC2" }} />
+                                        العنوان *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={orderData.address}
+                                        onChange={handleInputChange}
+                                        className="w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-4 text-lg transition-all duration-300 focus:outline-none focus:ring-2 placeholder:text-sm"
+                                        style={{
+                                            borderColor: "rgba(116, 155, 194, 0.3)",
+                                            color: "#F9F3EF"
+                                        }}
+                                        placeholder="مثال: شارع XX، حي XX، بغداد"
+                                        required
+                                    />
+                                </div>
 
-                            <div>
-                                <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
-                                    <Mail className="w-4 h-4" style={{ color: "#749BC2" }} />
-                                    البريد الإلكتروني (اختياري)
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={orderData.email}
-                                    onChange={handleInputChange}
-                                    className="w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-4 text-lg transition-all duration-300 focus:outline-none focus:ring-2 placeholder:text-sm"
-                                    style={{
-                                        borderColor: "rgba(116, 155, 194, 0.3)",
-                                        color: "#F9F3EF"
-                                    }}
-                                    placeholder="مثال: example@email.com"
-
-                                />
-                            </div>
-
-                            <div>
-                                <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
-                                    <MapPin className="w-4 h-4" style={{ color: "#749BC2" }} />
-                                    العنوان *
-                                </label>
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={orderData.address}
-                                    onChange={handleInputChange}
-                                    className="w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-4 text-lg transition-all duration-300 focus:outline-none focus:ring-2 placeholder:text-sm"
-                                    style={{
-                                        borderColor: "rgba(116, 155, 194, 0.3)",
-                                        color: "#F9F3EF"
-                                    }}
-                                    placeholder="مثال: شارع XX، حي XX، بغداد"
-                                    required
-                                />
+                                <div className="mt-6">
+                                    <label className="flex items-center gap-2 text-sm font-semibold mb-3" style={{ color: "#F9F3EF" }}>
+                                        <FileText className="w-4 h-4" style={{ color: "#749BC2" }} />
+                                        ملاحظات إضافية
+                                    </label>
+                                    <textarea
+                                        name="notes"
+                                        value={orderData.notes}
+                                        onChange={handleInputChange}
+                                        rows="4"
+                                        className="w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-4 text-lg transition-all duration-300 focus:outline-none focus:ring-2 placeholder:text-sm resize-none"
+                                        style={{
+                                            borderColor: "rgba(116, 155, 194, 0.3)",
+                                            color: "#F9F3EF"
+                                        }}
+                                        placeholder="أضف أي ملاحظات خاصة بالطلب (اختياري)..."
+                                    />
+                                </div>
                             </div>
                         </div>
 
@@ -300,20 +302,6 @@ export default function Checkout() {
                                     </div>
                                 </div>
 
-                                {orderData.email && (
-                                    <div className="flex items-center gap-3 p-4 rounded-xl"
-                                        style={{ backgroundColor: "rgba(249, 243, 239, 0.05)" }}>
-                                        <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                                            style={{ backgroundColor: "#2C6D90" }}>
-                                            <Mail className="w-6 h-6" style={{ color: "#F9F3EF" }} />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm mb-1" style={{ color: "#749BC2" }}>البريد</p>
-                                            <p className="font-semibold text-sm" style={{ color: "#F9F3EF" }}>{orderData.email}</p>
-                                        </div>
-                                    </div>
-                                )}
-
                                 {orderData.address && (
                                     <div className="flex items-center gap-3 p-4 rounded-xl"
                                         style={{ backgroundColor: "rgba(249, 243, 239, 0.05)" }}>
@@ -328,6 +316,24 @@ export default function Checkout() {
                                     </div>
                                 )}
                             </div>
+
+                            {orderData.notes && (
+                                <div className="md:col-span-2 mt-4 p-4 rounded-xl"
+                                    style={{ backgroundColor: "rgba(249, 243, 239, 0.05)" }}>
+                                    <div className="flex items-start gap-3">
+                                        <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                                            style={{ backgroundColor: "#2C6D90" }}>
+                                            <FileText className="w-6 h-6" style={{ color: "#F9F3EF" }} />
+                                        </div>
+                                        <div className="flex-1 ">
+                                            <p className="text-sm my-2" style={{ color: "#749BC2" }}>الملاحظات</p>
+                                            <p className="font-semibold text-sm leading-relaxed" style={{ color: "#F9F3EF" }}>
+                                                {orderData.notes}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Order Items */}
@@ -398,8 +404,8 @@ export default function Checkout() {
                                         <Truck className="w-4 h-4" style={{ color: "#749BC2" }} />
                                         <span style={{ color: "#749BC2" }}>التوصيل</span>
                                     </div>
-                                    <span className="font-bold text-lg" style={{ color: "#F9F3EF" }}>
-                                        {deliveryPrice.toLocaleString()} د.ع
+                                    <span className={`font-bold text-lg ${deliveryPrice === 0 ? 'text-green-500' : ''}`} style={deliveryPrice > 0 ? { color: "#F9F3EF" } : {}}>
+                                        {deliveryPrice === 0 ? 'مجاني' : `${deliveryPrice.toLocaleString()} د.ع`}
                                     </span>
                                 </div>
                                 <div className="border-t pt-4" style={{ borderColor: "rgba(116, 155, 194, 0.3)" }}>
@@ -555,11 +561,11 @@ export default function Checkout() {
     }
 
     return (
-        <div className="min-h-screen pt-24 pb-16" style={{ backgroundColor: "#1a1a2e" }}>
+        <div className="min-h-screen py-24 bg-black "  >
             <div className="max-w-5xl mx-auto px-4 md:px-8">
 
                 {/* Header */}
-                <div className="mb-12">
+                <div className="my-20">
                     <motion.h1
                         className="text-4xl md:text-5xl font-black mb-4"
                         style={{ color: "#F9F3EF" }}
@@ -579,14 +585,14 @@ export default function Checkout() {
                         <span>الرئيسية</span>
                         <ArrowLeft className="w-4 h-4" />
                         <span>السلة</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowLeft className="w-4 h-4" />
                         <span>إتمام الطلب</span>
                     </motion.div>
                 </div>
 
                 {/* Progress Steps */}
                 <motion.div
-                    className="flex items-center justify-center mb-12"
+                    className="flex items-center text-center justify-center mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -597,8 +603,8 @@ export default function Checkout() {
                         const isCompleted = currentStep > step.id
 
                         return (
-                            <div key={step.id} className="flex items-center">
-                                <div className="flex flex-col items-center">
+                            <div key={step.id} className="flex text-center items-center">
+                                <div className="flex flex-col text-center items-center">
                                     <div className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${isCompleted
                                         ? 'bg-green-500 scale-110'
                                         : isActive
