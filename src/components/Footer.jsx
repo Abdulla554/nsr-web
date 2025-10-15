@@ -5,6 +5,8 @@ import {
   FaTwitter,
   FaEnvelope,
   FaPhone,
+  FaTiktok,
+  FaWhatsapp,
 } from "react-icons/fa";
 import logo from "/logo.png";
 
@@ -76,6 +78,12 @@ const Footer = () => {
               </a>
               <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
                 <FaInstagram className="text-white text-lg" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
+                <FaTiktok className="text-white text-lg" />
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300 shadow-md">
+                <FaWhatsapp className="text-white text-lg" />
               </a>
             </div>
           </div>

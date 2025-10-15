@@ -3,22 +3,35 @@ import { motion } from 'framer-motion'
 import { FaShippingFast, FaShieldAlt, FaHeadset, FaGift, FaTools, FaLaptop, FaGamepad, FaDesktop } from 'react-icons/fa'
 
 export default function Customer() {
+  const handleServiceClick = (service) => {
+    if (service.title === "خدمة العملاء") {
+      // رابط الواتساب - يمكنك تغيير الرقم حسب الحاجة
+      window.open("https://wa.me/966501234567", "_blank");
+    } else {
+      // للخدمات الأخرى، يمكن إضافة روابط أخرى لاحقاً
+      window.location.href = service.link;
+    }
+  };
+
   const services = [
 
     {
       icon: <FaShieldAlt className="text-3xl" />,
+      link: "/",
       title: "ضمان الخدمة",
-      description: "ضمان 3 سنوات ودعم تقني متقدم",
+      description: "ضمان جميع المنتجات ودعم تقني متقدم",
       color: "from-purple-400 to-pink-400"
     },
     {
       icon: <FaHeadset className="text-3xl" />,
+      link: "/customer-service",
       title: "خدمة العملاء",
       description: "نحن دائماً مستعدون لدعمكم",
       color: "from-green-400 to-emerald-400"
     },
     {
       icon: <FaGift className="text-3xl" />,
+      link: "/ ",
       title: "عروض حصرية",
       description: "اكتشف العروض الحصرية المخصصة لك",
       color: "from-orange-400 to-red-400"
@@ -81,7 +94,10 @@ export default function Customer() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105">
+                <div 
+                  className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
+                  onClick={() => handleServiceClick(service)}
+                >
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <div className="text-white">
                       {service.icon}

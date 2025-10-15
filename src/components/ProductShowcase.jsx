@@ -99,11 +99,11 @@ const ProductShowcase = () => {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
 
-            مجموعة ألعاب <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+            مجموعة العروض <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
             </span>
           </h1>
           <p className="text-gray-300 text-lg md:text-xl">
-            اكتشف أحدث ألعاب الألعاب والإكسسوارات
+            اكتشف أحدث العروض والخصومات
           </p>
         </motion.div>
 

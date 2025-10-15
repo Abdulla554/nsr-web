@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -160,23 +161,25 @@ export default function Brands() {
           >
             {brands?.map((brand) => (
               <SwiperSlide key={brand.id}>
-                <div className="relative pt-4 group h-full">
-                  {/* Brand Card */}
-                  <div className="relative  bg-white/95 backdrop-blur-sm rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 h-20 md:h-24 flex items-center justify-center p-4 md:p-6 shadow-lg hover:shadow-2xl border border-white/20">
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm bg-gradient-to-r from-[#2C6D90]/20 to-[#749BC2]/20"></div>
+                <Link to={`/products?brandId=${encodeURIComponent(brand?.id || brand)}`} className="block">
+                  <div className="relative pt-4 group h-full">
+                    {/* Brand Card */}
+                    <div className="relative  bg-white/95 backdrop-blur-sm rounded-2xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 h-20 md:h-24 flex items-center justify-center p-4 md:p-6 shadow-lg hover:shadow-2xl border border-white/20">
+                      {/* Glow Effect */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm bg-gradient-to-r from-[#2C6D90]/20 to-[#749BC2]/20"></div>
 
-                    {/* Brand Logo */}
-                    <div className="relative z-10 flex items-center justify-center w-full">
-                      <img
-                        src={brand?.logo || brand?.image}
-                        alt={brand?.title || brand?.name || 'Brand'}
-                        className="max-h-12 md:max-h-24 max-w-20 md:max-w-full object-fill filter drop-shadow-sm group-hover:drop-shadow-lg transition-all duration-300"
-                        loading="lazy"
-                      />
+                      {/* Brand Logo */}
+                      <div className="relative z-10 flex items-center justify-center w-full">
+                        <img
+                          src={brand?.logo || brand?.image}
+                          alt={brand?.title || brand?.name || 'Brand'}
+                          className="max-h-12 md:max-h-24 max-w-20 md:max-w-full object-fill filter drop-shadow-sm group-hover:drop-shadow-lg transition-all duration-300"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>

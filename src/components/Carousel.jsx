@@ -101,11 +101,11 @@ const HeroCarousel = () => {
       >
         {banners?.map((banner, i) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative h-full w-full">
+            <div className="relative h-full w-full bg-black">
               <img
                 src={banner.image}
                 alt={banner.title || `slide-${i}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain md:object-cover"
                 loading={i === 0 ? "eager" : "lazy"}
               />
 
@@ -128,14 +128,14 @@ const HeroCarousel = () => {
       </Swiper>
 
       {/* Progress Bar */}
-      {hasEnoughSlides && (
+      {/* {hasEnoughSlides && (
         <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-10 w-40  h-1 bg-white/30 rounded-full overflow-hidden backdrop-blur-sm">
           <div
             className="h-full bg-gradient-to-r from-[#2C6D90] to-[#749BC2] rounded-full transition-all duration-75 ease-linear shadow-lg"
             style={{ width: `${progress}%` }}
           />
         </div>
-      )}
+      )} */}
 
     
     </div>
